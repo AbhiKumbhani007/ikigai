@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ikigai/screens/Co-Working%20Screen/cowokring_screen.dart';
 import 'package:ikigai/screens/components/eventnews_component.dart';
 
 import 'components/feature_component.dart';
@@ -103,6 +104,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     FeatureComponent(
                       icon: Icons.work,
                       text: "Co-Working",
+                      onPressed:() {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => CoWorkingScreen()));
+                        },
                     ),
                     FeatureComponent(
                       icon: Icons.book,

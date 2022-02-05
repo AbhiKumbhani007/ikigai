@@ -81,3 +81,23 @@ extension TextStyleHelper on TextStyle {
               height: lineHeight,
             );
 }
+
+BoxDecoration kTextContainer = const BoxDecoration(
+  color: Colors.white54,
+  // borderRadius: BorderRadius.all(Radius.circular(20)),
+  boxShadow: [
+    // BoxShadow(color: Colors.white, blurRadius: 3),
+    BoxShadow(color: Colors.black, blurRadius: 2),
+  ],
+);
+
+InputDecoration inputDecorationOutline = const InputDecoration(
+  contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 10.0),
+  filled: true,
+  fillColor: Color.fromRGBO(33, 33, 33, 1),
+  labelStyle: TextStyle(color: Colors.white),
+  floatingLabelStyle: TextStyle(fontSize: 14, color: Colors.white),
+  // labelText: 'label',
+  // hintText: 'hint',
+  border: InputBorder.none,
+);
