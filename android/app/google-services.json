@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "326834004696",
+    "project_id": "ikigai-6babf",
+    "storage_bucket": "ikigai-6babf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326834004696:android:fe5fb6fb68f4ca63c2edad",
+        "android_client_info": {
+          "package_name": "com.example.ikigai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326834004696-4r84ugik2kobjm93nth3fvavc54pqe4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp8fS587aLWah6llSdq6jTxR5KL9VXok0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326834004696-4r84ugik2kobjm93nth3fvavc54pqe4t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

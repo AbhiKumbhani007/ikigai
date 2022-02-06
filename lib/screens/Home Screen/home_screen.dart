@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/screens/Co-Working%20Screen/cowokring_screen.dart';
 import 'package:ikigai/screens/components/eventnews_component.dart';
 
+import '../Events/add_event_form.dart';
+import '../components/gridbooking.dart';
 import 'components/feature_component.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -47,11 +49,11 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Color.fromRGBO(246, 249, 254, 1),
         appBar: AppBar(
           // centerTitle: true,
-          elevation: 0,
-          backgroundColor: Colors.white,
+          // elevation: 0,
+          // backgroundColor: Colors.white,
           title: Text(
             "Ikigai",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
         ),
         body: Padding(
@@ -104,10 +106,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     FeatureComponent(
                       icon: Icons.work,
                       text: "Co-Working",
-                      onPressed:() {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => CoWorkingScreen()));
-                        },
+                      onPressed: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => GridBooking()));
+                      },
                     ),
                     FeatureComponent(
                       icon: Icons.book,
@@ -116,6 +118,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     FeatureComponent(
                       icon: Icons.event,
                       text: "Organize Events",
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => EventFormScreen()));
+                      },
                     ),
                     FeatureComponent(
                       icon: Icons.work,
@@ -146,44 +152,45 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          // backgroundColor: Colors.black,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home_outlined,
-                color: Colors.black,
+                color: Colors.white,
                 size: 28,
                 // onPressed: () {},
               ),
               label: 'Home',
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.deepPurple,
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.book_outlined,
-                color: Colors.black,
+                color: Colors.white,
               ),
               label: 'Bookings',
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.account_circle_outlined,
-                color: Colors.black,
+                color: Colors.white,
               ),
               label: 'Profile',
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.settings_outlined,
-                color: Colors.black,
+                color: Colors.white,
               ),
               label: 'Settings',
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.black,
+          selectedItemColor: Colors.white,
           selectedIconTheme: IconThemeData(size: 28),
           onTap: _onItemTapped,
         ));

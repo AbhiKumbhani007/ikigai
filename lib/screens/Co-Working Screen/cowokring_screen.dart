@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ikigai/screens/components/formfield.dart';
 import 'package:ikigai/screens/components/input_field_date.dart';
 
+import '../components/gridbooking.dart';
+
 class CoWorkingScreen extends StatefulWidget {
   const CoWorkingScreen({Key? key}) : super(key: key);
 
@@ -16,7 +18,7 @@ class _CoWorkingScreenState extends State<CoWorkingScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(246, 249, 254, 1),
+      backgroundColor: const Color.fromRGBO(246, 249, 254, 1),
       appBar: AppBar(
         // centerTitle: true,
         elevation: 0,
@@ -59,6 +61,7 @@ class _CoWorkingScreenState extends State<CoWorkingScreen> {
                   lastDate: DateTime(2050),
                   context: context);
               _date.text =
+                  // ignore: unnecessary_string_interpolations
                   "${(date!.day < 10 ? '0' + date.day.toString() : date.day.toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
             },
           ),
@@ -91,6 +94,13 @@ class _CoWorkingScreenState extends State<CoWorkingScreen> {
             ],
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.app_registration),
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => GridBooking()));
+        },
       ),
     );
   }
