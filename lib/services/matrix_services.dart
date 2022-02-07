@@ -15,7 +15,7 @@ class MatrixServices {
 
     } else {
       // implement whole collection
-      for (int i = 1; i <= 24; i++) {
+      for (int i = 1; i <= 13; i++) {
         dateCollection.doc("${i}").set({'is_booked': false});
       }
     }

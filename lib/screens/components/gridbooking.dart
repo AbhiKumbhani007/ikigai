@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ikigai/screens/components/input_field_date.dart';
-
 import '../../controllers/matrix_controller.dart';
 
 class GridBooking extends StatefulWidget {
@@ -13,8 +12,13 @@ class GridBooking extends StatefulWidget {
 
 class _GridBookingState extends State<GridBooking> {
   MatrixController matrixController = Get.put(MatrixController());
-  final TextEditingController _date = TextEditingController();
+  DateTime date = DateTime.now();
+  final TextEditingController _date = TextEditingController(
+      text:
+          "${((DateTime.now().day + 1) < 10 ? '0' + (DateTime.now().day + 1).toString() : (DateTime.now().day + 1).toString()) + '-' + (DateTime.now().month < 10 ? '0' + DateTime.now().month.toString() : DateTime.now().month.toString()) + '-' + DateTime.now().year.toString()}");
+
   int _seatNumber = 0;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,6 +29,9 @@ class _GridBookingState extends State<GridBooking> {
       body: ListView(
         children: [
           InputFieldDate(
+            initialValue: DateTime(DateTime.now().year, DateTime.now().month,
+                    DateTime.now().day + 1)
+                .toString(),
             topicName: "Date",
             size: size,
             fieldController: _date,
@@ -44,7 +51,7 @@ class _GridBookingState extends State<GridBooking> {
                   context: context);
               _date.text =
                   // ignore: unnecessary_string_interpolations
-                  "${(date!.day < 10 ? '0' + date.day.toString() : date.day.toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
+                  "${((date!.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
             },
           ),
           GridView.builder(

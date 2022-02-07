@@ -5,6 +5,7 @@ import '../../constants/flutter_flow_theme.dart';
 // ignore: must_be_immutable
 class InputFieldDate extends StatelessWidget {
   var topicName;
+  var initialValue;
   var size;
   var fieldController;
   var validator;
@@ -12,6 +13,7 @@ class InputFieldDate extends StatelessWidget {
   var hinttext;
   InputFieldDate(
       {this.topicName,
+      this.initialValue,
       this.size,
       this.fieldController,
       this.validator,
@@ -40,6 +42,7 @@ class InputFieldDate extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 10),
             width: size.width * 0.92,
             child: TextFormField(
+              // initialValue: initialValue,
               controller: fieldController,
               validator: validator,
               decoration: InputDecoration(

@@ -11,7 +11,7 @@ class MatrixController extends GetxController {
   MatrixServices matrixService = MatrixServices();
   @override
   void onInit() {
-    for (int i = 0; i < 24; i++) {
+    for (int i = 0; i < 13; i++) {
       timeSlots.add(false);
     }
     super.onInit();
