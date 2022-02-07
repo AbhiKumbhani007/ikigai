@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ikigai/screens/components/input_field_date.dart';
@@ -11,7 +13,8 @@ class GridBooking extends StatefulWidget {
 }
 
 class _GridBookingState extends State<GridBooking> {
-  MatrixController matrixController = Get.put(MatrixController());
+  MatrixController matrixController = Get.find();
+
   DateTime date = DateTime.now();
   final TextEditingController _date = TextEditingController(
       text:
@@ -54,6 +57,7 @@ class _GridBookingState extends State<GridBooking> {
                   "${((date!.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
             },
           ),
+
           GridView.builder(
               shrinkWrap: true, //must for grid inside column
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -83,6 +87,37 @@ class _GridBookingState extends State<GridBooking> {
               }),
 
           // render available slotes of selected seat
+          (matrixController.seatNumber.value != 0)
+              ? Container(
+                  padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.width * 0.10),
+                  height: MediaQuery.of(context).size.height * 0.20,
+                  /*  width: MediaQuery.of(context).size.width*0.20, */
+                  child: ListView.builder(
+                    /* shrinkWrap: true, */
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Obx((){return Container(
+                        width: 140,
+                        margin: EdgeInsets.all(5),
+                        child: Center(
+                            child: Text(
+                          "9:00 to 10:00",
+                          style: TextStyle(
+                            color: Colors.white , 
+                            fontSize: 18),
+                        )),
+                        decoration: BoxDecoration(
+                          color:  (matrixController.timeSlots[index])? Color.fromARGB(255, 170, 145, 212) : Colors.deepPurple,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      );});
+                    },
+                    itemCount: 13,
+                  ),
+                )
+              : Container()
+          
         ],
       ),
     );

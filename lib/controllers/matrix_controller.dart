@@ -6,28 +6,43 @@ import '../services/matrix_services.dart';
 
 class MatrixController extends GetxController {
   RxInt seatNumber = 0.obs;
-  String selectedDate = "";
-  RxList<bool> timeSlots = RxList<bool>();
-  MatrixServices matrixService = MatrixServices();
+    String selectedDate = "";
+  // RxList<bool> timeSlots = RxList<bool>();
+  var timeSlots = <bool>[].obs;
+
   @override
   void onInit() {
-    for (int i = 0; i < 13; i++) {
+    for (int i = 0; i <= 20; i++) {
       timeSlots.add(false);
     }
     super.onInit();
   }
 
+
+  @override
+  void update([List<Object>? ids, bool condition = true]) {
+    // TODO: implement update
+    super.update(ids, condition);
+  }
+
+
+  void updateTimeSlots() async {
+    MatrixServices matrixService = MatrixServices();
+    // var timeSlots = await matrixService.getS
+  }
   // void setSeatNumber(int seat) {
   //   seatNumber = seat as RxInt;
   // }
 
-  void setSelectedDate(String date) {
-    debugPrint("inside setSelectedDate");
-    selectedDate = date;
-    debugPrint("${selectedDate}");
-  }
+  // void setSelectedDate(String date) {
+  //   debugPrint("inside setSelectedDate");
+  //   selectedDate = date;
+  //   debugPrint("${selectedDate}");
+  // }
 
-  void fetchSeatDetailsFromFirebase() {
-    matrixService.getSeatStats(seatNumber.value.toString(), selectedDate);
+  void fetchSeatDetailsFromFirebase()  async {
+    MatrixServices matrixService = MatrixServices();
+    
+  matrixService.getSeatStats(seatNumber.value.toString(), selectedDate.toString());
   }
 }
