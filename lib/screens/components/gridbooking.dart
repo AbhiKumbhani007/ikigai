@@ -52,9 +52,11 @@ class _GridBookingState extends State<GridBooking> {
                   firstDate: DateTime.now(),
                   lastDate: DateTime(2050),
                   context: context);
-              _date.text =
-                  // ignore: unnecessary_string_interpolations
-                  "${((date!.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
+              if (date != null) {
+                _date.text =
+                    // ignore: unnecessary_string_interpolations
+                    "${((date.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
+              }
             },
           ),
 
@@ -97,27 +99,28 @@ class _GridBookingState extends State<GridBooking> {
                     /* shrinkWrap: true, */
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return Obx((){return Container(
-                        width: 140,
-                        margin: EdgeInsets.all(5),
-                        child: Center(
-                            child: Text(
-                          "9:00 to 10:00",
-                          style: TextStyle(
-                            color: Colors.white , 
-                            fontSize: 18),
-                        )),
-                        decoration: BoxDecoration(
-                          color:  (matrixController.timeSlots[index])? Color.fromARGB(255, 170, 145, 212) : Colors.deepPurple,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      );});
+                      return Obx(() {
+                        return Container(
+                          width: 140,
+                          margin: EdgeInsets.all(5),
+                          child: Center(
+                              child: Text(
+                            "9:00 to 10:00",
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          )),
+                          decoration: BoxDecoration(
+                            color: (matrixController.timeSlots[index])
+                                ? Color.fromARGB(255, 170, 145, 212)
+                                : Colors.deepPurple,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        );
+                      });
                     },
                     itemCount: 13,
                   ),
                 )
               : Container()
-          
         ],
       ),
     );
