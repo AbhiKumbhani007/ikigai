@@ -6,7 +6,7 @@ import '../services/matrix_services.dart';
 
 class MatrixController extends GetxController {
   RxInt seatNumber = 0.obs;
-    String selectedDate = "";
+  String selectedDate = "";
   // RxList<bool> timeSlots = RxList<bool>();
   var timeSlots = <bool>[].obs;
 
@@ -18,13 +18,11 @@ class MatrixController extends GetxController {
     super.onInit();
   }
 
-
   @override
   void update([List<Object>? ids, bool condition = true]) {
     // TODO: implement update
     super.update(ids, condition);
   }
-
 
   void updateTimeSlots() async {
     MatrixServices matrixService = MatrixServices();
@@ -40,9 +38,16 @@ class MatrixController extends GetxController {
   //   debugPrint("${selectedDate}");
   // }
 
-  void fetchSeatDetailsFromFirebase()  async {
+  void fetchSeatDetailsFromFirebase() async {
     MatrixServices matrixService = MatrixServices();
-    
-  matrixService.getSeatStats(seatNumber.value.toString(), selectedDate.toString());
+
+    matrixService.getSeatStats(
+        seatNumber.value.toString(), selectedDate.toString());
+  }
+
+  void bookSeat(int index) async {
+    MatrixServices matrixService = MatrixServices();
+    matrixService.bookSeatInFirebase(
+        seatNumber.value.toString(), selectedDate.toString(), index);
   }
 }

@@ -32,6 +32,7 @@ class _GridBookingState extends State<GridBooking> {
       body: ListView(
         children: [
           InputFieldDate(
+            inputIcon: Icons.date_range,
             initialValue: DateTime(DateTime.now().year, DateTime.now().month,
                     DateTime.now().day + 1)
                 .toString(),
@@ -100,19 +101,25 @@ class _GridBookingState extends State<GridBooking> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return Obx(() {
-                        return Container(
-                          width: 140,
-                          margin: EdgeInsets.all(5),
-                          child: Center(
-                              child: Text(
-                            "9:00 to 10:00",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          )),
-                          decoration: BoxDecoration(
-                            color: (matrixController.timeSlots[index])
-                                ? Color.fromARGB(255, 170, 145, 212)
-                                : Colors.deepPurple,
-                            borderRadius: BorderRadius.circular(10),
+                        return GestureDetector(
+                          onTap: () {
+                            matrixController.bookSeat(index);
+                          },
+                          child: Container(
+                            width: 140,
+                            margin: EdgeInsets.all(5),
+                            child: Center(
+                                child: Text(
+                              "9:00 to 10:00",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            )),
+                            decoration: BoxDecoration(
+                              color: (matrixController.timeSlots[index])
+                                  ? Color.fromARGB(255, 170, 145, 212)
+                                  : Colors.deepPurple,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                           ),
                         );
                       });

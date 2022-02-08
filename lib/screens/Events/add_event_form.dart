@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ikigai/controllers/matrix_controller.dart';
 import 'package:ikigai/services/event_services.dart';
 
 import '../components/formfield.dart';
+import '../components/input_field_date.dart';
 
 class EventFormScreen extends StatefulWidget {
   const EventFormScreen({Key? key}) : super(key: key);
@@ -11,8 +14,22 @@ class EventFormScreen extends StatefulWidget {
 }
 
 class _EventFormScreenState extends State<EventFormScreen> {
-  final TextEditingController _title = TextEditingController();
+  final TextEditingController _eventName = TextEditingController();
+  final TextEditingController _totalSeats = TextEditingController();
+  final TextEditingController _startTime = TextEditingController();
+  final TextEditingController _endTime = TextEditingController();
+  final TextEditingController _eventId = TextEditingController();
+  final TextEditingController _eventType = TextEditingController();
+  final TextEditingController _organizerId = TextEditingController();
+  final TextEditingController _ticketPrice = TextEditingController();
+  DateTime date = DateTime.now();
+  final TextEditingController _date = TextEditingController(
+      text:
+          "${((DateTime.now().day + 1) < 10 ? '0' + (DateTime.now().day + 1).toString() : (DateTime.now().day + 1).toString()) + '-' + (DateTime.now().month < 10 ? '0' + DateTime.now().month.toString() : DateTime.now().month.toString()) + '-' + DateTime.now().year.toString()}");
+
   final _formKey3 = GlobalKey<FormState>();
+  TimeOfDay selectedTime = TimeOfDay.now();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -37,10 +54,10 @@ class _EventFormScreenState extends State<EventFormScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       InputField(
-                        topicName: "Title",
-                        hinttext: "Learn Ui/Ux Design",
+                        topicName: "Event Name",
+                        hinttext: "Enter Event Name",
                         size: size,
-                        fieldController: _title,
+                        fieldController: _eventName,
                         validator: (v) {
                           if (v!.length == 0) {
                             return 'Enter title';
@@ -48,10 +65,146 @@ class _EventFormScreenState extends State<EventFormScreen> {
                             return null;
                           }
                         },
-                        inputIcon: Icons.drive_file_rename_outline,
                       ),
                       const SizedBox(
-                        height: 30,
+                          // height: 2,
+                          ),
+                      InputField(
+                        topicName: "Event type",
+                        hinttext: "e.g. Dancing, Music, Workshop",
+                        size: size,
+                        fieldController: _eventType,
+                        validator: (v) {
+                          if (v!.length == 0) {
+                            return 'Enter title';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      Row(
+                        children: [
+                          InputFieldDate(
+                            inputIcon: Icons.timer,
+                            initialValue: DateTime(
+                                    DateTime.now().year,
+                                    DateTime.now().month,
+                                    DateTime.now().day + 1)
+                                .toString(),
+                            topicName: "Start Time",
+                            size: size / 2,
+                            fieldController: _startTime,
+                            hinttext: "10:00:00",
+                            validator: (v) {
+                              if (v!.length == 0) {
+                                return 'Enter title of activity';
+                              } else {
+                                return null;
+                              }
+                            },
+                            onpressed: () async {
+                              final date = await showTimePicker(
+                                  initialTime: TimeOfDay.now(),
+                                  context: context);
+                              if (date != null) {
+                                // _startTime.text =
+                                // ignore: unnecessary_string_interpolations
+                                // "${((date.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
+                              }
+                            },
+                          ),
+                          InputFieldDate(
+                            inputIcon: Icons.timer,
+                            initialValue: DateTime(
+                                    DateTime.now().year,
+                                    DateTime.now().month,
+                                    DateTime.now().day + 1)
+                                .toString(),
+                            topicName: "End time",
+                            size: size / 2,
+                            fieldController: _endTime,
+                            hinttext: "12:00:00",
+                            validator: (v) {
+                              if (v!.length == 0) {
+                                return 'Enter title of activity';
+                              } else {
+                                return null;
+                              }
+                            },
+                            onpressed: () async {
+                              final date = await showTimePicker(
+                                  initialTime: TimeOfDay.now(),
+                                  context: context);
+                              if (date != null) {
+                                // _startTime.text =
+                                // ignore: unnecessary_string_interpolations
+                                // "${((date.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          InputField(
+                            topicName: "Total seats",
+                            hinttext: "e.g. 25",
+                            size: size / 2,
+                            fieldController: _totalSeats,
+                            validator: (v) {
+                              if (v!.length == 0) {
+                                return 'Enter title';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                          InputField(
+                            topicName: "Price",
+                            hinttext: "Price per seat",
+                            size: size / 2,
+                            fieldController: _ticketPrice,
+                            validator: (v) {
+                              if (v!.length == 0) {
+                                return 'Enter title';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                      InputFieldDate(
+                        inputIcon: Icons.date_range,
+                        initialValue: DateTime(DateTime.now().year,
+                                DateTime.now().month, DateTime.now().day + 1)
+                            .toString(),
+                        topicName: "Date",
+                        size: size,
+                        fieldController: _date,
+                        hinttext: "Abcd",
+                        validator: (v) {
+                          if (v!.length == 0) {
+                            return 'Enter title of activity';
+                          } else {
+                            return null;
+                          }
+                        },
+                        onpressed: () async {
+                          final date = await showDatePicker(
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime(2050),
+                              context: context);
+                          if (date != null) {
+                            _date.text =
+                                // ignore: unnecessary_string_interpolations
+                                "${((date.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
+                          }
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                       SizedBox(
                         width: size.width * 0.3,
@@ -63,6 +216,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
                             if (_formKey3.currentState!.validate()) {
                               saveForm();
                             }
+                            Navigator.of(context).pop();
                           },
                         ),
                       ),
@@ -78,32 +232,18 @@ class _EventFormScreenState extends State<EventFormScreen> {
   }
 
   void saveForm() async {
-    // Project project = Project(
-    //     clientRepresentatives: [],
-    //     projectDescription: _projectDescription.text,
-    //     projectCode: _projectCode.text,
-    //     projectName: _projectName.text,
-    //     id: widget.project.id,
-    //     projectStartDate: _startDate.text,
-    //     projectEndDate: _endDate.text);
-
     var eventDetails = {};
-    eventDetails["title"] = _title.text;
-    eventDetails["user_registered"] = ["test"];
+    eventDetails["event_name"] = _eventName.text;
+    eventDetails["event_type"] = _eventType.text;
+    eventDetails["start_time"] = _startTime.text;
+    eventDetails["end_time"] = _endTime.text;
+    eventDetails["no_of_seats"] = _totalSeats.text;
+    eventDetails["ticket_price"] = _ticketPrice.text;
+
+    // eventDetails["event_id"] = _eventId;
+    // eventDetails["oragnizer_id"] = _organizerId;
+    // eventDetails["user_registered"] = ["test"];
     EventServices es = EventServices();
-    es.addEventsToFirebase(eventDetails);
-    // await ProjectNetwork().editProject(project).then((value) {
-    //   print('Value $value');
-    //   /*  Provider.of<ProgressValue>(context, listen: false).progressOff();*/
-    //   if (value == 200 || value == 202) {
-    //     showSnackBar('Project updated successfully', context, Colors.green);
-    //     Future.delayed(Duration(seconds: 2)).then((_) {
-    //       Navigator.of(context).pop();
-    //       Navigator.of(context).pop();
-    //     });
-    //   } else {
-    //     showSnackBar('Error! $value', context, Colors.red);
-    //   }
-    // });
+    es.addEventsToFirebase(eventDetails, _date.text);
   }
 }

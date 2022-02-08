@@ -35,4 +35,13 @@ class MatrixServices {
       }
     }
   }
+
+  Future<void> bookSeatInFirebase(
+      String seatNumber, String date, int index) async {
+    matrixCollection
+        .doc(seatNumber)
+        .collection(date)
+        .doc(index.toString())
+        .set({"is_booked": true});
+  }
 }

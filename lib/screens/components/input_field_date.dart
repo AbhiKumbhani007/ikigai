@@ -5,6 +5,7 @@ import '../../constants/flutter_flow_theme.dart';
 // ignore: must_be_immutable
 class InputFieldDate extends StatelessWidget {
   var topicName;
+  var inputIcon;
   var initialValue;
   var size;
   var fieldController;
@@ -13,6 +14,7 @@ class InputFieldDate extends StatelessWidget {
   var hinttext;
   InputFieldDate(
       {this.topicName,
+      this.inputIcon,
       this.initialValue,
       this.size,
       this.fieldController,
@@ -53,8 +55,8 @@ class InputFieldDate extends StatelessWidget {
                   ),
                   prefixIcon: IconButton(
                     onPressed: onpressed,
-                    icon: const Icon(
-                      Icons.date_range,
+                    icon: Icon(
+                      inputIcon,
                       color: Colors.black,
                     ),
                   ),

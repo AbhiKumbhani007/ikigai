@@ -7,10 +7,9 @@ class EventServices {
       .doc("Nalagandla")
       .collection("Events");
 
-  Future<void> addEventsToFirebase(eventDetails) async {
-    eventsCollection.add({
-      "title" : eventDetails["title"],
-      "user_registered" : eventDetails["user_registered"]
-    }); 
+  Future<void> addEventsToFirebase(eventDetails, date) async {
+    eventsCollection.doc(date).set({
+      "event_array": FieldValue.arrayUnion([eventDetails])
+    }, SetOptions(merge: true));
   }
 }
