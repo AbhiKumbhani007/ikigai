@@ -46,6 +46,9 @@ class MatrixController extends GetxController {
   }
 
   void bookSeat(int index) async {
+    debugPrint("$seatNumber");
+    debugPrint("$selectedDate");
+    debugPrint("$index");
     MatrixServices matrixService = MatrixServices();
     matrixService.bookSeatInFirebase(
         seatNumber.value.toString(), selectedDate.toString(), index);

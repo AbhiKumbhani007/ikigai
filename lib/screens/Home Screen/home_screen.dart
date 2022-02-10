@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ikigai/screens/Co-Working%20Screen/cowokring_screen.dart';
 import 'package:ikigai/screens/components/eventnews_component.dart';
 
 import '../Events/add_event_form.dart';
+import '../Events/request_event_form.dart';
 import '../components/gridbooking.dart';
 import 'components/feature_component.dart';
 
@@ -46,12 +46,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromRGBO(246, 249, 254, 1),
+        backgroundColor: const Color.fromRGBO(246, 249, 254, 1),
         appBar: AppBar(
           // centerTitle: true,
           // elevation: 0,
           // backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "Ikigai",
             style: TextStyle(color: Colors.white),
           ),
@@ -126,6 +126,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     FeatureComponent(
                       icon: Icons.work,
                       text: "Request Event",
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => requestEventScreen()));
+                      },
                     ),
                   ],
                 ),

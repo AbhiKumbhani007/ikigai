@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:ikigai/controllers/matrix_controller.dart';
 import 'package:ikigai/services/event_services.dart';
 
 import '../components/formfield.dart';
@@ -18,9 +16,9 @@ class _EventFormScreenState extends State<EventFormScreen> {
   final TextEditingController _totalSeats = TextEditingController();
   final TextEditingController _startTime = TextEditingController();
   final TextEditingController _endTime = TextEditingController();
-  final TextEditingController _eventId = TextEditingController();
+  // final TextEditingController _eventId = TextEditingController();
   final TextEditingController _eventType = TextEditingController();
-  final TextEditingController _organizerId = TextEditingController();
+  // final TextEditingController _organizerId = TextEditingController();
   final TextEditingController _ticketPrice = TextEditingController();
   DateTime date = DateTime.now();
   final TextEditingController _date = TextEditingController(
@@ -35,7 +33,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Event"),
+        title: const Text("Add Event"),
       ),
       body: SizedBox(
         width: size.width,
@@ -211,7 +209,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
                         height: 50,
                         child: ElevatedButton(
                           child: const Text("Add Event"),
-                          style: ButtonStyle(),
+                          style: const ButtonStyle(),
                           onPressed: () async {
                             if (_formKey3.currentState!.validate()) {
                               saveForm();

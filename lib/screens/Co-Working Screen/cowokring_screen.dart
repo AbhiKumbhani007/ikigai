@@ -96,7 +96,7 @@ class _CoWorkingScreenState extends State<CoWorkingScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.app_registration),
+        child: const Icon(Icons.app_registration),
         onPressed: () {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (_) => GridBooking()));
