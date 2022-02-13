@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ikigai/constants/routes.dart';
 import 'package:ikigai/screens/Home%20Screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:ikigai/screens/login_screen/login_sceen.dart';
 
 import 'controllers/matrix_controller.dart';
 // void main() {
@@ -11,24 +13,29 @@ import 'controllers/matrix_controller.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    // options: DefaultFirebaseOptions.currentPlatform,
-  );
+      // options: DefaultFirebaseOptions.currentPlatform,
+      );
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({Key? key}) : super(key: key);
-MatrixController matrixController = Get.put(MatrixController());
+  MyApp({Key? key}) : super(key: key);
+  MatrixController matrixController = Get.put(MatrixController());
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
-      
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: HomeScreen(),
+      // home: LoginPage(),
+      initialRoute: "/",
+      routes: {
+        // MyRoutes.homeRoute: (context) => LoginPage(),
+        // "/home": (context) => HomeScreen()
+        "/": (context) => LoginPage(),
+        "/home": (context) => HomeScreen()
+      },
     );
   }
 }
