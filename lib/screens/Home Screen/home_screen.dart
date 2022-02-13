@@ -141,10 +141,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                     FeatureComponent(
-                      icon: Icons.book,
-                      text: "Co-Learning",
-                    ),
-                    FeatureComponent(
                       icon: Icons.event,
                       text: "Organize Events",
                       onPressed: () {

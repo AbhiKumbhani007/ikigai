@@ -14,12 +14,12 @@ class GridBooking extends StatefulWidget {
 
 class _GridBookingState extends State<GridBooking> {
   MatrixController matrixController = Get.find();
-
+  String dropdownValue = 'Full-Day (08:00AM - 08:00PM)';
   DateTime date = DateTime.now();
+
   final TextEditingController _date = TextEditingController(
       text:
           "${((DateTime.now().day + 1) < 10 ? '0' + (DateTime.now().day + 1).toString() : (DateTime.now().day + 1).toString()) + '-' + (DateTime.now().month < 10 ? '0' + DateTime.now().month.toString() : DateTime.now().month.toString()) + '-' + DateTime.now().year.toString()}");
-
   int _seatNumber = 0;
 
   @override
@@ -60,7 +60,6 @@ class _GridBookingState extends State<GridBooking> {
               }
             },
           ),
-
           GridView.builder(
               shrinkWrap: true, //must for grid inside column
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -88,48 +87,101 @@ class _GridBookingState extends State<GridBooking> {
                   );
                 }));
               }),
-
-          // render available slotes of selected seat
           (matrixController.seatNumber.value != 0)
-              ? Container(
-                  padding: EdgeInsets.symmetric(
-                      vertical: MediaQuery.of(context).size.width * 0.10),
-                  height: MediaQuery.of(context).size.height * 0.20,
-                  /*  width: MediaQuery.of(context).size.width*0.20, */
-                  child: ListView.builder(
-                    /* shrinkWrap: true, */
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Obx(() {
-                        return GestureDetector(
-                          onTap: () {
-                            matrixController.bookSeat(index);
-                          },
+              ? Center(
+                  child: Container(
+                    width: 300,
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      value: dropdownValue,
+                      // icon: const Icon(Icons.arrow_downward),
+                      style: const TextStyle(color: Colors.deepPurple),
+                      //
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                        });
+                      },
+                      items: <String>[
+                        'Full-Day (08:00AM - 08:00PM)',
+                        '8:00AM - 12:00PM',
+                        '12:00PM - 04:00PM',
+                        '04:00PM - 08:00PM',
+                        "08:00PM - 12:00PM"
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
                           child: Container(
-                            width: 140,
-                            margin: EdgeInsets.all(5),
-                            child: Center(
-                                child: Text(
-                              "9:00 to 10:00",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 18),
-                            )),
-                            decoration: BoxDecoration(
-                              color: (matrixController.timeSlots[index])
-                                  ? Color.fromARGB(255, 170, 145, 212)
-                                  : Colors.deepPurple,
-                              borderRadius: BorderRadius.circular(10),
+                            child: Text(
+                              value,
+                              style: TextStyle(fontSize: 16),
                             ),
                           ),
                         );
-                      });
-                    },
-                    itemCount: 13,
+                      }).toList(),
+                    ),
                   ),
                 )
-              : Container()
+              : SizedBox(),
+          Obx(() {
+            return (matrixController.seatNumber.value != 0)
+                ? (isSlotAvailable(dropdownValue)
+                    ? Center(
+                        child: Container(
+                          child: Text("Not Available"),
+                        ),
+                      )
+                    : Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            matrixController.bookSeat(getIndex(dropdownValue));
+                            // navigator to payment gateway screen
+                          },
+                          child: Text("Book"),
+                        ),
+                      ))
+                : SizedBox();
+          })
         ],
       ),
     );
+  }
+
+  bool isSlotAvailable(String slot) {
+    if (slot == 'Full-Day (08:00AM - 08:00PM)') {
+      return matrixController.timeSlots[0] ||
+          matrixController.timeSlots[1] ||
+          matrixController.timeSlots[2];
+    }
+    if (slot == '8:00AM - 12:00PM') {
+      return matrixController.timeSlots[0];
+    }
+    if (slot == '12:00PM - 04:00PM') {
+      return matrixController.timeSlots[1];
+    }
+    if (slot == '04:00PM - 08:00PM') {
+      return matrixController.timeSlots[2];
+    }
+    if (slot == '8:00AM - 12:00PM') {
+      return matrixController.timeSlots[3];
+    }
+    return false;
+  }
+
+  int getIndex(String slot) {
+    if (slot == '8:00AM - 12:00PM') {
+      return 0;
+    }
+    if (slot == '12:00PM - 04:00PM') {
+      return 1;
+    }
+    if (slot == '04:00PM - 08:00PM') {
+      return 2;
+    }
+    if (slot == '8:00AM - 12:00PM') {
+      return 3;
+    }
+    return 4;
   }
 }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ikigai/constants/routes.dart';
 import 'package:ikigai/screens/Home%20Screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:ikigai/screens/components/gridbooking.dart';
 import 'package:ikigai/screens/login_screen/login_sceen.dart';
 
 import 'controllers/matrix_controller.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         // MyRoutes.homeRoute: (context) => LoginPage(),
         // "/home": (context) => HomeScreen()
         "/": (context) => LoginPage(),
-        "/home": (context) => HomeScreen()
+        "/home": (context) => HomeScreen(),
+        "/grid_booking" : (context) => GridBooking()
       },
     );
   }

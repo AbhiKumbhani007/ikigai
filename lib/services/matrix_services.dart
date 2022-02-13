@@ -21,16 +21,16 @@ class MatrixServices {
         matrixController.timeSlots[int.parse(snapShots.docs[i].id.toString())] =
             snapShots.docs[i]["is_booked"];
       }
-      for (int i = 0; i <= 13; i++) {
+      for (int i = 0; i < 4; i++) {
         debugPrint(
             "matrixController.timeSlots[$i] : ${matrixController.timeSlots[i]}");
       }
     } else {
       // implement whole collection
-      for (int i = 1; i <= 13; i++) {
+      for (int i = 0; i < 4; i++) {
         dateCollection.doc("${i}").set({'is_booked': false});
       }
-      for (int i = 0; i <= 13; i++) {
+      for (int i = 0; i <= 3; i++) {
         matrixController.timeSlots[i] = false;
       }
     }
@@ -38,10 +38,28 @@ class MatrixServices {
 
   Future<void> bookSeatInFirebase(
       String seatNumber, String date, int index) async {
-    matrixCollection
-        .doc(seatNumber)
-        .collection(date)
-        .doc(index.toString())
-        .set({"is_booked": true});
+    if (index == 4) {
+      matrixCollection
+          .doc(seatNumber)
+          .collection(date)
+          .doc("0".toString())
+          .set({"is_booked": true});
+      matrixCollection
+          .doc(seatNumber)
+          .collection(date)
+          .doc("1".toString())
+          .set({"is_booked": true});
+      matrixCollection
+          .doc(seatNumber)
+          .collection(date)
+          .doc("2".toString())
+          .set({"is_booked": true});
+    } else {
+      matrixCollection
+          .doc(seatNumber)
+          .collection(date)
+          .doc(index.toString())
+          .set({"is_booked": true});
+    }
   }
 }

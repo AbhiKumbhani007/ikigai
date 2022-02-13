@@ -12,7 +12,7 @@ class MatrixController extends GetxController {
 
   @override
   void onInit() {
-    for (int i = 0; i <= 20; i++) {
+    for (int i = 0; i < 4; i++) {
       timeSlots.add(false);
     }
     super.onInit();
@@ -40,17 +40,17 @@ class MatrixController extends GetxController {
 
   void fetchSeatDetailsFromFirebase() async {
     MatrixServices matrixService = MatrixServices();
-
     matrixService.getSeatStats(
         seatNumber.value.toString(), selectedDate.toString());
   }
 
   void bookSeat(int index) async {
     debugPrint("$seatNumber");
-    debugPrint("$selectedDate");
+    debugPrint(selectedDate);
     debugPrint("$index");
-    MatrixServices matrixService = MatrixServices();
-    matrixService.bookSeatInFirebase(
+    MatrixServices matrixService = MatrixServices();                                                                  
+    await matrixService.bookSeatInFirebase(
         seatNumber.value.toString(), selectedDate.toString(), index);
+    fetchSeatDetailsFromFirebase();
   }
 }
