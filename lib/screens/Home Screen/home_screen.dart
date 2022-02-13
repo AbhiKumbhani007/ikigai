@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ikigai/screens/components/drawer.dart';
 import 'package:ikigai/screens/components/eventnews_component.dart';
 
 import '../Events/add_event_form.dart';
 import '../Events/request_event_form.dart';
 import '../components/gridbooking.dart';
 import 'components/feature_component.dart';
+
+import 'package:whatsapp_unilink/whatsapp_unilink.dart';
+// For Flutter applications, you'll most likely want to use
+// the url_launcher package.
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -46,7 +53,29 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: SpeedDial(
+            overlayColor: Colors.deepPurple,
+            overlayOpacity: .4,
+            spaceBetweenChildren: 12,
+            animatedIcon: AnimatedIcons.menu_close,
+            children: [
+              SpeedDialChild(
+                child: Icon(Icons.mail),
+                onTap: () async {
+                  final link = WhatsAppUnilink(
+                    phoneNumber: '+91-9974884446',
+                    // text: "Hey! I'm inquiring about the apartment listing",
+                  );
+                  // Convert the WhatsAppUnilink instance to a string.
+                  // Use either Dart's string interpolation or the toString() method.
+                  // The "launch" method is part of "url_launcher".
+                  await launch('$link');
+                },
+              ),
+              SpeedDialChild(child: Icon(Icons.chat))
+            ]),
         backgroundColor: const Color.fromRGBO(246, 249, 254, 1),
+        endDrawer: MyDrawer(),
         appBar: AppBar(
           // centerTitle: true,
           // elevation: 0,
