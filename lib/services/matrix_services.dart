@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ikigai/controllers/matrix_controller.dart';
+import 'package:ikigai/controllers/user_controller.dart';
 
 class MatrixServices {
   MatrixController matrixController = Get.find();
+  UserController userController = Get.find();
   CollectionReference matrixCollection = FirebaseFirestore.instance
       .collection("Location")
       .doc("Nalagandla")
@@ -43,23 +45,23 @@ class MatrixServices {
           .doc(seatNumber)
           .collection(date)
           .doc("0".toString())
-          .set({"is_booked": true});
+          .set({"is_booked": true, "user_id": userController.uid.value});
       matrixCollection
           .doc(seatNumber)
           .collection(date)
           .doc("1".toString())
-          .set({"is_booked": true});
+          .set({"is_booked": true, "user_id": userController.uid.value});
       matrixCollection
           .doc(seatNumber)
           .collection(date)
           .doc("2".toString())
-          .set({"is_booked": true});
+          .set({"is_booked": true, "user_id": userController.uid.value});
     } else {
       matrixCollection
           .doc(seatNumber)
           .collection(date)
           .doc(index.toString())
-          .set({"is_booked": true});
+          .set({"is_booked": true, "user_id": userController.uid.value});
     }
   }
 }
