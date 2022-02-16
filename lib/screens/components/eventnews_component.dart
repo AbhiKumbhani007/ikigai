@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ikigai/controllers/event_controller.dart';
 import "../../constants/flutter_flow_theme.dart";
+import '../../models/event_model.dart';
 
 class EventNewsTile extends StatelessWidget {
-  const EventNewsTile({Key? key}) : super(key: key);
-
+  var eventName;
+  var eventDate;
+  EventModel? event;
+  EventNewsTile({
+    Key? key,
+    this.event,
+    this.eventName,
+    this.eventDate,
+  }) : super(key: key);
+  EventController eventController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +43,7 @@ class EventNewsTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Dance Classes",
+                  eventName,
                   style: GoogleFonts.montserrat(
                       fontSize: 18,
                       fontWeight: FontWeight.w400,
@@ -40,7 +51,7 @@ class EventNewsTile extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 Text(
-                  "Let's dance buddy!!!",
+                  eventDate,
                   style: GoogleFonts.montserrat(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -68,8 +79,10 @@ class EventNewsTile extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.22,
             alignment: Alignment.bottomRight, */
               child: ElevatedButton(
-            onPressed: () {},
-            child: Text("Book"),
+            onPressed: () {
+              eventController.bookEvent(event!);
+            },
+            child: const Text("Book"),
           )),
         ],
       ),

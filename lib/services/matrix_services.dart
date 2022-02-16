@@ -12,6 +12,11 @@ class MatrixServices {
       .doc("Nalagandla")
       .collection("Matrix");
 
+  CollectionReference bookingCollection = FirebaseFirestore.instance
+      .collection("Location")
+      .doc("Nalagandla")
+      .collection("Bookings");
+
   Future<void> getSeatStats(String seatNumber, String date) async {
     CollectionReference dateCollection =
         matrixCollection.doc(seatNumber).collection(date);
@@ -40,28 +45,55 @@ class MatrixServices {
 
   Future<void> bookSeatInFirebase(
       String seatNumber, String date, int index) async {
+    String bookingId = date + "_" + seatNumber + "_" + index.toString();
+    bookingCollection
+        .doc(userController.uid.value)
+        .collection(bookingId)
+        .doc("1")
+        .set({
+      "date": date,
+      "event_id": "-1",
+      "seat_number": seatNumber,
+      "slot_number": index.toString(),
+    });
     if (index == 4) {
       matrixCollection
           .doc(seatNumber)
           .collection(date)
           .doc("0".toString())
-          .set({"is_booked": true, "user_id": userController.uid.value});
+          .set({
+        "is_booked": true,
+        "user_id": userController.uid.value,
+        "booking_id": bookingId
+      });
       matrixCollection
           .doc(seatNumber)
           .collection(date)
           .doc("1".toString())
-          .set({"is_booked": true, "user_id": userController.uid.value});
+          .set({
+        "is_booked": true,
+        "user_id": userController.uid.value,
+        "booking_id": bookingId
+      });
       matrixCollection
           .doc(seatNumber)
           .collection(date)
           .doc("2".toString())
-          .set({"is_booked": true, "user_id": userController.uid.value});
+          .set({
+        "is_booked": true,
+        "user_id": userController.uid.value,
+        "booking_id": bookingId
+      });
     } else {
       matrixCollection
           .doc(seatNumber)
           .collection(date)
           .doc(index.toString())
-          .set({"is_booked": true, "user_id": userController.uid.value});
+          .set({
+        "is_booked": true,
+        "user_id": userController.uid.value,
+        "booking_id": bookingId
+      });
     }
   }
 }

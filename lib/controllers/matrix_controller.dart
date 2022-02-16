@@ -26,17 +26,8 @@ class MatrixController extends GetxController {
 
   void updateTimeSlots() async {
     MatrixServices matrixService = MatrixServices();
-    // var timeSlots = await matrixService.getS
   }
-  // void setSeatNumber(int seat) {
-  //   seatNumber = seat as RxInt;
-  // }
 
-  // void setSelectedDate(String date) {
-  //   debugPrint("inside setSelectedDate");
-  //   selectedDate = date;
-  //   debugPrint("${selectedDate}");
-  // }
 
   void fetchSeatDetailsFromFirebase() async {
     MatrixServices matrixService = MatrixServices();
@@ -45,12 +36,10 @@ class MatrixController extends GetxController {
   }
 
   void bookSeat(int index) async {
-    debugPrint("$seatNumber");
-    debugPrint(selectedDate);
-    debugPrint("$index");
     MatrixServices matrixService = MatrixServices();                                                                  
     await matrixService.bookSeatInFirebase(
         seatNumber.value.toString(), selectedDate.toString(), index);
     fetchSeatDetailsFromFirebase();
   }
+  
 }
