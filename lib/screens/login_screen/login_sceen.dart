@@ -1,5 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+// import 'dart:html';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -51,9 +54,17 @@ class _LoginPageState extends State<LoginPage> {
       if (_formkey.currentState!.validate()) {
         setState(() {
           _a = true;
+          Authentication().SignIn(email, password).then((value) {
+            if (value == "SUCCESS") {
+              Navigator.pushNamed(context, "/home");
+            } else {
+              _a = false;
+            }
+            showError(value);
+          });
         });
-        await Future.delayed(Duration(seconds: 1));
-        await Navigator.pushNamed(context, "/home");
+
+        // await Navigator.pushNamed(context, "/home");
         setState(() {
           _a = false;
         });
@@ -76,7 +87,11 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Text(
               "Welcome To Our App",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              style: GoogleFonts.montserrat(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
             ),
             SizedBox(
               height: 20,
@@ -87,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextFormField(
                     decoration: InputDecoration(
-                        hintText: "Enter Name", labelText: "Name"),
+                        hintText: "Enter Email", labelText: "E-mail"),
                     onChanged: (val) {
                       _mailerror = "";
                       email = val;
@@ -96,6 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                       if (value!.isEmpty) {
                         return "Username Cannot be empty";
                       }
+
                       return null;
                     },
                   ),
@@ -111,23 +127,27 @@ class _LoginPageState extends State<LoginPage> {
                       if (value!.isEmpty) {
                         return "Password Cannot be empty";
                       }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    onChanged: (val) {
-                      _fullName = "";
-                      fullName = val;
-                    },
-                    decoration: InputDecoration(
-                        hintText: "Abhi Kumbhani", labelText: "Full Name"),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Enter Full Name";
+                      if (_a == false) {
+                        _a = true;
+                        return "Enter Valid Password";
                       }
                       return null;
                     },
                   ),
+                  // TextFormField(
+                  //   onChanged: (val) {
+                  //     _fullName = "";
+                  //     fullName = val;
+                  //   },
+                  //   decoration: InputDecoration(
+                  //       hintText: "Enter Name", labelText: "Full Name"),
+                  //   validator: (value) {
+                  //     if (value!.isEmpty) {
+                  //       return "Enter Full Name";
+                  //     }
+                  //     return null;
+                  //   },
+                  // ),
                   SizedBox(
                     height: 20,
                   ),
@@ -142,14 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                         // splashColor: Colors.black,
                         // onTap: () => moveToHome(context),
                         onTap: () {
-                          Authentication()
-                              .SignIn(email, password)
-                              .then((value) {
-                            if (value == "SUCCESS") {
-                             Navigator.pushNamed(context, "/home");
-                            }
-                            showError(value);
-                          });
+                          moveToHome(context);
                         },
                         child: AnimatedContainer(
                           duration: Duration.zero,
@@ -159,45 +172,66 @@ class _LoginPageState extends State<LoginPage> {
                           height: 50,
                           child: Text(
                             "LOGIN",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
+                            style: GoogleFonts.montserrat(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   Container(
-                    color: Colors.white,
-                    child: Material(
-                      color: Colors.deepPurple,
-                      borderRadius: BorderRadius.circular(8),
-
-                      //  color: Colors.transparent,
-                      child: InkWell(
-                        // splashColor: Colors.black,
-                        // onTap: () => moveToHome(context),
-                        onTap: () {
-                          Authentication.SignUp(email, password, fullName);
-                        },
-                        child: AnimatedContainer(
-                          duration: Duration.zero,
-                          alignment: Alignment.center,
-                          // width: _a ? 50 : 150,
-                          width: 150,
-                          height: 50,
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
+                    alignment: Alignment.center,
+                    child: RichText(
+                      text: TextSpan(
+                          text: "Sign Up",
+                          style: GoogleFonts.montserrat(
+                            color: Colors.deepPurple,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
                           ),
-                        ),
-                      ),
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(context, "/signup");
+                            }),
                     ),
-                  ),
+
+                    // Container(
+                    //   color: Colors.white,
+                    //   child: Material(
+                    //     color: Colors.deepPurple,
+                    //     borderRadius: BorderRadius.circular(8),
+
+                    //     //  color: Colors.transparent,
+                    //     child: InkWell(
+                    //       // splashColor: Colors.black,
+                    //       // onTap: () => moveToHome(context),
+                    //       onTap: () {
+                    //         Authentication.SignUp(email, password, fullName);
+                    //       },
+                    //       child: AnimatedContainer(
+                    //         duration: Duration.zero,
+                    //         alignment: Alignment.center,
+                    //         // width: _a ? 50 : 150,
+                    //         width: 150,
+                    //         height: 50,
+                    //         child: Text(
+                    //           "Sign Up",
+                    //           style: TextStyle(
+                    //               color: Colors.white,
+                    //               fontSize: 15,
+                    //               fontWeight: FontWeight.bold),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                  )
                 ],
               ),
             )

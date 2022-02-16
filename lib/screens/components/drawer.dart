@@ -96,7 +96,7 @@ class MyDrawer extends StatelessWidget {
                 title: const Text('Logout', style: TextStyle(fontSize: 18)),
                 subtitle: const Text('Here is a second line'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pushNamed(context, "/login");
                 },
               ),
             ),
