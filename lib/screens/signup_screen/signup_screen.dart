@@ -50,17 +50,15 @@ class _SignupPageState extends State<SignupPage> {
     {
       if (_formkey.currentState!.validate()) {
         Authentication.SignUp(email, password, fullName).then((value) {
-          if (value != "SUCCESS") {
-            // _a = false;
-          }
+          Navigator.pushNamed(context, "/login");
         });
-        setState(() {
-          _a = true;
-        });
-        await Navigator.pushNamed(context, "/login");
-        setState(() {
-          _a = false;
-        });
+        // setState(() {
+        //   _a = true;
+        // });
+
+        // setState(() {
+        //   _a = false;
+        // });
       }
     }
   }
@@ -115,10 +113,9 @@ class _SignupPageState extends State<SignupPage> {
                       if (value!.isEmpty) {
                         return "Password Cannot be empty";
                       }
-                      if (_a == false) {
-                        _a = true;
-                        return "Enter Valid Password";
-                      }
+                      // if (_a == false) {
+                      //   return "Enter Valid Password";
+                      // }
                       return null;
                     },
                   ),

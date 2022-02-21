@@ -53,21 +53,19 @@ class _LoginPageState extends State<LoginPage> {
     {
       if (_formkey.currentState!.validate()) {
         setState(() {
-          _a = true;
+          // _a = true;
           Authentication().SignIn(email, password).then((value) {
             if (value == "SUCCESS") {
               Navigator.pushNamed(context, "/home");
-            } else {
-              _a = false;
             }
-            showError(value);
+            // else {
+            //   _a = false;
+            // }
+            // showError(value);
           });
         });
 
         // await Navigator.pushNamed(context, "/home");
-        setState(() {
-          _a = false;
-        });
       }
     }
   }
@@ -127,10 +125,10 @@ class _LoginPageState extends State<LoginPage> {
                       if (value!.isEmpty) {
                         return "Password Cannot be empty";
                       }
-                      if (_a == false) {
-                        _a = true;
-                        return "Enter Valid Password";
-                      }
+                      // if (_a == false) {
+                      //   _a = true;
+                      //   return "Enter Valid Password";
+                      // }
                       return null;
                     },
                   ),
