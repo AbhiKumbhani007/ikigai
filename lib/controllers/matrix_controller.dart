@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
+import '../models/seat_model.dart';
 import '../services/matrix_services.dart';
 
 class MatrixController extends GetxController {
@@ -9,7 +10,7 @@ class MatrixController extends GetxController {
   String selectedDate = "";
   // RxList<bool> timeSlots = RxList<bool>();
   var timeSlots = <bool>[].obs;
-
+  var MatrixStatsOfThisDate = <SeatModel>[].obs;
   @override
   void onInit() {
     for (int i = 0; i < 4; i++) {
@@ -28,7 +29,6 @@ class MatrixController extends GetxController {
     MatrixServices matrixService = MatrixServices();
   }
 
-
   void fetchSeatDetailsFromFirebase() async {
     MatrixServices matrixService = MatrixServices();
     matrixService.getSeatStats(
@@ -36,10 +36,15 @@ class MatrixController extends GetxController {
   }
 
   void bookSeat(int index) async {
-    MatrixServices matrixService = MatrixServices();                                                                  
+    MatrixServices matrixService = MatrixServices();
     await matrixService.bookSeatInFirebase(
         seatNumber.value.toString(), selectedDate.toString(), index);
     fetchSeatDetailsFromFirebase();
   }
-  
+
+  void getSeatStatsAccordingToDate() async {
+    MatrixServices matrixServices = MatrixServices();
+    MatrixStatsOfThisDate.value = await matrixServices
+        .getSeatStatsAccordingToDate(selectedDate.toString());
+  }
 }

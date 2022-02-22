@@ -48,7 +48,12 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   ];
 
-  EventController eventController = Get.put(EventController());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,6 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class HomeScreenPage extends StatelessWidget {
   HomeScreenPage({Key? key}) : super(key: key);
+
   EventController eventController = Get.put(EventController());
 
   @override

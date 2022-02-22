@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ikigai/screens/components/input_field_date.dart';
 import '../../controllers/matrix_controller.dart';
+import '../../services/matrix_services.dart';
 
 class GridBooking extends StatefulWidget {
-  const GridBooking({Key? key}) : super(key: key);
+  GridBooking({Key? key}) : super(key: key);
 
   @override
   _GridBookingState createState() => _GridBookingState();
@@ -16,7 +17,8 @@ class _GridBookingState extends State<GridBooking> {
   MatrixController matrixController = Get.find();
   String dropdownValue = 'Full-Day (08:00AM - 08:00PM)';
   DateTime date = DateTime.now();
-
+  bool isSlotsDetailsAvailable = false;
+  MatrixServices matrixServices = MatrixServices();
   final TextEditingController _date = TextEditingController(
       text:
           "${((DateTime.now().day + 1) < 10 ? '0' + (DateTime.now().day + 1).toString() : (DateTime.now().day + 1).toString()) + '-' + (DateTime.now().month < 10 ? '0' + DateTime.now().month.toString() : DateTime.now().month.toString()) + '-' + DateTime.now().year.toString()}");
@@ -60,33 +62,54 @@ class _GridBookingState extends State<GridBooking> {
               }
             },
           ),
-          GridView.builder(
-              shrinkWrap: true, //must for grid inside column
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 8,
-              ),
-              itemCount: 64,
-              itemBuilder: (BuildContext context, int index) {
-                return InkWell(onTap: () {
-                  setState(() {
-                    _seatNumber = index + 1;
-                    debugPrint("date: ${_date.text}");
-                    matrixController.selectedDate = _date.text;
-                    debugPrint(
-                        "matrixController.selectedDate: ${matrixController.selectedDate}");
-                    matrixController.seatNumber.value = _seatNumber;
-                    matrixController.fetchSeatDetailsFromFirebase();
-                  });
-                  debugPrint("${(index / 8).floor() + 1} , ${1 + index % 8}");
-                }, child: Obx(() {
-                  return Card(
-                    color: (index + 1 == matrixController.seatNumber.value)
-                        ? Colors.amber
-                        : Colors.white,
-                    child: Center(child: Text('${index + 1}')),
-                  );
-                }));
+          Center(
+            child: ElevatedButton(
+              onPressed: (() {
+                matrixController.selectedDate = _date.text;
+                matrixController.getSeatStatsAccordingToDate();
+                setState(() {
+                  isSlotsDetailsAvailable = true;
+                });
+                // matrixServices.getSeatStatsAccordingToDate(_date.text);
               }),
+              child: Text("Fetch Slot Details"),
+            ),
+          ),
+          (isSlotsDetailsAvailable)
+              ? GridView.builder(
+                  shrinkWrap: true, //must for grid inside column
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 8,
+                  ),
+                  itemCount: 64,
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(onTap: () {
+                      setState(() {
+                        _seatNumber = index + 1;
+                        debugPrint("date: ${_date.text}");
+                        matrixController.selectedDate = _date.text;
+                        debugPrint(
+                            "matrixController.selectedDate: ${matrixController.selectedDate}");
+                        matrixController.seatNumber.value = _seatNumber;
+                        matrixController.fetchSeatDetailsFromFirebase();
+                      });
+                      debugPrint(
+                          "${(index / 8).floor() + 1} , ${1 + index % 8}");
+                    }, child: Obx(() {
+                      return Card(
+                        color: (index + 1 == matrixController.seatNumber.value)
+                            ? Colors.white
+                            : matrixController
+                                        .MatrixStatsOfThisDate.value.length ==
+                                    0
+                                ? Colors.white
+                                : matrixController.MatrixStatsOfThisDate[index]
+                                    .getColor(),
+                        child: Center(child: Text('${index + 1}')),
+                      );
+                    }));
+                  })
+              : SizedBox(),
           (matrixController.seatNumber.value != 0)
               ? Center(
                   child: Container(
@@ -108,7 +131,7 @@ class _GridBookingState extends State<GridBooking> {
                         '8:00AM - 12:00PM',
                         '12:00PM - 04:00PM',
                         '04:00PM - 08:00PM',
-                        "08:00PM - 12:00PM"
+                        "08:00PM - 12:00AM"
                       ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
@@ -163,7 +186,7 @@ class _GridBookingState extends State<GridBooking> {
     if (slot == '04:00PM - 08:00PM') {
       return matrixController.timeSlots[2];
     }
-    if (slot == '8:00AM - 12:00PM') {
+    if (slot == '08:00PM - 12:00AM') {
       return matrixController.timeSlots[3];
     }
     return false;
@@ -179,7 +202,7 @@ class _GridBookingState extends State<GridBooking> {
     if (slot == '04:00PM - 08:00PM') {
       return 2;
     }
-    if (slot == '8:00AM - 12:00PM') {
+    if (slot == '08:00PM - 12:00AM') {
       return 3;
     }
     return 4;

@@ -27,6 +27,9 @@ class EventServices {
       "no_of_seats": eventDetails["no_of_seats"],
       "ticket_price": eventDetails["ticket_price"],
     });
+
+    EventController eventController = Get.find();
+    eventController.fetchNextTwoDaysEvent();
   }
 
   Future<List<EventModel>> FetchNextTwoDaysEvents() async {
@@ -36,6 +39,17 @@ class EventServices {
         "${((DateTime.now().day + 1) < 10 ? '0' + (DateTime.now().day + 1).toString() : (DateTime.now().day + 1).toString()) + '-' + (DateTime.now().month < 10 ? '0' + DateTime.now().month.toString() : DateTime.now().month.toString()) + '-' + DateTime.now().year.toString()}";
     String after2days =
         "${((DateTime.now().day + 2) < 10 ? '0' + (DateTime.now().day + 2).toString() : (DateTime.now().day + 2).toString()) + '-' + (DateTime.now().month < 10 ? '0' + DateTime.now().month.toString() : DateTime.now().month.toString()) + '-' + DateTime.now().year.toString()}";
+    String after3days =
+        "${((DateTime.now().day + 3) < 10 ? '0' + (DateTime.now().day + 3).toString() : (DateTime.now().day + 3).toString()) + '-' + (DateTime.now().month < 10 ? '0' + DateTime.now().month.toString() : DateTime.now().month.toString()) + '-' + DateTime.now().year.toString()}";
+    String after4days =
+        "${((DateTime.now().day + 4) < 10 ? '0' + (DateTime.now().day + 4).toString() : (DateTime.now().day + 4).toString()) + '-' + (DateTime.now().month < 10 ? '0' + DateTime.now().month.toString() : DateTime.now().month.toString()) + '-' + DateTime.now().year.toString()}";
+    String after5days =
+        "${((DateTime.now().day + 5) < 10 ? '0' + (DateTime.now().day + 5).toString() : (DateTime.now().day + 5).toString()) + '-' + (DateTime.now().month < 10 ? '0' + DateTime.now().month.toString() : DateTime.now().month.toString()) + '-' + DateTime.now().year.toString()}";
+    String after6days =
+        "${((DateTime.now().day + 6) < 10 ? '0' + (DateTime.now().day + 6).toString() : (DateTime.now().day + 6).toString()) + '-' + (DateTime.now().month < 10 ? '0' + DateTime.now().month.toString() : DateTime.now().month.toString()) + '-' + DateTime.now().year.toString()}";
+    String after7days =
+        "${((DateTime.now().day + 7) < 10 ? '0' + (DateTime.now().day + 7).toString() : (DateTime.now().day + 7).toString()) + '-' + (DateTime.now().month < 10 ? '0' + DateTime.now().month.toString() : DateTime.now().month.toString()) + '-' + DateTime.now().year.toString()}";
+
     List<EventModel> eventList = [];
     CollectionReference eventArray =
         await eventsCollection.doc(nextDate).collection("event_array");
@@ -82,6 +96,81 @@ class EventServices {
         ticketPrice: snapshot.docs[i]["ticket_price"],
       ));
     }
+    eventArray =
+        await eventsCollection.doc(after3days).collection("event_array");
+    snapshot = await eventArray.get();
+    for (int i = 0; i < snapshot.docs.length; i++) {
+      eventList.add(EventModel(
+        eventDate: after3days,
+        eventId: snapshot.docs[i]["event_id"],
+        eventName: snapshot.docs[i]["event_name"],
+        eventType: snapshot.docs[i]["event_type"],
+        startTime: snapshot.docs[i]["start_time"],
+        endTime: snapshot.docs[i]["end_time"],
+        availableSeats: snapshot.docs[i]["no_of_seats"],
+        ticketPrice: snapshot.docs[i]["ticket_price"],
+      ));
+    }
+    eventArray =
+        await eventsCollection.doc(after4days).collection("event_array");
+    snapshot = await eventArray.get();
+    for (int i = 0; i < snapshot.docs.length; i++) {
+      eventList.add(EventModel(
+        eventDate: after4days,
+        eventId: snapshot.docs[i]["event_id"],
+        eventName: snapshot.docs[i]["event_name"],
+        eventType: snapshot.docs[i]["event_type"],
+        startTime: snapshot.docs[i]["start_time"],
+        endTime: snapshot.docs[i]["end_time"],
+        availableSeats: snapshot.docs[i]["no_of_seats"],
+        ticketPrice: snapshot.docs[i]["ticket_price"],
+      ));
+    }
+    eventArray =
+        await eventsCollection.doc(after5days).collection("event_array");
+    snapshot = await eventArray.get();
+    for (int i = 0; i < snapshot.docs.length; i++) {
+      eventList.add(EventModel(
+        eventDate: after5days,
+        eventId: snapshot.docs[i]["event_id"],
+        eventName: snapshot.docs[i]["event_name"],
+        eventType: snapshot.docs[i]["event_type"],
+        startTime: snapshot.docs[i]["start_time"],
+        endTime: snapshot.docs[i]["end_time"],
+        availableSeats: snapshot.docs[i]["no_of_seats"],
+        ticketPrice: snapshot.docs[i]["ticket_price"],
+      ));
+    }
+    eventArray =
+        await eventsCollection.doc(after6days).collection("event_array");
+    snapshot = await eventArray.get();
+    for (int i = 0; i < snapshot.docs.length; i++) {
+      eventList.add(EventModel(
+        eventDate: after6days,
+        eventId: snapshot.docs[i]["event_id"],
+        eventName: snapshot.docs[i]["event_name"],
+        eventType: snapshot.docs[i]["event_type"],
+        startTime: snapshot.docs[i]["start_time"],
+        endTime: snapshot.docs[i]["end_time"],
+        availableSeats: snapshot.docs[i]["no_of_seats"],
+        ticketPrice: snapshot.docs[i]["ticket_price"],
+      ));
+    }
+    eventArray =
+        await eventsCollection.doc(after7days).collection("event_array");
+    snapshot = await eventArray.get();
+    for (int i = 0; i < snapshot.docs.length; i++) {
+      eventList.add(EventModel(
+        eventDate: after7days,
+        eventId: snapshot.docs[i]["event_id"],
+        eventName: snapshot.docs[i]["event_name"],
+        eventType: snapshot.docs[i]["event_type"],
+        startTime: snapshot.docs[i]["start_time"],
+        endTime: snapshot.docs[i]["end_time"],
+        availableSeats: snapshot.docs[i]["no_of_seats"],
+        ticketPrice: snapshot.docs[i]["ticket_price"],
+      ));
+    }
     return eventList;
   }
 
@@ -93,6 +182,4 @@ class EventServices {
       "registered_user": FieldValue.arrayUnion([userController.uid.value])
     }, SetOptions(merge: true));
   }
-
-  
 }
