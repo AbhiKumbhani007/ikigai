@@ -10,6 +10,7 @@ import '../Events/add_event_form.dart';
 import '../Events/request_event_form.dart';
 import '../components/gridbooking.dart';
 import '../my_bookings/my_bookings_screen.dart';
+import '../partner_screen/partner_screen.dart';
 import 'components/feature_component.dart';
 
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
@@ -38,10 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreenPage(),
     MyBooking(),
-    Text(
-      'Index 2: Profile',
-      style: optionStyle,
-    ),
+    PartnerScreen(),
     Text(
       'Index 3: Settings',
       style: optionStyle,
@@ -116,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.account_circle_outlined,
                 color: Colors.white,
               ),
-              label: 'Profile',
+              label: 'Our Partners',
               // backgroundColor: Colors.white,
             ),
             BottomNavigationBarItem(

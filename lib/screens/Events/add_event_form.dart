@@ -100,7 +100,35 @@ class _EventFormScreenState extends State<EventFormScreen> {
                           }
                         },
                       ),
-
+                      InputFieldDate(
+                        inputIcon: Icons.date_range,
+                        initialValue: DateTime(DateTime.now().year,
+                                DateTime.now().month, DateTime.now().day + 1)
+                            .toString(),
+                        topicName: "Date",
+                        size: size,
+                        fieldController: _date,
+                        hinttext: "Abcd",
+                        validator: (v) {
+                          if (v!.length == 0) {
+                            return 'Enter title of activity';
+                          } else {
+                            return null;
+                          }
+                        },
+                        onpressed: () async {
+                          final date = await showDatePicker(
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime(2050),
+                              context: context);
+                          if (date != null) {
+                            _date.text =
+                                // ignore: unnecessary_string_interpolations
+                                "${((date.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
+                          }
+                        },
+                      ),
                       // const SizedBox(
                       //   height: 20,
                       //   child: Text("Book Slot"),
@@ -222,11 +250,11 @@ class _EventFormScreenState extends State<EventFormScreen> {
                       //     }
                       //   },
                       // ),
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, "/grid_booking");
-                          },
-                          child: Text("Book Slot")),
+                      // ElevatedButton(
+                      //     onPressed: () {
+                      //       Navigator.pushNamed(context, "/grid_booking");
+                      //     },
+                      //     child: Text("Book Slot")),
                       const SizedBox(
                         height: 20,
                       ),

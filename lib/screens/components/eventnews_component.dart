@@ -51,7 +51,7 @@ class EventNewsTile extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 Text(
-                  eventDate,
+                  event!.eventDate!,
                   style: GoogleFonts.montserrat(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
