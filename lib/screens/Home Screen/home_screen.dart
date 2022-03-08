@@ -11,6 +11,7 @@ import '../Events/request_event_form.dart';
 import '../components/gridbooking.dart';
 import '../my_bookings/my_bookings_screen.dart';
 import '../partner_screen/partner_screen.dart';
+import '../settings_screen/settings_screen.dart';
 import 'components/feature_component.dart';
 
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
@@ -40,10 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeScreenPage(),
     MyBooking(),
     PartnerScreen(),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
+    SettingsScreen(),
+    // Text(
+    //   'Index 3: Settings',
+    //   style: optionStyle,
+    // ),
   ];
 
   @override

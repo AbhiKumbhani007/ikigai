@@ -1,19 +1,96 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/models/event_model.dart';
 
 class EventDetailsScreen extends StatelessWidget {
-   EventDetailsScreen({Key? key, EventModel? event}) : super(key: key);
-    // event avi gya che barober
-    
+  EventModel? event;
+  EventDetailsScreen({Key? key, this.event}) : super(key: key);
+  // event avi gya che barober
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Event Details'),
-      ),
-      body: Center(
-        child: Text('Event Details'),
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Event Details'),
+        ),
+        body: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0.6),
+              child: Image(
+                  image: NetworkImage(
+                      "https://res.cloudinary.com/eventboost/image/upload/v1594282851/website/wp/eventboost-twitter-card-home.jpg")),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            ListTile(
+              tileColor: Color.fromARGB(255, 255, 255, 255),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
+              leading: Text(" Name: ",
+                  style: GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              title: Text(
+                "${event!.eventName}",
+                style:
+                    GoogleFonts.roboto(fontSize: 18, color: Colors.deepPurple),
+              ),
+            ),
+            ListTile(
+              tileColor: Color.fromARGB(255, 255, 255, 255),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
+              leading: Text(" Type: ",
+                  style: GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              title: Text(
+                "${event!.eventType}",
+                style:
+                    GoogleFonts.roboto(fontSize: 18, color: Colors.deepPurple),
+              ),
+            ),
+            ListTile(
+              tileColor: Color.fromARGB(255, 255, 255, 255),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
+              leading: Text(" Date: ",
+                  style: GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              title: Text(
+                "${event!.eventDate}",
+                style:
+                    GoogleFonts.roboto(fontSize: 18, color: Colors.deepPurple),
+              ),
+            ),
+            ListTile(
+              tileColor: Color.fromARGB(255, 255, 255, 255),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
+              leading: Text(" Seats: ",
+                  style: GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              title: Text(
+                "${event!.availableSeats}",
+                style:
+                    GoogleFonts.roboto(fontSize: 18, color: Colors.deepPurple),
+              ),
+            ),
+            ListTile(
+              tileColor: Color.fromARGB(255, 255, 255, 255),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
+              leading: Text(" Price: ",
+                  style: GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              title: Text(
+                "${event!.ticketPrice}",
+                style:
+                    GoogleFonts.roboto(fontSize: 18, color: Colors.deepPurple),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+                onPressed: () {},
+                child: const Text("Book Event"),
+                style: const ButtonStyle())
+          ],
+        ));
   }
 }
