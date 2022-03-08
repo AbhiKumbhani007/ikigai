@@ -33,7 +33,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
 
   MatrixController matrixController = Get.find();
 
-  String dropdownValue = 'Full-Day (08:00AM - 08:00PM)';
+  String dropdownValue = 'Public';
 
   @override
   Widget build(BuildContext context) {
@@ -221,6 +221,37 @@ class _EventFormScreenState extends State<EventFormScreen> {
                           ),
                         ],
                       ),
+
+                      Container(
+                        width: 300,
+                        padding:
+                            EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          value: dropdownValue,
+                          // icon: const Icon(Icons.arrow_downward),
+                          style: const TextStyle(color: Colors.deepPurple),
+                          //
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue = newValue!;
+                            });
+                          },
+                          items: <String>['Public', 'Private']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Container(
+                                child: Text(
+                                  value,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
                       // InputFieldDate(
                       //   inputIcon: Icons.date_range,
                       //   initialValue: DateTime(DateTime.now().year,
@@ -311,6 +342,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
     eventDetails["end_time"] = _endTime.text;
     eventDetails["no_of_seats"] = _totalSeats.text;
     eventDetails["ticket_price"] = _ticketPrice.text;
+    eventDetails["event_mode"] = dropdownValue;
     EventServices es = EventServices();
     es.addEventsToFirebase(eventDetails, _date.text);
   }

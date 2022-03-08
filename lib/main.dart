@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:ikigai/constants/routes.dart';
 import 'package:ikigai/controllers/user_controller.dart';
+import 'package:ikigai/screens/Events/event_detail_screen.dart';
 import 'package:ikigai/screens/Home%20Screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:ikigai/screens/components/gridbooking.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         "/grid_booking": (context) => GridBooking(),
         "/signup": (context) => SignupPage(),
         "/login": (context) => LoginPage(),
+        "/event_details": (context) => EventDetailsScreen(),
       },
     );
   }

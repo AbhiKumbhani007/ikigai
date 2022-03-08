@@ -26,8 +26,8 @@ class EventServices {
       "end_time": eventDetails["end_time"],
       "no_of_seats": eventDetails["no_of_seats"],
       "ticket_price": eventDetails["ticket_price"],
+      "event_mode": eventDetails["event_mode"]
     });
-
     EventController eventController = Get.find();
     eventController.fetchNextTwoDaysEvent();
   }
@@ -64,6 +64,7 @@ class EventServices {
         endTime: snapshot.docs[i]["end_time"],
         availableSeats: snapshot.docs[i]["no_of_seats"],
         ticketPrice: snapshot.docs[i]["ticket_price"],
+        eventMode: snapshot.docs[i]["event_mode"],
       ));
     }
 
@@ -79,6 +80,7 @@ class EventServices {
         endTime: snapshot.docs[i]["end_time"],
         availableSeats: snapshot.docs[i]["no_of_seats"],
         ticketPrice: snapshot.docs[i]["ticket_price"],
+        eventMode: snapshot.docs[i]["event_mode"],
       ));
     }
     eventArray =
@@ -94,6 +96,7 @@ class EventServices {
         endTime: snapshot.docs[i]["end_time"],
         availableSeats: snapshot.docs[i]["no_of_seats"],
         ticketPrice: snapshot.docs[i]["ticket_price"],
+        eventMode: snapshot.docs[i]["event_mode"],
       ));
     }
     eventArray =
@@ -109,6 +112,7 @@ class EventServices {
         endTime: snapshot.docs[i]["end_time"],
         availableSeats: snapshot.docs[i]["no_of_seats"],
         ticketPrice: snapshot.docs[i]["ticket_price"],
+        eventMode: snapshot.docs[i]["event_mode"],
       ));
     }
     eventArray =
@@ -124,6 +128,7 @@ class EventServices {
         endTime: snapshot.docs[i]["end_time"],
         availableSeats: snapshot.docs[i]["no_of_seats"],
         ticketPrice: snapshot.docs[i]["ticket_price"],
+        eventMode: snapshot.docs[i]["event_mode"],
       ));
     }
     eventArray =
@@ -139,6 +144,7 @@ class EventServices {
         endTime: snapshot.docs[i]["end_time"],
         availableSeats: snapshot.docs[i]["no_of_seats"],
         ticketPrice: snapshot.docs[i]["ticket_price"],
+        eventMode: snapshot.docs[i]["event_mode"],
       ));
     }
     eventArray =
@@ -153,6 +159,7 @@ class EventServices {
         startTime: snapshot.docs[i]["start_time"],
         endTime: snapshot.docs[i]["end_time"],
         availableSeats: snapshot.docs[i]["no_of_seats"],
+        eventMode: snapshot.docs[i]["event_mode"],
         ticketPrice: snapshot.docs[i]["ticket_price"],
       ));
     }
@@ -168,9 +175,12 @@ class EventServices {
         startTime: snapshot.docs[i]["start_time"],
         endTime: snapshot.docs[i]["end_time"],
         availableSeats: snapshot.docs[i]["no_of_seats"],
+        eventMode: snapshot.docs[i]["event_mode"],
         ticketPrice: snapshot.docs[i]["ticket_price"],
       ));
     }
+
+    eventList = eventList.where((i) => i.eventMode == "Public").toList();
     return eventList;
   }
 
