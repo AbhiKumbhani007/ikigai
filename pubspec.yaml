@@ -41,8 +41,8 @@ dependencies:
   whatsapp_unilink: ^2.0.1+1
   url_launcher: ^6.0.20
   firebase_auth: ^3.3.7
-  google_sign_in: ^5.1.0 
-  get_storage: ^2.0.3 
+  google_sign_in: ^5.1.0
+  get_storage: ^2.0.3
   uuid: ^3.0.5
   qr_flutter: ^4.0.0
 dev_dependencies:
