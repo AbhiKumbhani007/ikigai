@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
             animatedIcon: AnimatedIcons.menu_close,
             children: [
               SpeedDialChild(
-                child: Icon(Icons.mail),
+                child: const Icon(Icons.mail),
                 onTap: () async {
                   final link = WhatsAppUnilink(
                     phoneNumber: '+91-9974884446',
@@ -109,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               label: 'Bookings',
+              backgroundColor: Colors.deepPurple,
               // backgroundColor: Colors.white,
             ),
             BottomNavigationBarItem(
@@ -117,6 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               label: 'Our Partners',
+              backgroundColor: Colors.deepPurple,
               // backgroundColor: Colors.white,
             ),
             BottomNavigationBarItem(
@@ -125,11 +127,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               label: 'Settings',
+              backgroundColor: Colors.deepPurple,
               // backgroundColor: Colors.white,
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.white,
+          // selectedItemColor: Colors.white,
           selectedIconTheme: IconThemeData(size: 28),
           onTap: _onItemTapped,
         ));
