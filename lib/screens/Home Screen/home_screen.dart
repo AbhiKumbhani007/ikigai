@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SpeedDialChild(child: Icon(Icons.chat))
             ]),
         backgroundColor: const Color.fromRGBO(246, 249, 254, 1),
-        endDrawer: MyDrawer(),
+        // endDrawer: MyDrawer(),
         appBar: AppBar(
           // centerTitle: true,
           // elevation: 0,

@@ -65,7 +65,9 @@ class SettingsScreen extends StatelessWidget {
             ),
             title: const Text('Logout', style: TextStyle(fontSize: 18)),
             onTap: () {
-              Navigator.pushNamed(context, "/login");
+              
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  "/login", (Route<dynamic> route) => false);
             },
           ),
         ],

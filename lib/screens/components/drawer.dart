@@ -13,9 +13,9 @@ class MyDrawer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           // padding: EdgeInsets.only(top: 0),
           children: [
-            DrawerHeader(
+            const DrawerHeader(
               padding: EdgeInsets.zero,
-              child: const UserAccountsDrawerHeader(
+              child: UserAccountsDrawerHeader(
                 accountName: Text(
                   "Abhishek Kumbhani",
                   style: TextStyle(fontSize: 20),
@@ -37,8 +37,8 @@ class MyDrawer extends StatelessWidget {
               ),
               elevation: 2,
               child: ListTile(
-                leading: Flexible(
-                  child: const Icon(
+                leading: const Flexible(
+                  child: Icon(
                     Icons.person,
                     color: Colors.deepPurple,
                     size: 27,

@@ -58,10 +58,7 @@ class _LoginPageState extends State<LoginPage> {
             if (value == "SUCCESS") {
               Navigator.pushNamed(context, "/home");
             }
-            // else {
-            //   _a = false;
-            // }
-            // showError(value);
+          
           });
         });
 
@@ -183,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
+                  Container( 
                     alignment: Alignment.center,
                     child: RichText(
                       text: TextSpan(
