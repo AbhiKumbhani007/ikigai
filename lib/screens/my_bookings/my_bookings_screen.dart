@@ -46,7 +46,7 @@ class MyBooking extends StatelessWidget {
                       children: [
                         Text(
                           "eventName",
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.lato(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
                               color: Color.fromRGBO(5, 1, 82, 1)),
@@ -54,7 +54,7 @@ class MyBooking extends StatelessWidget {
                         const SizedBox(height: 15),
                         Text(
                           "eventDate",
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.lato(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               color: Color.fromRGBO(216, 216, 216, 1)),
@@ -66,7 +66,7 @@ class MyBooking extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text("Price:50 \$ ",
-                                  style: GoogleFonts.montserrat(
+                                  style: GoogleFonts.lato(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                       color: Color.fromRGBO(194, 100, 255, 1))),

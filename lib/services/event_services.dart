@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ikigai/controllers/event_controller.dart';
 import 'package:ikigai/controllers/user_controller.dart';
@@ -191,5 +192,59 @@ class EventServices {
     eventsCollection.doc(date).collection("event_array").doc(docNo).set({
       "registered_user": FieldValue.arrayUnion([userController.uid.value])
     }, SetOptions(merge: true));
+  }
+
+  Future<List<EventModel>> FetchAllEvents() async {
+    List<EventModel> eventList = [];
+
+    eventsCollection.get().then((querySnapshot) => {
+          querySnapshot.docs.forEach((doc) async {
+            CollectionReference eventArray =
+                await eventsCollection.doc(doc.id).collection("event_array");
+            var snapshot = await eventArray.get();
+            for (int i = 0; i < snapshot.docs.length; i++) {
+              eventList.add(EventModel(
+                eventDate: doc.id,
+                eventId: snapshot.docs[i]["event_id"],
+                eventName: snapshot.docs[i]["event_name"],
+                eventType: snapshot.docs[i]["event_type"],
+                startTime: snapshot.docs[i]["start_time"],
+                endTime: snapshot.docs[i]["end_time"],
+                availableSeats: snapshot.docs[i]["no_of_seats"],
+                eventMode: snapshot.docs[i]["event_mode"],
+                ticketPrice: snapshot.docs[i]["ticket_price"],
+              ));
+            }
+          })
+        });
+
+    // QuerySnapshot sp = await eventsCollection.get();
+
+    // eventsCollection.get().then((sp) async {
+    //   for (int i = 0; i < sp.docs.length; i++) {
+    //     var eventArray =
+    //         eventsCollection.doc(sp.docs[i].id).collection("event_array");
+    //     var snapshot = await eventArray.get();
+    //     debugPrint("inside fetch all events");
+    //     for (int i = 0; i < snapshot.docs.length; i++) {
+    //       eventList.add(EventModel(
+    //         eventDate: sp.docs[i].id, //sp.docs[i].id,
+    //         eventId: snapshot.docs[i]["event_id"],
+    //         eventName: snapshot.docs[i]["event_name"],
+    //         eventType: snapshot.docs[i]["event_type"],
+    //         startTime: snapshot.docs[i]["start_time"],
+    //         endTime: snapshot.docs[i]["end_time"],
+    //         availableSeats: snapshot.docs[i]["no_of_seats"],
+    //         eventMode: snapshot.docs[i]["event_mode"],
+    //         ticketPrice: snapshot.docs[i]["ticket_price"],
+    //       ));
+    //     }
+    //   }
+    // });
+
+    debugPrint("inside fetch all events");
+
+    eventList = eventList.where((i) => i.eventMode == "Public").toList();
+    return eventList;
   }
 }

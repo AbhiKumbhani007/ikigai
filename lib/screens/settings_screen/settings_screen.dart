@@ -13,28 +13,45 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=211'),
-                radius: 70,
-              ),
-            ),
+          // const Padding(
+          //   padding: EdgeInsets.all(8.0),
+          //   child: Center(
+          //     child: CircleAvatar(
+          //       backgroundImage: NetworkImage(
+          //           'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=211'),
+          //       radius: 70,
+          //     ),
+          //   ),
+          // ),
+          const SizedBox(
+            height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Abhishek Kumbhani',
-                style: GoogleFonts.lato(fontSize: 20),
+                'My Profile',
+                style:
+                    GoogleFonts.lato(fontSize: 26, fontWeight: FontWeight.bold),
               )
             ],
           ),
           const SizedBox(
-            height: 30,
+            height: 50,
           ),
+          ListTile(
+              tileColor: Colors.grey[200],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              leading: const Icon(Icons.person),
+              title: Text('Abhishek Kumbhani',
+                  style: GoogleFonts.roboto(fontSize: 16))),
+          const SizedBox(
+            height: 5,
+          ),
+          // const SizedBox(
+          //   height: 30,
+          // ),
           ListTile(
               tileColor: Colors.grey[200],
               shape: RoundedRectangleBorder(
@@ -65,7 +82,6 @@ class SettingsScreen extends StatelessWidget {
             ),
             title: const Text('Logout', style: TextStyle(fontSize: 18)),
             onTap: () {
-              
               Navigator.of(context).pushNamedAndRemoveUntil(
                   "/login", (Route<dynamic> route) => false);
             },

@@ -193,7 +193,7 @@ class _SignupPageState extends State<SignupPage> {
                           width: 150,
                           height: 50,
                           child: Text("Sign Up",
-                              style: GoogleFonts.montserrat(
+                              style: GoogleFonts.lato(
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,

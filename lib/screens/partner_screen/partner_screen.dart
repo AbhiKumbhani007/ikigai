@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PartnerScreen extends StatefulWidget {
@@ -28,6 +29,8 @@ class _PartnerScreenState extends State<PartnerScreen> {
               // elevation: 2,
               child: Center(
                 child: ListTile(
+                  onTap: () {
+                  },
                   leading: CircleAvatar(
                     radius: 30,
                     backgroundImage: const Image(
@@ -37,7 +40,7 @@ class _PartnerScreenState extends State<PartnerScreen> {
                   ),
                   title: Text('Google',
                       style: GoogleFonts.lato(
-                          fontSize: 26, color: Colors.deepPurple)),
+                          fontSize: 24, color: Colors.deepPurple)),
                   subtitle:
                       Text('Google LLC', style: GoogleFonts.lato(fontSize: 16)),
                 ),
@@ -67,7 +70,7 @@ class _PartnerScreenState extends State<PartnerScreen> {
                   ),
                   title: Text('Instagram',
                       style: GoogleFonts.lato(
-                          fontSize: 26, color: Colors.deepPurple)),
+                          fontSize: 24, color: Colors.deepPurple)),
                   subtitle: Text('Instagram LLC',
                       style:
                           GoogleFonts.lato(fontSize: 16, color: Colors.black)),
@@ -98,7 +101,7 @@ class _PartnerScreenState extends State<PartnerScreen> {
                   ),
                   title: Text('Brijesh Patadiya',
                       style: GoogleFonts.lato(
-                          fontSize: 26, color: Colors.deepPurple)),
+                          fontSize: 24, color: Colors.deepPurple)),
                   subtitle: Text('Flutter Devloper',
                       style:
                           GoogleFonts.lato(fontSize: 16, color: Colors.black)),

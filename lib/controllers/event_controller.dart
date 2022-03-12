@@ -6,9 +6,10 @@ import '../models/event_model.dart';
 
 class EventController extends GetxController {
   var listOfEventsOfTwoDays = <EventModel>[].obs;
-
+  var listOfEvents = <EventModel>[].obs;
   @override
   void onInit() {
+    fetchAllEvents();
     fetchNextTwoDaysEvent();
     super.onInit();
   }
@@ -20,9 +21,13 @@ class EventController extends GetxController {
 
   void bookEvent(EventModel event) async {
     EventServices es = new EventServices();
-    await es.addUserIdIntoEvent( event); 
+    await es.addUserIdIntoEvent(event);
+  }
+
+  void fetchAllEvents() async{
+    EventServices es = new EventServices();
+    listOfEvents.value = await es.FetchAllEvents();
   }
 
 
-  
 }

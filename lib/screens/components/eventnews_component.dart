@@ -56,7 +56,7 @@ class EventNewsTile extends StatelessWidget {
                 children: [
                   Text(
                     eventName,
-                    style: GoogleFonts.montserrat(
+                    style: GoogleFonts.lato(
                         fontSize: 18,
                         fontWeight: FontWeight.w400,
                         color: Color.fromRGBO(5, 1, 82, 1)),
@@ -64,38 +64,37 @@ class EventNewsTile extends StatelessWidget {
                   const SizedBox(height: 15),
                   Text(
                     event!.eventDate!,
-                    style: GoogleFonts.montserrat(
+                    style: GoogleFonts.lato(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: Color.fromRGBO(216, 216, 216, 1)),
                   ),
                   const SizedBox(height: 15),
-                  Container(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(" ${event?.ticketPrice} \$ ",
-                            style: GoogleFonts.montserrat(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Color.fromRGBO(194, 100, 255, 1))),
-                      ],
-                    ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(" ${event?.ticketPrice} \$ ",
+                          style: GoogleFonts.lato(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromRGBO(194, 100, 255, 1))),
+                    ],
                   ),
                 ],
               ),
             ),
-            Expanded(
-                /* height: MediaQuery.of(context).size.height * 0.13,
-              width: MediaQuery.of(context).size.width * 0.22,
-              alignment: Alignment.bottomRight, */
-                child: ElevatedButton(
-              onPressed: () {
-                eventController.bookEvent(event!);
-              },
-              child: const Text("Book"),
-            )),
+            Container(
+              alignment: Alignment.bottomRight,
+              height: 40,
+              width: 100,
+              child: ElevatedButton(
+                onPressed: () {
+                  eventController.bookEvent(event!);
+                },
+                child: const Text("Book"),
+              ),
+            ),
           ],
         ),
       ),

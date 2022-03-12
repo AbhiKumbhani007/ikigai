@@ -27,60 +27,98 @@ class EventDetailsScreen extends StatelessWidget {
               tileColor: Color.fromARGB(255, 255, 255, 255),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0)),
-              leading: Text(" Name: ",
-                  style: GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              leading: SizedBox(
+                width: 60,
+                child: Text("Name:",
+                    style:
+                        GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              ),
               title: Text(
                 "${event!.eventName}",
-                style:
-                    GoogleFonts.roboto(fontSize: 18, color: Colors.deepPurple),
+                style: GoogleFonts.roboto(
+                    fontSize: 18,
+                    color: Colors.deepPurple,
+                    fontWeight: FontWeight.w500),
               ),
             ),
             ListTile(
               tileColor: Color.fromARGB(255, 255, 255, 255),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0)),
-              leading: Text(" Type: ",
-                  style: GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              leading: SizedBox(
+                width: 60,
+                child: Text("Type:",
+                    style: GoogleFonts.roboto(
+                      fontSize: 20,
+                      color: Colors.black,
+                    )),
+              ),
               title: Text(
                 "${event!.eventType}",
-                style:
-                    GoogleFonts.roboto(fontSize: 18, color: Colors.deepPurple),
+                style: GoogleFonts.roboto(
+                    fontSize: 18,
+                    color: Colors.deepPurple,
+                    fontWeight: FontWeight.w500),
               ),
             ),
             ListTile(
               tileColor: Color.fromARGB(255, 255, 255, 255),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0)),
-              leading: Text(" Date: ",
-                  style: GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              leading: SizedBox(
+                width: 60,
+                child: Text("Date:",
+                    style: GoogleFonts.roboto(
+                      fontSize: 20,
+                      color: Colors.black,
+                    )),
+              ),
               title: Text(
                 "${event!.eventDate}",
-                style:
-                    GoogleFonts.roboto(fontSize: 18, color: Colors.deepPurple),
+                style: GoogleFonts.roboto(
+                    fontSize: 18,
+                    color: Colors.deepPurple,
+                    fontWeight: FontWeight.w500),
               ),
             ),
             ListTile(
               tileColor: Color.fromARGB(255, 255, 255, 255),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0)),
-              leading: Text(" Seats: ",
-                  style: GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              leading: SizedBox(
+                width: 60,
+                child: Text("Seats:",
+                    style: GoogleFonts.roboto(
+                      fontSize: 20,
+                      color: Colors.black,
+                    )),
+              ),
               title: Text(
                 "${event!.availableSeats}",
-                style:
-                    GoogleFonts.roboto(fontSize: 18, color: Colors.deepPurple),
+                style: GoogleFonts.roboto(
+                    fontSize: 18,
+                    color: Colors.deepPurple,
+                    fontWeight: FontWeight.w500),
               ),
             ),
             ListTile(
               tileColor: Color.fromARGB(255, 255, 255, 255),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0)),
-              leading: Text(" Price: ",
-                  style: GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              leading: SizedBox(
+                width: 60,
+                child: Text("Price:",
+                    style: GoogleFonts.roboto(
+                      fontSize: 20,
+                      color: Colors.black,
+                    )),
+              ),
               title: Text(
                 "${event!.ticketPrice}",
-                style:
-                    GoogleFonts.roboto(fontSize: 18, color: Colors.deepPurple),
+                style: GoogleFonts.roboto(
+                    fontSize: 18,
+                    color: Colors.deepPurple,
+                    fontWeight: FontWeight.w500),
               ),
             ),
             const SizedBox(

@@ -36,7 +36,7 @@ class InputFieldDate extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(topicName,
-                  style: GoogleFonts.montserrat(
+                  style: GoogleFonts.lato(
                       fontSize: 14, fontWeight: FontWeight.normal))
             ],
           ),
@@ -66,7 +66,7 @@ class InputFieldDate extends StatelessWidget {
                         BorderSide(color: Color.fromRGBO(45, 201, 235, 1)),
                   ),
                   hintText: hinttext,
-                  hintStyle: GoogleFonts.montserrat(
+                  hintStyle: GoogleFonts.lato(
                     color: const Color.fromRGBO(192, 200, 231, 1),
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,

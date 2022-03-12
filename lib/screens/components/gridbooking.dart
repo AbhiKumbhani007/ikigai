@@ -30,6 +30,13 @@ class _GridBookingState extends State<GridBooking> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Grid Booking testing"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+            matrixController.seatNumber.value = 0;
+          },
+        ),
       ),
       body: ListView(
         children: [

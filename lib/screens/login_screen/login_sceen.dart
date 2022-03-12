@@ -58,7 +58,6 @@ class _LoginPageState extends State<LoginPage> {
             if (value == "SUCCESS") {
               Navigator.pushNamed(context, "/home");
             }
-          
           });
         });
 
@@ -82,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Text(
               "Welcome To Our App",
-              style: GoogleFonts.montserrat(
+              style: GoogleFonts.lato(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
@@ -167,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: 50,
                           child: Text(
                             "LOGIN",
-                            style: GoogleFonts.montserrat(
+                            style: GoogleFonts.lato(
                               color: Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -180,12 +179,12 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 20,
                   ),
-                  Container( 
+                  Container(
                     alignment: Alignment.center,
                     child: RichText(
                       text: TextSpan(
                           text: "Sign Up",
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.lato(
                             color: Colors.deepPurple,
                             fontWeight: FontWeight.w400,
                             fontSize: 14,

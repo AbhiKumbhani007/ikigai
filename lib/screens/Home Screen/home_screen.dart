@@ -3,10 +3,10 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/controllers/event_controller.dart';
-import 'package:ikigai/screens/components/drawer.dart';
 import 'package:ikigai/screens/components/eventnews_component.dart';
 
 import '../Events/add_event_form.dart';
+import '../Events/all_eventslist_screen.dart';
 import '../Events/request_event_form.dart';
 import '../components/gridbooking.dart';
 import '../my_bookings/my_bookings_screen.dart';
@@ -40,8 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreenPage(),
     MyBooking(),
+    AllEvents(),
     PartnerScreen(),
     SettingsScreen(),
+
     // Text(
     //   'Index 3: Settings',
     //   style: optionStyle,
@@ -59,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         floatingActionButton: SpeedDial(
             overlayColor: Colors.deepPurple,
+            // icon: Icons.assistant,
             overlayOpacity: .4,
             spaceBetweenChildren: 12,
             animatedIcon: AnimatedIcons.menu_close,
@@ -84,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // centerTitle: true,
           // elevation: 0,
           // backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
           title: const Text(
             "Ikigai",
             style: TextStyle(color: Colors.white),
@@ -114,10 +118,19 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
+                Icons.event,
+                color: Colors.white,
+              ),
+              label: 'All Events',
+              backgroundColor: Colors.deepPurple,
+              // backgroundColor: Colors.white,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
                 Icons.account_circle_outlined,
                 color: Colors.white,
               ),
-              label: 'Our Partners',
+              label: 'Partners',
               backgroundColor: Colors.deepPurple,
               // backgroundColor: Colors.white,
             ),
@@ -153,15 +166,15 @@ class HomeScreenPage extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 48,
-                  backgroundImage: NetworkImage(
-                      "https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=194"),
-                ),
-              ),
+              // const Padding(
+              //   padding: EdgeInsets.all(8.0),
+              //   child: CircleAvatar(
+              //     backgroundColor: Colors.white,
+              //     radius: 48,
+              //     backgroundImage: NetworkImage(
+              //         "https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=194"),
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -169,14 +182,14 @@ class HomeScreenPage extends StatelessWidget {
                   children: [
                     Text(
                       "Location: ",
-                      style: GoogleFonts.montserrat(
+                      style: GoogleFonts.lato(
                         color: Colors.black,
                         fontSize: 22,
                       ),
                     ),
                     Text(
                       "Surat",
-                      style: GoogleFonts.montserrat(
+                      style: GoogleFonts.lato(
                         color: Colors.black,
                         fontWeight: FontWeight.w400,
                         fontSize: 20,
@@ -221,13 +234,13 @@ class HomeScreenPage extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.only(top: 20, left: 10),
             child: Text(
-              "upcoming events",
-              style: GoogleFonts.montserrat(
+              "Upcoming Events",
+              style: GoogleFonts.lato(
                   color: Color.fromRGBO(5, 1, 82, 1),
                   fontSize: 24,
-                  fontWeight: FontWeight.w300),
+                  fontWeight: FontWeight.w500),
             ),
           ),
           Flexible(

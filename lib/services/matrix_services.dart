@@ -19,13 +19,18 @@ class MatrixServices {
       .doc("Nalagandla")
       .collection("Bookings");
 
+  CollectionReference bookingHashTable = FirebaseFirestore.instance
+      .collection("Location")
+      .doc("Nalagandla")
+      .collection("booking_for_admin");
+
   Future<void> getSeatStats(String seatNumber, String date) async {
     CollectionReference dateCollection =
         matrixCollection.doc(date).collection(seatNumber);
     final snapShots = await dateCollection.get();
     if (snapShots.docs.length > 0) {
       // fetch the data and list the available slots
-      for (int i = 0; i < snapShots.docs.length; i++) {
+      for (int i = 0; i < snapShots.docs.length - 1; i++) {
         matrixController.timeSlots[int.parse(snapShots.docs[i].id.toString())] =
             snapShots.docs[i]["is_booked"];
       }
@@ -155,6 +160,6 @@ class MatrixServices {
         "booking_id": bookingId
       });
     }
-    matrixController.getSeatStatsAccordingToDate();
+    // bookingHashTable.matrixController.getSeatStatsAccordingToDate();
   }
 }
