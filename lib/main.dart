@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:ikigai/constants/routes.dart';
+import 'package:ikigai/controllers/booking_controller.dart';
 import 'package:ikigai/controllers/user_controller.dart';
 import 'package:ikigai/screens/Events/event_detail_screen.dart';
 import 'package:ikigai/screens/Home%20Screen/home_screen.dart';
@@ -27,17 +28,18 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   MatrixController matrixController = Get.put(MatrixController());
+  UserController userController = Get.put(UserController());
+ 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    UserController userController = Get.put(UserController());
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
       // home: LoginPage(),
 
-      initialRoute: "/home",
+      initialRoute: "/login",
       routes: {
         // MyRoutes.homeRoute: (context) => LoginPage(),
         // "/home": (context) => HomeScreen()

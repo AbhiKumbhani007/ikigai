@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:ikigai/controllers/event_controller.dart';
 import 'package:ikigai/controllers/user_controller.dart';
 
+import '../models/booking.dart';
 import '../models/event_model.dart';
 
 class EventServices {
@@ -12,6 +13,11 @@ class EventServices {
       .collection("Location")
       .doc("Nalagandla")
       .collection("Events");
+
+  CollectionReference bookingCollection = FirebaseFirestore.instance
+      .collection("Location")
+      .doc("Nalagandla")
+      .collection("Bookings");
 
   Future<void> addEventsToFirebase(eventDetails, date) async {
     CollectionReference eventArray =
@@ -189,9 +195,35 @@ class EventServices {
     String date = event.eventDate!;
     String eventId = event.eventId!;
     String docNo = eventId[eventId.length - 1];
+
     eventsCollection.doc(date).collection("event_array").doc(docNo).set({
       "registered_user": FieldValue.arrayUnion([userController.uid.value])
     }, SetOptions(merge: true));
+    var listOfUserSnapshot = await eventsCollection
+        .doc(date)
+        .collection("event_array")
+        .doc(docNo)
+        .get();
+    int NumberOfUsersRegistered = listOfUserSnapshot["registered_user"].length;
+
+    var temp = await bookingCollection
+        .doc(userController.uid.value)
+        .collection("booking_array")
+        .get();
+    int length = temp.docs.length;
+
+    // implement booking collection logic here
+    bookingCollection
+        .doc(userController.uid.value)
+        .collection("booking_array")
+        .doc(length.toString())
+        .set({
+      "event_id": eventId,
+      "booking_id": userController.uid.value + "_" + eventId,
+      "date": date,
+      "seat_number": 0,
+      "slot_number": 0,
+    });
   }
 
   Future<List<EventModel>> FetchAllEvents() async {
@@ -246,5 +278,48 @@ class EventServices {
 
     eventList = eventList.where((i) => i.eventMode == "Public").toList();
     return eventList;
+  }
+
+  Future<List<BookingModel>> getMyBookings() async {
+    List<BookingModel> bookinglist = [];
+
+    String userId = userController.uid.value;
+    EventModel? event;
+    CollectionReference allBooking =
+        bookingCollection.doc(userId).collection("booking_array");
+    var snapShot = await allBooking.get();
+    for (int i = 0; i < snapShot.docs.length; i++) {
+      if (snapShot.docs[i]["event_id"] != "-1") {
+        var eventSnapshot = await eventsCollection
+            .doc(snapShot.docs[i]["date"].toString())
+            .collection("event_array")
+            .doc(snapShot.docs[i]["event_id"].toString().substring(11))
+            .get();
+
+        event = EventModel(
+          eventDate: snapShot.docs[i]["date"].toString(),
+          eventId: eventSnapshot["event_id"],
+          eventName: eventSnapshot["event_name"],
+          eventType: eventSnapshot["event_type"],
+          startTime: eventSnapshot["start_time"],
+          endTime: eventSnapshot["end_time"],
+          availableSeats: eventSnapshot["no_of_seats"],
+          ticketPrice: eventSnapshot["ticket_price"],
+          eventMode: eventSnapshot["event_mode"],
+        );
+      } else {
+        event = null;
+      }
+
+      bookinglist.add(BookingModel(
+          date: snapShot.docs[i]["date"],
+          eventId: snapShot.docs[i]["event_id"],
+          id: snapShot.docs[i]["booking_id"],
+          seatNumber: int.parse(snapShot.docs[i]["seat_number"].toString()),
+          slotNumber: int.parse(snapShot.docs[i]["slot_number"].toString()),
+          event: event));
+    }
+
+    return bookinglist;
   }
 }

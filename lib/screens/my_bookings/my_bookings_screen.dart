@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/screens/components/eventnews_component.dart';
 import 'package:ikigai/screens/my_bookings/qr_code_generator.dart';
 
-class MyBooking extends StatelessWidget {
-  const MyBooking({Key? key}) : super(key: key);
+import '../../controllers/booking_controller.dart';
 
+class MyBooking extends StatelessWidget {
+  MyBooking({Key? key}) : super(key: key);
+  BookingController bookingController = Get.find();
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 1,
+        itemCount: bookingController.listOfMyBooking.value.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => QRCodeGenerator(),
+                  builder: (context) => QRCodeGenerator(
+                      bookingModel:
+                          bookingController.listOfMyBooking.value[index]),
                 ),
               );
             },
@@ -45,7 +50,11 @@ class MyBooking extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "eventName",
+                          (bookingController
+                                      .listOfMyBooking.value[index].event !=
+                                  null)
+                              ? "${bookingController.listOfMyBooking.value[index].event!.eventName}"
+                              : "this is not event",
                           style: GoogleFonts.lato(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
@@ -53,26 +62,17 @@ class MyBooking extends StatelessWidget {
                         ),
                         const SizedBox(height: 15),
                         Text(
-                          "eventDate",
+                          (bookingController
+                                      .listOfMyBooking.value[index].event !=
+                                  null)
+                              ? "${bookingController.listOfMyBooking.value[index].event!.eventDate}"
+                              : "this is not event",
                           style: GoogleFonts.lato(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               color: Color.fromRGBO(216, 216, 216, 1)),
                         ),
                         const SizedBox(height: 15),
-                        Container(
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text("Price:50 \$ ",
-                                  style: GoogleFonts.lato(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                      color: Color.fromRGBO(194, 100, 255, 1))),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                   ),

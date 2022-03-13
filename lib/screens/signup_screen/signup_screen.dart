@@ -89,7 +89,7 @@ class _SignupPageState extends State<SignupPage> {
                 children: [
                   TextFormField(
                     decoration: InputDecoration(
-                        hintText: "Enter Name", labelText: "Name"),
+                        hintText: "Enter Email", labelText: "Email"),
                     onChanged: (val) {
                       _mailerror = "";
                       email = val;

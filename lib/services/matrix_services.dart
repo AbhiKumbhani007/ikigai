@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ikigai/controllers/matrix_controller.dart';
 import 'package:ikigai/controllers/user_controller.dart';
-
 import '../models/seat_model.dart';
 
 class MatrixServices {
@@ -111,11 +110,17 @@ class MatrixServices {
   Future<void> bookSeatInFirebase(
       String seatNumber, String date, int index) async {
     String bookingId = date + "_" + seatNumber + "_" + index.toString();
+    var temp = await bookingCollection
+        .doc(userController.uid.value)
+        .collection("booking_array")
+        .get();
+    int length = temp.docs.length;
     bookingCollection
         .doc(userController.uid.value)
-        .collection(bookingId)
-        .doc("1")
+        .collection("booking_array")
+        .doc(length.toString())
         .set({
+      "booking_id": bookingId,
       "date": date,
       "event_id": "-1",
       "seat_number": seatNumber,

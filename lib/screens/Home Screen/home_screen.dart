@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/controllers/event_controller.dart';
 import 'package:ikigai/screens/components/eventnews_component.dart';
 
+import '../../controllers/booking_controller.dart';
 import '../Events/add_event_form.dart';
 import '../Events/all_eventslist_screen.dart';
 import '../Events/request_event_form.dart';
@@ -56,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  BookingController bookingController = Get.put(BookingController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -241,7 +243,7 @@ class HomeScreenPage extends StatelessWidget {
                   color: Color.fromRGBO(5, 1, 82, 1),
                   fontSize: 24,
                   fontWeight: FontWeight.w500),
-            ),
+            ),// 2 min ho
           ),
           Flexible(
             child: Obx(() {
