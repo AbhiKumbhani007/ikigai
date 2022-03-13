@@ -5,6 +5,7 @@ class SeatModel {
   bool is2ndSlotSelected = false;
   bool is3rdSlotSelected = false;
   bool is4thSlotSelected = false;
+  String seatCategory = "OFFICE_CHAIR";
   int cnt = 0;
 
   SeatModel({
@@ -12,6 +13,7 @@ class SeatModel {
     this.is2ndSlotSelected = false,
     this.is3rdSlotSelected = false,
     this.is4thSlotSelected = false,
+    this.seatCategory = "OFFICE_CHAIR",
   });
 
   int getCnt() {
@@ -35,4 +37,9 @@ class SeatModel {
     if (getCnt() == 0) return Colors.green;
     return Colors.yellow;
   }
+
+  String getSeatCategory(){
+      return seatCategory;
+  }
+
 }

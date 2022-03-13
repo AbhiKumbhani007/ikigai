@@ -31,71 +31,76 @@ class EventNewsTile extends StatelessWidget {
                     ))));
       },
       child: Container(
-        margin: const EdgeInsets.all(10.0),
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 5,
-              color: Color(0x39000000),
-              offset: Offset(0, 2),
-            )
-          ],
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Image.network("https://picsum.photos/100?image=9"),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10.0),
+          child: Card(
+            elevation: 2,
+            child: Container(
+              padding: EdgeInsets.all(10),
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    eventName,
-                    style: GoogleFonts.lato(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromRGBO(5, 1, 82, 1)),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      eventName,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 15),
-                  Text(
-                    event!.eventDate!,
-                    style: GoogleFonts.lato(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromRGBO(216, 216, 216, 1)),
+                  const SizedBox(
+                    height: 10,
                   ),
-                  const SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      eventDate,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(" ${event?.ticketPrice} \$ ",
-                          style: GoogleFonts.lato(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Color.fromRGBO(194, 100, 255, 1))),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Text(
+                          "${event!.ticketPrice} Rs.",
+                          style: GoogleFonts.montserrat(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 130,
+                      ),
+                      Container(
+                        alignment: Alignment.bottomRight,
+                        height: 40,
+                        width: 100,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            eventController.bookEvent(event!);
+                          },
+                          child: const Text("Book"),
+                        ),
+                      ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                 ],
               ),
             ),
-            Container(
-              alignment: Alignment.bottomRight,
-              height: 40,
-              width: 100,
-              child: ElevatedButton(
-                onPressed: () {
-                  eventController.bookEvent(event!);
-                },
-                child: const Text("Book"),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

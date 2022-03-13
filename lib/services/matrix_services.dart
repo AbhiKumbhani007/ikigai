@@ -96,10 +96,16 @@ class MatrixServices {
             .collection("$i")
             .doc("3")
             .set({'is_booked': false});
+        matrixCollection
+            .doc(date)
+            .collection("$i")
+            .doc("seat_category")
+            .set({'category': "OFFICE_CHAIR"});
         sm.is1stSlotSelected = false;
         sm.is2ndSlotSelected = false;
         sm.is3rdSlotSelected = false;
         sm.is4thSlotSelected = false;
+        sm.seatCategory = "OFFICE_CHAIR";
         seats.add(sm);
       }
     }

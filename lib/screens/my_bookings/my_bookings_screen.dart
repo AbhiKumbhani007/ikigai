@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ikigai/screens/components/eventnews_component.dart';
+// import 'package:ikigai/screens/components/eventnews_component.dart';
 import 'package:ikigai/screens/my_bookings/qr_code_generator.dart';
 
 import '../../controllers/booking_controller.dart';
@@ -42,7 +42,7 @@ class MyBooking extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Image.network("https://picsum.photos/100?image=9"),
+                  // Image.network("https://picsum.photos/100?image=9"),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child: Column(
@@ -54,10 +54,10 @@ class MyBooking extends StatelessWidget {
                                       .listOfMyBooking.value[index].event !=
                                   null)
                               ? "${bookingController.listOfMyBooking.value[index].event!.eventName}"
-                              : "this is not event",
+                              : "Co-Working Space Booking",
                           style: GoogleFonts.lato(
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w600,
                               color: Color.fromRGBO(5, 1, 82, 1)),
                         ),
                         const SizedBox(height: 15),
@@ -66,11 +66,11 @@ class MyBooking extends StatelessWidget {
                                       .listOfMyBooking.value[index].event !=
                                   null)
                               ? "${bookingController.listOfMyBooking.value[index].event!.eventDate}"
-                              : "this is not event",
+                              : "Co-Working Space",
                           style: GoogleFonts.lato(
                               fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Color.fromRGBO(216, 216, 216, 1)),
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromARGB(255, 166, 87, 240)),
                         ),
                         const SizedBox(height: 15),
                       ],
