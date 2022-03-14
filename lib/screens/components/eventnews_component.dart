@@ -1,3 +1,4 @@
+import 'package:cashfree_pg/cashfree_pg.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,6 +6,9 @@ import 'package:ikigai/controllers/event_controller.dart';
 import 'package:ikigai/screens/Events/event_detail_screen.dart';
 import "../../constants/flutter_flow_theme.dart";
 import '../../models/event_model.dart';
+import 'package:ikigai/main.dart';
+
+import '../../services/paymen_services.dart';
 
 class EventNewsTile extends StatelessWidget {
   var eventName;
@@ -87,6 +91,7 @@ class EventNewsTile extends StatelessWidget {
                         width: 100,
                         child: ElevatedButton(
                           onPressed: () {
+                            buttonTapHandler();
                             eventController.bookEvent(event!);
                           },
                           child: const Text("Book"),
