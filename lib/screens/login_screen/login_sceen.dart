@@ -20,12 +20,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var mobileNo = "";
   var email = "";
   var password = "";
   var fullName = "";
   String _mailerror = "";
   String _passerror = "";
   String _fullName = "";
+  String _mobileerror = "";
   final userbox = GetStorage("User");
 
   @override
@@ -142,6 +144,22 @@ class _LoginPageState extends State<LoginPage> {
                   //     return null;
                   //   },
                   // ),
+
+                  TextFormField(
+                    decoration: InputDecoration(
+                        hintText: "Enter Mobile No.", labelText: "Mobile No."),
+                    onChanged: (val) {
+                      _mobileerror = "";
+                      mobileNo = val;
+                    },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Mobile No. Cannot be empty";
+                      }
+
+                      return null;
+                    },
+                  ),
                   SizedBox(
                     height: 20,
                   ),
