@@ -145,21 +145,6 @@ class _LoginPageState extends State<LoginPage> {
                   //   },
                   // ),
 
-                  TextFormField(
-                    decoration: InputDecoration(
-                        hintText: "Enter Mobile No.", labelText: "Mobile No."),
-                    onChanged: (val) {
-                      _mobileerror = "";
-                      mobileNo = val;
-                    },
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Mobile No. Cannot be empty";
-                      }
-
-                      return null;
-                    },
-                  ),
                   SizedBox(
                     height: 20,
                   ),

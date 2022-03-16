@@ -34,11 +34,12 @@ class Authentication {
 
   // ignore: non_constant_identifier_names
   static Future SignUp(
-      String email, String password, String? displayName) async {
+      String email, String password, String? displayName, var mobileNo) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       userCredential.user!.updateDisplayName(displayName);
+      userCredential.user?.updatePhoneNumber(mobileNo);
       print(userCredential.toString());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

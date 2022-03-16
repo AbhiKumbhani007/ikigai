@@ -20,9 +20,11 @@ class _SignupPageState extends State<SignupPage> {
   var email = "";
   var password = "";
   var fullName = "";
+  var mobileNo = "";
   String _mailerror = "";
   String _passerror = "";
   String _fullName = "";
+  String _mobileerror = "";
   final userbox = GetStorage("User");
 
   @override
@@ -49,7 +51,8 @@ class _SignupPageState extends State<SignupPage> {
   moveToLogin(BuildContext context) async {
     {
       if (_formkey.currentState!.validate()) {
-        Authentication.SignUp(email, password, fullName).then((value) {
+        Authentication.SignUp(email, password, fullName, mobileNo)
+            .then((value) {
           Navigator.pushNamed(context, "/login");
         });
         // setState(() {
@@ -130,6 +133,21 @@ class _SignupPageState extends State<SignupPage> {
                       if (value!.isEmpty) {
                         return "Enter Full Name";
                       }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        hintText: "Enter Mobile No.", labelText: "Mobile No."),
+                    onChanged: (val) {
+                      _mobileerror = "";
+                      mobileNo = val;
+                    },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Mobile No. Cannot be empty";
+                      }
+
                       return null;
                     },
                   ),
