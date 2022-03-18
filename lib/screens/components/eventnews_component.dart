@@ -91,7 +91,7 @@ class EventNewsTile extends StatelessWidget {
                         width: 100,
                         child: ElevatedButton(
                           onPressed: () {
-                            buttonTapHandler();
+                            registerEvent(event!);
                             eventController.bookEvent(event!);
                           },
                           child: const Text("Book"),
