@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ikigai/controllers/booking_controller.dart';
+import 'package:ikigai/controllers/event_controller.dart';
 import 'package:ikigai/models/event_model.dart';
+
+import '../../services/paymen_services.dart';
 
 class EventDetailsScreen extends StatelessWidget {
   EventModel? event;
@@ -8,6 +13,7 @@ class EventDetailsScreen extends StatelessWidget {
   // event avi gya che barober
   @override
   Widget build(BuildContext context) {
+    EventController eventController = Get.find();
     return Scaffold(
         appBar: AppBar(
           title: Text('Event Details'),
@@ -125,7 +131,10 @@ class EventDetailsScreen extends StatelessWidget {
               height: 30,
             ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  registerEvent(event!);
+                  eventController.bookEvent(event!);
+                },
                 child: const Text("Book Event"),
                 style: const ButtonStyle())
           ],

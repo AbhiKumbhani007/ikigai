@@ -43,8 +43,8 @@ Future<String> getToken(String orderId, String? price) async {
       'x-client-secret': 'de3f3db29ee368fe890bfe4439135ace74897bda'
     },
     body: jsonEncode(<String, String>{
-      "orderId": "19-03-2022_0TCMSEY3vTFNJjKY7RioU4vjS6go2",
-      "orderAmount": "120",
+      "orderId": orderId,
+      "orderAmount": price!,
       "orderCurrency": "INR"
     }),
   );

@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ikigai/controllers/booking_controller.dart';
 import 'package:ikigai/controllers/event_controller.dart';
 import 'package:ikigai/controllers/user_controller.dart';
 
 import '../models/booking.dart';
 import '../models/event_model.dart';
+
+BookingController bookingController = Get.find();
 
 class EventServices {
   UserController userController = Get.find();
@@ -224,6 +227,8 @@ class EventServices {
       "seat_number": 0,
       "slot_number": 0,
     });
+
+    bookingController.getBooking();
   }
 
   Future<List<EventModel>> FetchAllEvents() async {

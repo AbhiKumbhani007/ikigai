@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   MatrixController matrixController = Get.put(MatrixController());
   UserController userController = Get.put(UserController());
-
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

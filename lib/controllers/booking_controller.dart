@@ -10,13 +10,12 @@ class BookingController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
     getBooking();
-    
+    super.onInit();
   }
 
   void getBooking() async {
-    EventServices bs =EventServices();
+    EventServices bs = EventServices();
     listOfMyBooking.value = await bs.getMyBookings();
   }
 }

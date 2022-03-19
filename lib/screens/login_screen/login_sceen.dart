@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ikigai/controllers/booking_controller.dart';
 // import 'package:ikigai/constants/routes.dart';
 import 'package:ikigai/screens/Home%20Screen/home_screen.dart';
+import 'package:ikigai/services/paymen_services.dart';
 
 import '../../services/auth_services.dart';
 
@@ -50,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final _formkey = GlobalKey<FormState>();
   bool _a = false;
-  @override
+
   moveToHome(BuildContext context) async {
     {
       if (_formkey.currentState!.validate()) {
@@ -58,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
           // _a = true;
           Authentication().SignIn(email, password).then((value) {
             if (value == "SUCCESS") {
+              userController.updateUserId();
               Navigator.pushNamed(context, "/home");
             }
           });
@@ -68,7 +71,12 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  // BookingController bookingController = Get.find();
+
+  @override
   Widget build(BuildContext context) {
+    // bookingController.getBooking();
+
     return Material(
       child:
           // ignore: prefer_const_constructors

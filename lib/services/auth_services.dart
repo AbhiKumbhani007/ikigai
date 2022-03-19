@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:ikigai/controllers/booking_controller.dart';
 
 import '../controllers/user_controller.dart';
 
 class Authentication {
   static FirebaseAuth _auth = FirebaseAuth.instance;
   static UserController userController = Get.find();
-
   static get currentUser {
     return _auth.currentUser;
   }
@@ -17,6 +17,7 @@ class Authentication {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      userController.uid.value = await userCredential.user!.uid;
       // print("credentials: " + userCredential.toString());
       return "SUCCESS";
     } on FirebaseAuthException catch (e) {
@@ -39,7 +40,7 @@ class Authentication {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       userCredential.user!.updateDisplayName(displayName);
-      userCredential.user?.updatePhoneNumber(mobileNo);
+      // userCredential.user?.updatePhoneNumber(mobileNo);
       print(userCredential.toString());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
