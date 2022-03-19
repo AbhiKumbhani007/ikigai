@@ -199,8 +199,6 @@ class _SignupPageState extends State<SignupPage> {
 
                       //  color: Colors.transparent,
                       child: InkWell(
-                        // splashColor: Colors.black,
-                        // onTap: () => moveToHome(context),
                         onTap: () {
                           moveToLogin(context);
                         },

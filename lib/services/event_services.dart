@@ -228,54 +228,26 @@ class EventServices {
 
   Future<List<EventModel>> FetchAllEvents() async {
     List<EventModel> eventList = [];
-
-    eventsCollection.get().then((querySnapshot) => {
-          querySnapshot.docs.forEach((doc) async {
-            CollectionReference eventArray =
-                await eventsCollection.doc(doc.id).collection("event_array");
-            var snapshot = await eventArray.get();
-            for (int i = 0; i < snapshot.docs.length; i++) {
-              eventList.add(EventModel(
-                eventDate: doc.id,
-                eventId: snapshot.docs[i]["event_id"],
-                eventName: snapshot.docs[i]["event_name"],
-                eventType: snapshot.docs[i]["event_type"],
-                startTime: snapshot.docs[i]["start_time"],
-                endTime: snapshot.docs[i]["end_time"],
-                availableSeats: snapshot.docs[i]["no_of_seats"],
-                eventMode: snapshot.docs[i]["event_mode"],
-                ticketPrice: snapshot.docs[i]["ticket_price"],
-              ));
-            }
-          })
-        });
-
-    // QuerySnapshot sp = await eventsCollection.get();
-
-    // eventsCollection.get().then((sp) async {
-    //   for (int i = 0; i < sp.docs.length; i++) {
-    //     var eventArray =
-    //         eventsCollection.doc(sp.docs[i].id).collection("event_array");
-    //     var snapshot = await eventArray.get();
-    //     debugPrint("inside fetch all events");
-    //     for (int i = 0; i < snapshot.docs.length; i++) {
-    //       eventList.add(EventModel(
-    //         eventDate: sp.docs[i].id, //sp.docs[i].id,
-    //         eventId: snapshot.docs[i]["event_id"],
-    //         eventName: snapshot.docs[i]["event_name"],
-    //         eventType: snapshot.docs[i]["event_type"],
-    //         startTime: snapshot.docs[i]["start_time"],
-    //         endTime: snapshot.docs[i]["end_time"],
-    //         availableSeats: snapshot.docs[i]["no_of_seats"],
-    //         eventMode: snapshot.docs[i]["event_mode"],
-    //         ticketPrice: snapshot.docs[i]["ticket_price"],
-    //       ));
-    //     }
-    //   }
-    // });
-
-    debugPrint("inside fetch all events");
-
+    var snapshot = await eventsCollection.get();
+    for (int dates = 0; dates < snapshot.docs.length; dates++) {
+      var eventArraySnapshot = await eventsCollection
+          .doc(snapshot.docs[dates].id)
+          .collection("event_array")
+          .get();
+      for (int event = 0; event < eventArraySnapshot.docs.length; event++) {
+        eventList.add(EventModel(
+          eventDate: snapshot.docs[dates].id,
+          eventId: eventArraySnapshot.docs[event].id,
+          eventName: eventArraySnapshot.docs[event]["event_name"],
+          eventType: eventArraySnapshot.docs[event]["event_type"],
+          startTime: eventArraySnapshot.docs[event]["start_time"],
+          endTime: eventArraySnapshot.docs[event]["end_time"],
+          availableSeats: eventArraySnapshot.docs[event]["no_of_seats"],
+          ticketPrice: eventArraySnapshot.docs[event]["ticket_price"],
+          eventMode: eventArraySnapshot.docs[event]["event_mode"],
+        ));
+      }
+    }
     eventList = eventList.where((i) => i.eventMode == "Public").toList();
     return eventList;
   }

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/controllers/event_controller.dart';
 import 'package:ikigai/screens/Events/event_detail_screen.dart';
+import 'package:share/share.dart';
 import "../../constants/flutter_flow_theme.dart";
 import '../../models/event_model.dart';
 import 'package:ikigai/main.dart';
@@ -89,12 +90,23 @@ class EventNewsTile extends StatelessWidget {
                         alignment: Alignment.bottomRight,
                         height: 40,
                         width: 100,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            registerEvent(event!);
-                            eventController.bookEvent(event!);
-                          },
-                          child: const Text("Book"),
+                        child: Column(
+                          children: [
+                            ElevatedButton(
+                              child: Text("Share"),
+                              onPressed: () {
+                                Share.share(
+                                    "Check out this event ${event!.eventName}");
+                              },
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                registerEvent(event!);
+                                eventController.bookEvent(event!);
+                              },
+                              child: const Text("Book"),
+                            ),
+                          ],
                         ),
                       ),
                     ],
