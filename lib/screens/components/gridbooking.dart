@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:ikigai/screens/components/input_field_date.dart';
 import '../../controllers/matrix_controller.dart';
 import '../../services/matrix_services.dart';
+import '../../services/payment_services.dart';
 
 class GridBooking extends StatefulWidget {
   GridBooking({Key? key}) : super(key: key);
@@ -164,9 +165,19 @@ class _GridBookingState extends State<GridBooking> {
                       )
                     : Center(
                         child: ElevatedButton(
-                          onPressed: () {
-                            matrixController.bookSeat(getIndex(dropdownValue));
+                          onPressed: () async {
                             // navigator to payment gateway screen
+                            String paymentDone = await registerMatrixSlot(
+                                "100",
+                                matrixController.selectedDate,
+                                matrixController.seatNumber.value.toString(),
+                                getIndex(dropdownValue).toString());
+                            if (paymentDone == "SUCCESS") {
+                              matrixController
+                                  .bookSeat(getIndex(dropdownValue));
+                            } else {
+                              // payment is failed so please do that again
+                            }
                           },
                           child: Text("Book"),
                         ),

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:ikigai/controllers/booking_controller.dart';
 import 'package:ikigai/controllers/event_controller.dart';
 import 'package:ikigai/controllers/user_controller.dart';
+import 'package:ikigai/services/payment_services.dart';
 
 import '../models/booking.dart';
 import '../models/event_model.dart';
@@ -27,6 +28,19 @@ class EventServices {
         await eventsCollection.doc(date).collection("event_array");
     final snapshot = await eventArray.get();
     int lengthOfEventArray = snapshot.docs.length;
+    EventModel event = EventModel(
+        eventId: date + "_" + (lengthOfEventArray).toString(),
+        eventName: eventDetails["event_name"],
+        eventType: eventDetails["event_type"],
+        startTime: eventDetails["start_time"],
+        endTime: eventDetails["end_time"],
+        availableSeats: eventDetails["no_of_seats"],
+        ticketPrice: eventDetails["ticket_price"],
+        eventMode: eventDetails["event_mode"]);
+    String paymentDone = await  bookingForOrganizeEvent(event);
+    if (paymentDone == "FAILURE") {
+      return;
+    }
     eventDetails["event_id"] = date + "_" + (lengthOfEventArray).toString();
     eventArray.doc((lengthOfEventArray).toString()).set({
       "event_id": eventDetails["event_id"],

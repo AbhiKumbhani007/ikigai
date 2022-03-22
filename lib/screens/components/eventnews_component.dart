@@ -9,7 +9,7 @@ import "../../constants/flutter_flow_theme.dart";
 import '../../models/event_model.dart';
 import 'package:ikigai/main.dart';
 
-import '../../services/paymen_services.dart';
+import '../../services/payment_services.dart';
 
 class EventNewsTile extends StatelessWidget {
   var eventName;

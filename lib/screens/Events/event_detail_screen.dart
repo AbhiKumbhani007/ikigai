@@ -5,7 +5,7 @@ import 'package:ikigai/controllers/booking_controller.dart';
 import 'package:ikigai/controllers/event_controller.dart';
 import 'package:ikigai/models/event_model.dart';
 
-import '../../services/paymen_services.dart';
+import '../../services/payment_services.dart';
 
 class EventDetailsScreen extends StatelessWidget {
   EventModel? event;

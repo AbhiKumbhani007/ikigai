@@ -10,7 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/controllers/booking_controller.dart';
 // import 'package:ikigai/constants/routes.dart';
 import 'package:ikigai/screens/Home%20Screen/home_screen.dart';
-import 'package:ikigai/services/paymen_services.dart';
+import 'package:ikigai/services/payment_services.dart';
 
 import '../../services/auth_services.dart';
 
