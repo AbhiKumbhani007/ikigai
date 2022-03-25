@@ -266,7 +266,7 @@ class EventServices {
             availableSeats: eventArraySnapshot.docs[event]["no_of_seats"],
             ticketPrice: eventArraySnapshot.docs[event]["ticket_price"],
             eventMode: eventArraySnapshot.docs[event]["event_mode"],
-            eventDescription: snapshot.docs[event]["event_desc"]));
+            eventDescription: eventArraySnapshot.docs[event]["event_desc"]));
       }
     }
     eventList = eventList.where((i) => i.eventMode == "Public").toList();
@@ -282,16 +282,16 @@ class EventServices {
         bookingCollection.doc(userId).collection("booking_array");
     var snapShot = await allBooking.get();
     for (int i = 0; i < snapShot.docs.length; i++) {
-      if (snapShot.docs[i]["event_id"] != "-1") {
+      if (snapShot.docs[i]["event_id"].toString() != "-1") {
         var eventSnapshot = await eventsCollection
             .doc(snapShot.docs[i]["date"].toString())
             .collection("event_array")
             .doc(snapShot.docs[i]["event_id"].toString().substring(11))
             .get();
-
+// meet ma aav
         event = EventModel(
             eventDate: snapShot.docs[i]["date"].toString(),
-            eventId: eventSnapshot["event_id"],
+            eventId: snapShot.docs[i]["event_id"],
             eventName: eventSnapshot["event_name"],
             eventType: eventSnapshot["event_type"],
             startTime: eventSnapshot["start_time"],
