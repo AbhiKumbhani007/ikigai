@@ -299,7 +299,6 @@ class _EventFormScreenState extends State<EventFormScreen> {
                           onPressed: () async {
                             if (_formKey3.currentState!.validate()) {
                               saveForm();
-                              
                             }
 
                             Navigator.of(context).pop();
@@ -346,6 +345,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
     eventDetails["no_of_seats"] = _totalSeats.text;
     eventDetails["ticket_price"] = _ticketPrice.text;
     eventDetails["event_mode"] = dropdownValue;
+    eventDetails["event_desc"] = _discription.text;
     EventServices es = EventServices();
     es.addEventsToFirebase(eventDetails, _date.text);
   }

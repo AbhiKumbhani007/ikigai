@@ -9,6 +9,7 @@ class EventModel {
   String? availableSeats;
   String? ticketPrice;
   String? eventMode;
+  String? eventDescription;
 
   EventModel(
       {this.eventDate,
@@ -16,6 +17,7 @@ class EventModel {
       this.eventName,
       this.eventType,
       this.organizerId,
+      this.eventDescription,
       this.startTime,
       this.endTime,
       this.availableSeats,
@@ -33,13 +35,14 @@ class EventModel {
     availableSeats = json['availableSeats'];
     eventMode = json["eventMode"];
     ticketPrice = json['ticketPrice'];
+    eventDescription = json["eventDescription"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['eventDate'] = eventDate;
     data['eventId'] = eventId;
-    data['eventMode' ]= eventMode;
+    data['eventMode'] = eventMode;
     data['eventName'] = eventName;
     data['eventType'] = eventType;
     data['organizerId'] = organizerId;
@@ -47,6 +50,7 @@ class EventModel {
     data['endTime'] = endTime;
     data['availableSeats'] = availableSeats;
     data['ticketPrice'] = ticketPrice;
+    data['eventDescription'] = eventDescription;
     return data;
   }
 }

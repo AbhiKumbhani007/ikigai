@@ -36,8 +36,9 @@ class EventServices {
         endTime: eventDetails["end_time"],
         availableSeats: eventDetails["no_of_seats"],
         ticketPrice: eventDetails["ticket_price"],
-        eventMode: eventDetails["event_mode"]);
-    String paymentDone = await  bookingForOrganizeEvent(event);
+        eventMode: eventDetails["event_mode"],
+        eventDescription: eventDetails["event_desc"]);
+    String paymentDone = await bookingForOrganizeEvent(event);
     if (paymentDone == "FAILURE") {
       return;
     }
@@ -50,7 +51,8 @@ class EventServices {
       "end_time": eventDetails["end_time"],
       "no_of_seats": eventDetails["no_of_seats"],
       "ticket_price": eventDetails["ticket_price"],
-      "event_mode": eventDetails["event_mode"]
+      "event_mode": eventDetails["event_mode"],
+      "event_desc": eventDetails["event_desc"]
     });
     EventController eventController = Get.find();
     eventController.fetchNextTwoDaysEvent();
@@ -80,128 +82,128 @@ class EventServices {
     var snapshot = await eventArray.get();
     for (int i = 0; i < snapshot.docs.length; i++) {
       eventList.add(EventModel(
-        eventDate: nextDate,
-        eventId: snapshot.docs[i]["event_id"],
-        eventName: snapshot.docs[i]["event_name"],
-        eventType: snapshot.docs[i]["event_type"],
-        startTime: snapshot.docs[i]["start_time"],
-        endTime: snapshot.docs[i]["end_time"],
-        availableSeats: snapshot.docs[i]["no_of_seats"],
-        ticketPrice: snapshot.docs[i]["ticket_price"],
-        eventMode: snapshot.docs[i]["event_mode"],
-      ));
+          eventDate: nextDate,
+          eventId: snapshot.docs[i]["event_id"],
+          eventName: snapshot.docs[i]["event_name"],
+          eventType: snapshot.docs[i]["event_type"],
+          startTime: snapshot.docs[i]["start_time"],
+          endTime: snapshot.docs[i]["end_time"],
+          availableSeats: snapshot.docs[i]["no_of_seats"],
+          ticketPrice: snapshot.docs[i]["ticket_price"],
+          eventMode: snapshot.docs[i]["event_mode"],
+          eventDescription: snapshot.docs[i]["event_desc"]));
     }
 
     eventArray = await eventsCollection.doc(today).collection("event_array");
     snapshot = await eventArray.get();
     for (int i = 0; i < snapshot.docs.length; i++) {
       eventList.add(EventModel(
-        eventDate: today,
-        eventId: snapshot.docs[i]["event_id"],
-        eventName: snapshot.docs[i]["event_name"],
-        eventType: snapshot.docs[i]["event_type"],
-        startTime: snapshot.docs[i]["start_time"],
-        endTime: snapshot.docs[i]["end_time"],
-        availableSeats: snapshot.docs[i]["no_of_seats"],
-        ticketPrice: snapshot.docs[i]["ticket_price"],
-        eventMode: snapshot.docs[i]["event_mode"],
-      ));
+          eventDate: today,
+          eventId: snapshot.docs[i]["event_id"],
+          eventName: snapshot.docs[i]["event_name"],
+          eventType: snapshot.docs[i]["event_type"],
+          startTime: snapshot.docs[i]["start_time"],
+          endTime: snapshot.docs[i]["end_time"],
+          availableSeats: snapshot.docs[i]["no_of_seats"],
+          ticketPrice: snapshot.docs[i]["ticket_price"],
+          eventMode: snapshot.docs[i]["event_mode"],
+          eventDescription: snapshot.docs[i]["event_desc"]));
     }
     eventArray =
         await eventsCollection.doc(after2days).collection("event_array");
     snapshot = await eventArray.get();
     for (int i = 0; i < snapshot.docs.length; i++) {
       eventList.add(EventModel(
-        eventDate: after2days,
-        eventId: snapshot.docs[i]["event_id"],
-        eventName: snapshot.docs[i]["event_name"],
-        eventType: snapshot.docs[i]["event_type"],
-        startTime: snapshot.docs[i]["start_time"],
-        endTime: snapshot.docs[i]["end_time"],
-        availableSeats: snapshot.docs[i]["no_of_seats"],
-        ticketPrice: snapshot.docs[i]["ticket_price"],
-        eventMode: snapshot.docs[i]["event_mode"],
-      ));
+          eventDate: after2days,
+          eventId: snapshot.docs[i]["event_id"],
+          eventName: snapshot.docs[i]["event_name"],
+          eventType: snapshot.docs[i]["event_type"],
+          startTime: snapshot.docs[i]["start_time"],
+          endTime: snapshot.docs[i]["end_time"],
+          availableSeats: snapshot.docs[i]["no_of_seats"],
+          ticketPrice: snapshot.docs[i]["ticket_price"],
+          eventMode: snapshot.docs[i]["event_mode"],
+          eventDescription: snapshot.docs[i]["event_desc"]));
     }
     eventArray =
         await eventsCollection.doc(after3days).collection("event_array");
     snapshot = await eventArray.get();
     for (int i = 0; i < snapshot.docs.length; i++) {
       eventList.add(EventModel(
-        eventDate: after3days,
-        eventId: snapshot.docs[i]["event_id"],
-        eventName: snapshot.docs[i]["event_name"],
-        eventType: snapshot.docs[i]["event_type"],
-        startTime: snapshot.docs[i]["start_time"],
-        endTime: snapshot.docs[i]["end_time"],
-        availableSeats: snapshot.docs[i]["no_of_seats"],
-        ticketPrice: snapshot.docs[i]["ticket_price"],
-        eventMode: snapshot.docs[i]["event_mode"],
-      ));
+          eventDate: after3days,
+          eventId: snapshot.docs[i]["event_id"],
+          eventName: snapshot.docs[i]["event_name"],
+          eventType: snapshot.docs[i]["event_type"],
+          startTime: snapshot.docs[i]["start_time"],
+          endTime: snapshot.docs[i]["end_time"],
+          availableSeats: snapshot.docs[i]["no_of_seats"],
+          ticketPrice: snapshot.docs[i]["ticket_price"],
+          eventMode: snapshot.docs[i]["event_mode"],
+          eventDescription: snapshot.docs[i]["event_desc"]));
     }
     eventArray =
         await eventsCollection.doc(after4days).collection("event_array");
     snapshot = await eventArray.get();
     for (int i = 0; i < snapshot.docs.length; i++) {
       eventList.add(EventModel(
-        eventDate: after4days,
-        eventId: snapshot.docs[i]["event_id"],
-        eventName: snapshot.docs[i]["event_name"],
-        eventType: snapshot.docs[i]["event_type"],
-        startTime: snapshot.docs[i]["start_time"],
-        endTime: snapshot.docs[i]["end_time"],
-        availableSeats: snapshot.docs[i]["no_of_seats"],
-        ticketPrice: snapshot.docs[i]["ticket_price"],
-        eventMode: snapshot.docs[i]["event_mode"],
-      ));
+          eventDate: after4days,
+          eventId: snapshot.docs[i]["event_id"],
+          eventName: snapshot.docs[i]["event_name"],
+          eventType: snapshot.docs[i]["event_type"],
+          startTime: snapshot.docs[i]["start_time"],
+          endTime: snapshot.docs[i]["end_time"],
+          availableSeats: snapshot.docs[i]["no_of_seats"],
+          ticketPrice: snapshot.docs[i]["ticket_price"],
+          eventMode: snapshot.docs[i]["event_mode"],
+          eventDescription: snapshot.docs[i]["event_desc"]));
     }
     eventArray =
         await eventsCollection.doc(after5days).collection("event_array");
     snapshot = await eventArray.get();
     for (int i = 0; i < snapshot.docs.length; i++) {
       eventList.add(EventModel(
-        eventDate: after5days,
-        eventId: snapshot.docs[i]["event_id"],
-        eventName: snapshot.docs[i]["event_name"],
-        eventType: snapshot.docs[i]["event_type"],
-        startTime: snapshot.docs[i]["start_time"],
-        endTime: snapshot.docs[i]["end_time"],
-        availableSeats: snapshot.docs[i]["no_of_seats"],
-        ticketPrice: snapshot.docs[i]["ticket_price"],
-        eventMode: snapshot.docs[i]["event_mode"],
-      ));
+          eventDate: after5days,
+          eventId: snapshot.docs[i]["event_id"],
+          eventName: snapshot.docs[i]["event_name"],
+          eventType: snapshot.docs[i]["event_type"],
+          startTime: snapshot.docs[i]["start_time"],
+          endTime: snapshot.docs[i]["end_time"],
+          availableSeats: snapshot.docs[i]["no_of_seats"],
+          ticketPrice: snapshot.docs[i]["ticket_price"],
+          eventMode: snapshot.docs[i]["event_mode"],
+          eventDescription: snapshot.docs[i]["event_desc"]));
     }
     eventArray =
         await eventsCollection.doc(after6days).collection("event_array");
     snapshot = await eventArray.get();
     for (int i = 0; i < snapshot.docs.length; i++) {
       eventList.add(EventModel(
-        eventDate: after6days,
-        eventId: snapshot.docs[i]["event_id"],
-        eventName: snapshot.docs[i]["event_name"],
-        eventType: snapshot.docs[i]["event_type"],
-        startTime: snapshot.docs[i]["start_time"],
-        endTime: snapshot.docs[i]["end_time"],
-        availableSeats: snapshot.docs[i]["no_of_seats"],
-        eventMode: snapshot.docs[i]["event_mode"],
-        ticketPrice: snapshot.docs[i]["ticket_price"],
-      ));
+          eventDate: after6days,
+          eventId: snapshot.docs[i]["event_id"],
+          eventName: snapshot.docs[i]["event_name"],
+          eventType: snapshot.docs[i]["event_type"],
+          startTime: snapshot.docs[i]["start_time"],
+          endTime: snapshot.docs[i]["end_time"],
+          availableSeats: snapshot.docs[i]["no_of_seats"],
+          eventMode: snapshot.docs[i]["event_mode"],
+          ticketPrice: snapshot.docs[i]["ticket_price"],
+          eventDescription: snapshot.docs[i]["event_desc"]));
     }
     eventArray =
         await eventsCollection.doc(after7days).collection("event_array");
     snapshot = await eventArray.get();
     for (int i = 0; i < snapshot.docs.length; i++) {
       eventList.add(EventModel(
-        eventDate: after7days,
-        eventId: snapshot.docs[i]["event_id"],
-        eventName: snapshot.docs[i]["event_name"],
-        eventType: snapshot.docs[i]["event_type"],
-        startTime: snapshot.docs[i]["start_time"],
-        endTime: snapshot.docs[i]["end_time"],
-        availableSeats: snapshot.docs[i]["no_of_seats"],
-        eventMode: snapshot.docs[i]["event_mode"],
-        ticketPrice: snapshot.docs[i]["ticket_price"],
-      ));
+          eventDate: after7days,
+          eventId: snapshot.docs[i]["event_id"],
+          eventName: snapshot.docs[i]["event_name"],
+          eventType: snapshot.docs[i]["event_type"],
+          startTime: snapshot.docs[i]["start_time"],
+          endTime: snapshot.docs[i]["end_time"],
+          availableSeats: snapshot.docs[i]["no_of_seats"],
+          eventMode: snapshot.docs[i]["event_mode"],
+          ticketPrice: snapshot.docs[i]["ticket_price"],
+          eventDescription: snapshot.docs[i]["event_desc"]));
     }
 
     eventList = eventList.where((i) => i.eventMode == "Public").toList();
@@ -255,16 +257,16 @@ class EventServices {
           .get();
       for (int event = 0; event < eventArraySnapshot.docs.length; event++) {
         eventList.add(EventModel(
-          eventDate: snapshot.docs[dates].id,
-          eventId: eventArraySnapshot.docs[event].id,
-          eventName: eventArraySnapshot.docs[event]["event_name"],
-          eventType: eventArraySnapshot.docs[event]["event_type"],
-          startTime: eventArraySnapshot.docs[event]["start_time"],
-          endTime: eventArraySnapshot.docs[event]["end_time"],
-          availableSeats: eventArraySnapshot.docs[event]["no_of_seats"],
-          ticketPrice: eventArraySnapshot.docs[event]["ticket_price"],
-          eventMode: eventArraySnapshot.docs[event]["event_mode"],
-        ));
+            eventDate: snapshot.docs[dates].id,
+            eventId: eventArraySnapshot.docs[event].id,
+            eventName: eventArraySnapshot.docs[event]["event_name"],
+            eventType: eventArraySnapshot.docs[event]["event_type"],
+            startTime: eventArraySnapshot.docs[event]["start_time"],
+            endTime: eventArraySnapshot.docs[event]["end_time"],
+            availableSeats: eventArraySnapshot.docs[event]["no_of_seats"],
+            ticketPrice: eventArraySnapshot.docs[event]["ticket_price"],
+            eventMode: eventArraySnapshot.docs[event]["event_mode"],
+            eventDescription: snapshot.docs[event]["event_desc"]));
       }
     }
     eventList = eventList.where((i) => i.eventMode == "Public").toList();
@@ -288,16 +290,16 @@ class EventServices {
             .get();
 
         event = EventModel(
-          eventDate: snapShot.docs[i]["date"].toString(),
-          eventId: eventSnapshot["event_id"],
-          eventName: eventSnapshot["event_name"],
-          eventType: eventSnapshot["event_type"],
-          startTime: eventSnapshot["start_time"],
-          endTime: eventSnapshot["end_time"],
-          availableSeats: eventSnapshot["no_of_seats"],
-          ticketPrice: eventSnapshot["ticket_price"],
-          eventMode: eventSnapshot["event_mode"],
-        );
+            eventDate: snapShot.docs[i]["date"].toString(),
+            eventId: eventSnapshot["event_id"],
+            eventName: eventSnapshot["event_name"],
+            eventType: eventSnapshot["event_type"],
+            startTime: eventSnapshot["start_time"],
+            endTime: eventSnapshot["end_time"],
+            availableSeats: eventSnapshot["no_of_seats"],
+            ticketPrice: eventSnapshot["ticket_price"],
+            eventMode: eventSnapshot["event_mode"],
+            eventDescription: eventSnapshot["event_desc"]);
       } else {
         event = null;
       }
