@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
@@ -69,11 +71,12 @@ class _HomeScreenState extends State<HomeScreen> {
             animatedIcon: AnimatedIcons.menu_close,
             children: [
               SpeedDialChild(
-                child: const Icon(Icons.mail),
+                child: CircleAvatar(
+                    radius: 15, child: Image.asset('assets/images/chai.png')),
                 onTap: () async {
                   final link = WhatsAppUnilink(
                     phoneNumber: '+91-9974884446',
-                    // text: "Hey! I'm inquiring about the apartment listing",
+                    text: "__ Chai On __ Room",
                   );
                   // Convert the WhatsAppUnilink instance to a string.
                   // Use either Dart's string interpolation or the toString() method.
@@ -81,7 +84,62 @@ class _HomeScreenState extends State<HomeScreen> {
                   await launch('$link');
                 },
               ),
-              SpeedDialChild(child: Icon(Icons.chat))
+              SpeedDialChild(
+                child: Icon(Icons.coffee),
+                onTap: () async {
+                  final link = WhatsAppUnilink(
+                    phoneNumber: '+91-9974884446',
+                    text: "__ Coffee On __ Room",
+                  );
+                  // Convert the WhatsAppUnilink instance to a string.
+                  // Use either Dart's string interpolation or the toString() method.
+                  // The "launch" method is part of "url_launcher".
+                  await launch('$link');
+                },
+              ),
+              SpeedDialChild(
+                child: CircleAvatar(
+                    radius: 15,
+                    child: Image.asset('assets/images/water_bottle.jpeg')),
+                onTap: () async {
+                  final link = WhatsAppUnilink(
+                    phoneNumber: '+91-9974884446',
+                    text: "__ Bottle Water On __ Room",
+                  );
+                  // Convert the WhatsAppUnilink instance to a string.
+                  // Use either Dart's string interpolation or the toString() method.
+                  // The "launch" method is part of "url_launcher".
+                  await launch('$link');
+                },
+              ),
+              SpeedDialChild(
+                child: CircleAvatar(
+                    radius: 15,
+                    child: Image.asset('assets/images/news_paper.jpeg')),
+                onTap: () async {
+                  final link = WhatsAppUnilink(
+                    phoneNumber: '+91-9974884446',
+                    text: "Today's News Paper On __ Room",
+                  );
+                  // Convert the WhatsAppUnilink instance to a string.
+                  // Use either Dart's string interpolation or the toString() method.
+                  // The "launch" method is part of "url_launcher".
+                  await launch('$link');
+                },
+              ),
+              SpeedDialChild(
+                child: Icon(Icons.verified_user_outlined),
+                onTap: () async {
+                  final link = WhatsAppUnilink(
+                    phoneNumber: '+91-9974884446',
+                    text: "Micellinious",
+                  );
+                  // Convert the WhatsAppUnilink instance to a string.
+                  // Use either Dart's string interpolation or the toString() method.
+                  // The "launch" method is part of "url_launcher".
+                  await launch('$link');
+                },
+              )
             ]),
         backgroundColor: const Color.fromRGBO(246, 249, 254, 1),
         // endDrawer: MyDrawer(),
@@ -243,7 +301,7 @@ class HomeScreenPage extends StatelessWidget {
                   color: Color.fromRGBO(5, 1, 82, 1),
                   fontSize: 24,
                   fontWeight: FontWeight.w500),
-            ),// 2 min ho
+            ), // 2 min ho
           ),
           Flexible(
             child: Obx(() {
