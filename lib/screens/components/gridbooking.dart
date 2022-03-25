@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/screens/components/input_field_date.dart';
 import '../../controllers/matrix_controller.dart';
 import '../../services/matrix_services.dart';
@@ -163,24 +164,35 @@ class _GridBookingState extends State<GridBooking> {
                           child: Text("Not Available"),
                         ),
                       )
-                    : Center(
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            // navigator to payment gateway screen
-                            String paymentDone = await registerMatrixSlot(
-                                "100",
-                                matrixController.selectedDate,
-                                matrixController.seatNumber.value.toString(),
-                                getIndex(dropdownValue).toString());
-                            if (paymentDone == "SUCCESS") {
-                              matrixController
-                                  .bookSeat(getIndex(dropdownValue));
-                            } else {
-                              // payment is failed so please do that again
-                            }
-                          },
-                          child: Text("Book"),
-                        ),
+                    : Column(
+                        children: [
+                          Text("Catagory : Co-Working",
+                              style: TextStyle(
+                                  color: Colors.deepPurple, fontSize: 16)),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Center(
+                            child: ElevatedButton(
+                              onPressed: () async {
+                                // navigator to payment gateway screen
+                                String paymentDone = await registerMatrixSlot(
+                                    "100",
+                                    matrixController.selectedDate,
+                                    matrixController.seatNumber.value
+                                        .toString(),
+                                    getIndex(dropdownValue).toString());
+                                if (paymentDone == "SUCCESS") {
+                                  matrixController
+                                      .bookSeat(getIndex(dropdownValue));
+                                } else {
+                                  // payment is failed so please do that again
+                                }
+                              },
+                              child: Text("Book"),
+                            ),
+                          ),
+                        ],
                       ))
                 : SizedBox();
           })
