@@ -31,7 +31,10 @@ class _GridBookingState extends State<GridBooking> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Grid Booking testing"),
+        title: Text(
+          "Co-Working Space Booking",
+          style: GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.w600),
+        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -42,47 +45,61 @@ class _GridBookingState extends State<GridBooking> {
       ),
       body: ListView(
         children: [
-          InputFieldDate(
-            inputIcon: Icons.date_range,
-            initialValue: DateTime(DateTime.now().year, DateTime.now().month,
-                    DateTime.now().day + 1)
-                .toString(),
-            topicName: "Date",
-            size: size,
-            fieldController: _date,
-            hinttext: "Abcd",
-            validator: (v) {
-              if (v!.length == 0) {
-                return 'Enter title of activity';
-              } else {
-                return null;
-              }
-            },
-            onpressed: () async {
-              final date = await showDatePicker(
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime.now(),
-                  lastDate: DateTime(2050),
-                  context: context);
-              if (date != null) {
-                _date.text =
-                    // ignore: unnecessary_string_interpolations
-                    "${((date.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
-              }
-            },
+          Row(
+            children: [
+              InputFieldDate(
+                inputIcon: Icons.date_range,
+                initialValue: DateTime(DateTime.now().year,
+                        DateTime.now().month, DateTime.now().day + 1)
+                    .toString(),
+                topicName: "",
+                size: size * 0.6,
+                fieldController: _date,
+                hinttext: "01-01-2020",
+                validator: (v) {
+                  if (v!.length == 0) {
+                    return 'Enter title of activity';
+                  } else {
+                    return null;
+                  }
+                },
+                onpressed: () async {
+                  final date = await showDatePicker(
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime(2050),
+                      context: context);
+                  if (date != null) {
+                    _date.text =
+                        // ignore: unnecessary_string_interpolations
+                        "${((date.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
+                  }
+                },
+              ),
+              SizedBox(
+                height: 60,
+                child: Center(
+                  child: ElevatedButton(
+                    onPressed: (() {
+                      matrixController.selectedDate = _date.text;
+                      matrixController.getSeatStatsAccordingToDate();
+                      setState(() {
+                        isSlotsDetailsAvailable = true;
+                      });
+                      // matrixServices.getSeatStatsAccordingToDate(_date.text);
+                    }),
+                    child: Text(
+                      "Fetch Slots",
+                      style: GoogleFonts.lato(
+                          fontSize: 16, fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          Center(
-            child: ElevatedButton(
-              onPressed: (() {
-                matrixController.selectedDate = _date.text;
-                matrixController.getSeatStatsAccordingToDate();
-                setState(() {
-                  isSlotsDetailsAvailable = true;
-                });
-                // matrixServices.getSeatStatsAccordingToDate(_date.text);
-              }),
-              child: Text("Fetch Slot Details"),
-            ),
+          SizedBox(
+            height: 10,
           ),
           (isSlotsDetailsAvailable)
               ? GridView.builder(
@@ -119,83 +136,108 @@ class _GridBookingState extends State<GridBooking> {
                     }));
                   })
               : SizedBox(),
-          (matrixController.seatNumber.value != 0)
-              ? Center(
-                  child: Container(
-                    width: 300,
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                    child: DropdownButton<String>(
-                      isExpanded: true,
-                      value: dropdownValue,
-                      // icon: const Icon(Icons.arrow_downward),
-                      style: const TextStyle(color: Colors.deepPurple),
-                      //
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownValue = newValue!;
-                        });
-                      },
-                      items: <String>[
-                        'Full-Day (08:00AM - 08:00PM)',
-                        '8:00AM - 12:00PM',
-                        '12:00PM - 04:00PM',
-                        '04:00PM - 08:00PM',
-                        "08:00PM - 12:00AM"
-                      ].map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Container(
-                            child: Text(
-                              value,
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                )
-              : SizedBox(),
-          Obx(() {
-            return (matrixController.seatNumber.value != 0)
-                ? (isSlotAvailable(dropdownValue)
-                    ? Center(
+          SizedBox(
+            height: 15,
+          ),
+          Column(
+            children: [
+              (matrixController.seatNumber.value != 0)
+                  ? DecoratedBox(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.deepPurple, width: 1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
                         child: Container(
-                          child: Text("Not Available"),
-                        ),
-                      )
-                    : Column(
-                        children: [
-                          Text("Catagory : Co-Working",
-                              style: TextStyle(
-                                  color: Colors.deepPurple, fontSize: 16)),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Center(
-                            child: ElevatedButton(
-                              onPressed: () async {
-                                // navigator to payment gateway screen
-                                String paymentDone = await registerMatrixSlot(
-                                    "100",
-                                    matrixController.selectedDate,
-                                    matrixController.seatNumber.value
-                                        .toString(),
-                                    getIndex(dropdownValue).toString());
-                                if (paymentDone == "SUCCESS") {
-                                  matrixController
-                                      .bookSeat(getIndex(dropdownValue));
-                                } else {
-                                  // payment is failed so please do that again
-                                }
+                          width: 250,
+                          padding: EdgeInsets.symmetric(vertical: 5),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              // isExpanded: true,
+                              value: dropdownValue,
+                              // icon: const Icon(Icons.arrow_downward),
+                              style: GoogleFonts.lato(
+                                color: Colors.deepPurple,
+                              ),
+                              //
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                });
                               },
-                              child: Text("Book"),
+                              items: <String>[
+                                'Full-Day (08:00AM - 08:00PM)',
+                                '8:00AM - 12:00PM',
+                                '12:00PM - 04:00PM',
+                                '04:00PM - 08:00PM',
+                                "08:00PM - 12:00AM"
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: GoogleFonts.lato(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                );
+                              }).toList(),
                             ),
                           ),
-                        ],
-                      ))
-                : SizedBox();
-          })
+                        ),
+                      ),
+                    )
+                  : SizedBox(),
+              SizedBox(
+                height: 5,
+              ),
+              Obx(() {
+                return (matrixController.seatNumber.value != 0)
+                    ? (isSlotAvailable(dropdownValue)
+                        ? Text(
+                            "Not Available",
+                            style: GoogleFonts.lato(
+                                fontSize: 17, fontWeight: FontWeight.w500),
+                          )
+                        : Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 65.0),
+                                child: Text("Catagory : Co-Working",
+                                    style: TextStyle(
+                                        color: Colors.deepPurple,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                              SizedBox(
+                                width: 30,
+                              ),
+                              ElevatedButton(
+                                onPressed: () async {
+                                  // navigator to payment gateway screen
+                                  String paymentDone = await registerMatrixSlot(
+                                      "100",
+                                      matrixController.selectedDate,
+                                      matrixController.seatNumber.value
+                                          .toString(),
+                                      getIndex(dropdownValue).toString());
+                                  if (paymentDone == "SUCCESS") {
+                                    matrixController
+                                        .bookSeat(getIndex(dropdownValue));
+                                  } else {
+                                    // payment is failed so please do that again
+                                  }
+                                },
+                                child: Text("Book",
+                                    style: GoogleFonts.lato(fontSize: 16)),
+                              ),
+                            ],
+                          ))
+                    : SizedBox();
+              })
+            ],
+          ),
         ],
       ),
     );
