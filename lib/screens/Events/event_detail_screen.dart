@@ -73,6 +73,26 @@ class EventDetailsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(0)),
               leading: SizedBox(
                 width: 60,
+                child: Text("Desc:",
+                    style: GoogleFonts.roboto(
+                      fontSize: 20,
+                      color: Colors.black,
+                    )),
+              ),
+              title: Text(
+                "${event!.eventDescription}",
+                style: GoogleFonts.roboto(
+                    fontSize: 18,
+                    color: Colors.deepPurple,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+            ListTile(
+              tileColor: Color.fromARGB(255, 255, 255, 255),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
+              leading: SizedBox(
+                width: 60,
                 child: Text("Date:",
                     style: GoogleFonts.roboto(
                       fontSize: 20,
