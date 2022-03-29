@@ -101,41 +101,40 @@ class _GridBookingState extends State<GridBooking> {
           SizedBox(
             height: 10,
           ),
-          (isSlotsDetailsAvailable)
-              ? GridView.builder(
-                  shrinkWrap: true, //must for grid inside column
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 8,
-                  ),
-                  itemCount: 64,
-                  itemBuilder: (BuildContext context, int index) {
-                    return InkWell(onTap: () {
-                      setState(() {
-                        _seatNumber = index + 1;
-                        debugPrint("date: ${_date.text}");
-                        matrixController.selectedDate = _date.text;
-                        debugPrint(
-                            "matrixController.selectedDate: ${matrixController.selectedDate}");
-                        matrixController.seatNumber.value = _seatNumber;
-                        matrixController.fetchSeatDetailsFromFirebase();
-                      });
-                      debugPrint(
-                          "${(index / 8).floor() + 1} , ${1 + index % 8}");
-                    }, child: Obx(() {
-                      return Card(
-                        color: (index + 1 == matrixController.seatNumber.value)
+          // (isSlotsDetailsAvailable)
+          //     ?
+          GridView.builder(
+              shrinkWrap: true, //must for grid inside column
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 8,
+              ),
+              itemCount: 64,
+              itemBuilder: (BuildContext context, int index) {
+                return InkWell(onTap: () {
+                  setState(() {
+                    _seatNumber = index + 1;
+                    debugPrint("date: ${_date.text}");
+                    matrixController.selectedDate = _date.text;
+                    debugPrint(
+                        "matrixController.selectedDate: ${matrixController.selectedDate}");
+                    matrixController.seatNumber.value = _seatNumber;
+                    matrixController.fetchSeatDetailsFromFirebase();
+                  });
+                  debugPrint("${(index / 8).floor() + 1} , ${1 + index % 8}");
+                }, child: Obx(() {
+                  return Card(
+                    color: (index + 1 == matrixController.seatNumber.value)
+                        ? Colors.white
+                        : matrixController.MatrixStatsOfThisDate.value.length ==
+                                0
                             ? Colors.white
-                            : matrixController
-                                        .MatrixStatsOfThisDate.value.length ==
-                                    0
-                                ? Colors.white
-                                : matrixController.MatrixStatsOfThisDate[index]
-                                    .getColor(),
-                        child: Center(child: Text('${index + 1}')),
-                      );
-                    }));
-                  })
-              : SizedBox(),
+                            : matrixController.MatrixStatsOfThisDate[index]
+                                .getColor(),
+                    child: Center(child: Text('${index + 1}')),
+                  );
+                }));
+              }),
+          // : SizedBox(),
           SizedBox(
             height: 15,
           ),

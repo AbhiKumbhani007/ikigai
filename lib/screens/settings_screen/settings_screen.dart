@@ -3,12 +3,15 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/controllers/booking_controller.dart';
 
+import '../../controllers/user_controller.dart';
+
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     BookingController bookingController = Get.find();
+    UserController userController = Get.find();
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +50,7 @@ class SettingsScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               leading: const Icon(Icons.person),
-              title: Text('Abhishek Kumbhani',
+              title: Text(userController.name.value,
                   style: GoogleFonts.roboto(fontSize: 16))),
           const SizedBox(
             height: 5,
@@ -60,7 +63,7 @@ class SettingsScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               leading: const Icon(Icons.email),
-              title: Text('abhi1234kumbhani@gmail.com',
+              title: Text(userController.email.value,
                   style: GoogleFonts.roboto(fontSize: 16))),
           const SizedBox(
             height: 5,
@@ -70,8 +73,8 @@ class SettingsScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               leading: const Icon(Icons.phone),
-              title:
-                  Text('9624299959', style: GoogleFonts.roboto(fontSize: 16))),
+              title: Text(userController.number.value,
+                  style: GoogleFonts.roboto(fontSize: 16))),
           const SizedBox(
             height: 30,
           ),

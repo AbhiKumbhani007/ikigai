@@ -1,8 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:ikigai/services/user_services.dart';
 
 class UserController extends GetxController {
+  UserServices userServices = UserServices();
   var uid = "".obs;
+  var name = "".obs;
+  var email = "".obs;
+  var number = "".obs;
   @override
   void onInit() {
     FirebaseAuth.instance.idTokenChanges().listen((User? user) {
@@ -14,6 +19,8 @@ class UserController extends GetxController {
         uid.value = user.uid;
       }
     });
+    
+    // updateUserDetails();
     super.onInit();
   }
 
@@ -27,5 +34,10 @@ class UserController extends GetxController {
         uid.value = user.uid;
       }
     });
+    updateUserDetails();
+  }
+
+  void updateUserDetails() {
+    userServices.fetchUserDetails(uid.value);
   }
 }

@@ -2,8 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ikigai/controllers/booking_controller.dart';
+import 'package:ikigai/services/user_services.dart';
 
 import '../controllers/user_controller.dart';
+
+UserServices userservices = UserServices();
 
 class Authentication {
   static FirebaseAuth _auth = FirebaseAuth.instance;
@@ -35,12 +38,16 @@ class Authentication {
 
   // ignore: non_constant_identifier_names
   static Future SignUp(
-      String email, String password, String? displayName, var mobileNo) async {
+      String email, String password, String displayName, var mobileNo) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       userCredential.user!.updateDisplayName(displayName);
       // userCredential.user?.updatePhoneNumber(mobileNo);
+      String uuid = await userCredential.user!.uid;
+      userservices.addNewUserToFirebase(uuid, displayName, email, mobileNo);
+      userController.uid.value = uuid;
+      userservices.fetchUserDetails(uuid);
       print(userCredential.toString());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
