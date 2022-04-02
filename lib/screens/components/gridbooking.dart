@@ -46,6 +46,8 @@ class _GridBookingState extends State<GridBooking> {
       body: ListView(
         children: [
           Row(
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InputFieldDate(
                 inputIcon: Icons.date_range,
@@ -134,7 +136,6 @@ class _GridBookingState extends State<GridBooking> {
                   );
                 }));
               }),
-          // : SizedBox(),
           SizedBox(
             height: 15,
           ),
@@ -176,6 +177,7 @@ class _GridBookingState extends State<GridBooking> {
                                   value: value,
                                   child: Text(
                                     value,
+                                    textAlign: TextAlign.center,
                                     style: GoogleFonts.lato(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600),

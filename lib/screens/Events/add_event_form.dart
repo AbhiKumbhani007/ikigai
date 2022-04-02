@@ -1,5 +1,8 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/screens/components/gridbooking.dart';
 import 'package:ikigai/services/event_services.dart';
 
@@ -7,6 +10,7 @@ import '../../controllers/matrix_controller.dart';
 import '../../services/payment_services.dart';
 import '../components/formfield.dart';
 import '../components/input_field_date.dart';
+import '../components/input_text_field.dart';
 
 class EventFormScreen extends StatefulWidget {
   const EventFormScreen({Key? key}) : super(key: key);
@@ -14,6 +18,8 @@ class EventFormScreen extends StatefulWidget {
   @override
   _EventFormScreenState createState() => _EventFormScreenState();
 }
+
+enum SingingCharacter { Public, Private }
 
 class _EventFormScreenState extends State<EventFormScreen> {
   final TextEditingController _eventName = TextEditingController();
@@ -34,21 +40,32 @@ class _EventFormScreenState extends State<EventFormScreen> {
 
   MatrixController matrixController = Get.find();
 
-  String dropdownValue = 'Public';
-
+  String dropdownValue = 'Full-Day (08:00AM - 08:00PM)';
+  SingingCharacter? _character = SingingCharacter.Public;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        title: const Text("Add Event"),
+        iconTheme: const IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.white.withOpacity(0),
+        title: Text("Add Event",
+            style: GoogleFonts.prompt(
+                fontSize: 28,
+                fontWeight: FontWeight.w600,
+                color: const Color.fromRGBO(34, 34, 82, 1))),
       ),
       body: SizedBox(
         width: size.width,
         height: size.height,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(0),
+            padding: const EdgeInsets.only(top: 15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,9 +76,16 @@ class _EventFormScreenState extends State<EventFormScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      InputField(
-                        topicName: "Event Name",
-                        hinttext: "Enter Event Name",
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Divider(
+                          thickness: 1,
+                          color: Color.fromRGBO(183, 183, 198, 1),
+                        ),
+                      ),
+                      InputTextField(
+                        fieldName: "Event Name",
+                        hintText: "Enter Event Name",
                         size: size,
                         fieldController: _eventName,
                         validator: (v) {
@@ -72,9 +96,12 @@ class _EventFormScreenState extends State<EventFormScreen> {
                           }
                         },
                       ),
-                      InputField(
-                        topicName: "Event Discription",
-                        hinttext: "Enter Event Descirption",
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      InputTextField(
+                        fieldName: "Event Discription",
+                        hintText: "Enter Event Descirption",
                         size: size,
                         fieldController: _discription,
                         validator: (v) {
@@ -86,11 +113,11 @@ class _EventFormScreenState extends State<EventFormScreen> {
                         },
                       ),
                       const SizedBox(
-                          // height: 2,
-                          ),
-                      InputField(
-                        topicName: "Event type",
-                        hinttext: "e.g. Dancing, Music, Workshop",
+                        height: 10,
+                      ),
+                      InputTextField(
+                        fieldName: "Event type",
+                        hintText: "e.g. Dancing, Music, Workshop",
                         size: size,
                         fieldController: _eventType,
                         validator: (v) {
@@ -101,6 +128,97 @@ class _EventFormScreenState extends State<EventFormScreen> {
                           }
                         },
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 50.0),
+                            child: Text("Select Time",
+                                style: GoogleFonts.prompt(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color:
+                                        const Color.fromRGBO(34, 34, 82, 1))),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: DecoratedBox(
+                              decoration: const ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      width: 1.0,
+                                      style: BorderStyle.solid,
+                                      color: Color.fromRGBO(183, 183, 198, 1)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(80.0)),
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25.0),
+                                child: Container(
+                                  width: size.width,
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: DropdownButtonHideUnderline(
+                                    child: Container(
+                                      margin: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: DropdownButton<String>(
+                                        // isExpanded: true,
+                                        value: dropdownValue,
+                                        icon: const Icon(
+                                          Icons.arrow_drop_down,
+                                          size: 30,
+                                        ),
+                                        style: GoogleFonts.lato(
+                                          color: const Color.fromARGB(
+                                              255, 109, 109, 109),
+                                        ),
+                                        onChanged: (String? newValue) {
+                                          setState(() {
+                                            dropdownValue = newValue!;
+                                          });
+                                        },
+                                        items: <String>[
+                                          'Full-Day (08:00AM - 08:00PM)',
+                                          '8:00AM - 12:00PM',
+                                          '12:00PM - 04:00PM',
+                                          '04:00PM - 08:00PM',
+                                          '08:00PM - 12:00AM',
+                                          // 'Public',
+                                        ].map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(
+                                              value,
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.lato(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       InputFieldDate(
                         inputIcon: Icons.date_range,
                         initialValue: DateTime(DateTime.now().year,
@@ -109,7 +227,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
                         topicName: "Date",
                         size: size,
                         fieldController: _date,
-                        hinttext: "Abcd",
+                        hinttext: "Enter Date",
                         validator: (v) {
                           if (v!.length == 0) {
                             return 'Enter title of activity';
@@ -130,73 +248,14 @@ class _EventFormScreenState extends State<EventFormScreen> {
                           }
                         },
                       ),
-                      // const SizedBox(
-                      //   height: 20,
-                      //   child: Text("Book Slot"),
-                      // ),
-                      // (matrixController.seatNumber.value != 0)
-                      //     ? Center(
-                      //         child: Container(
-                      //           width: 300,
-                      //           padding: EdgeInsets.symmetric(
-                      //               vertical: 5, horizontal: 15),
-                      //           child: DropdownButton<String>(
-                      //             isExpanded: true,
-                      //             value: dropdownValue,
-                      //             // icon: const Icon(Icons.arrow_downward),
-                      //             style:
-                      //                 const TextStyle(color: Colors.deepPurple),
-                      //             //
-                      //             onChanged: (String? newValue) {
-                      //               setState(() {
-                      //                 dropdownValue = newValue!;
-                      //               });
-                      //             },
-                      //             items: <String>[
-                      //               'Full-Day (08:00AM - 08:00PM)',
-                      //               '8:00AM - 12:00PM',
-                      //               '12:00PM - 04:00PM',
-                      //               '04:00PM - 08:00PM',
-                      //               "08:00PM - 12:00PM"
-                      //             ].map<DropdownMenuItem<String>>(
-                      //                 (String value) {
-                      //               return DropdownMenuItem<String>(
-                      //                 value: value,
-                      //                 child: Container(
-                      //                   child: Text(
-                      //                     value,
-                      //                     style: TextStyle(fontSize: 16),
-                      //                   ),
-                      //                 ),
-                      //               );
-                      //             }).toList(),
-                      //           ),
-                      //         ),
-                      //       )
-                      //     : SizedBox(),
-                      // Obx(() {
-                      //   return (isSlotAvailable(dropdownValue)
-                      //       ? Center(
-                      //           child: Container(
-                      //             child: Text("Not Available"),
-                      //           ),
-                      //         )
-                      //       : Center(
-                      //           child: ElevatedButton(
-                      //             onPressed: () {
-                      //               matrixController
-                      //                   .bookSeat(getIndex(dropdownValue));
-                      //               // navigator to payment gateway screen
-                      //             },
-                      //             child: Text("Book"),
-                      //           ),
-                      //         ));
-                      // }),
+                      const SizedBox(
+                        height: 15,
+                      ),
                       Row(
                         children: [
-                          InputField(
-                            topicName: "Total seats",
-                            hinttext: "e.g. 25",
+                          InputTextField(
+                            fieldName: "No. of People",
+                            hintText: "e.g. 25",
                             size: size / 2,
                             fieldController: _totalSeats,
                             validator: (v) {
@@ -207,9 +266,9 @@ class _EventFormScreenState extends State<EventFormScreen> {
                               }
                             },
                           ),
-                          InputField(
-                            topicName: "Price",
-                            hinttext: "Price per seat",
+                          InputTextField(
+                            fieldName: "Price",
+                            hintText: "Price per seat",
                             size: size / 2,
                             fieldController: _ticketPrice,
                             validator: (v) {
@@ -222,89 +281,117 @@ class _EventFormScreenState extends State<EventFormScreen> {
                           ),
                         ],
                       ),
-
-                      Container(
-                        width: 300,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                        child: DropdownButton<String>(
-                          isExpanded: true,
-                          value: dropdownValue,
-                          // icon: const Icon(Icons.arrow_downward),
-                          style: const TextStyle(color: Colors.deepPurple),
-                          //
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownValue = newValue!;
-                            });
-                          },
-                          items: <String>['Public', 'Private']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Container(
-                                child: Text(
-                                  value,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      // InputFieldDate(
-                      //   inputIcon: Icons.date_range,
-                      //   initialValue: DateTime(DateTime.now().year,
-                      //           DateTime.now().month, DateTime.now().day + 1)
-                      //       .toString(),
-                      //   topicName: "Date",
-                      //   size: size,
-                      //   fieldController: _date,
-                      //   hinttext: "Abcd",
-                      //   validator: (v) {
-                      //     if (v!.length == 0) {
-                      //       return 'Enter title of activity';
-                      //     } else {
-                      //       return null;
-                      //     }
-                      //   },
-                      //   onpressed: () async {
-                      //     final date = await showDatePicker(
-                      //         initialDate: DateTime.now(),
-                      //         firstDate: DateTime.now(),
-                      //         lastDate: DateTime(2050),
-                      //         context: context);
-                      //     if (date != null) {
-                      //       _date.text =
-                      //           // ignore: unnecessary_string_interpolations
-                      //           "${((date.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
-                      //     }
-                      //   },
-                      // ),
-                      // ElevatedButton(
-                      //     onPressed: () {
-                      //       Navigator.pushNamed(context, "/grid_booking");
-                      //     },
-                      //     child: Text("Book Slot")),
                       const SizedBox(
                         height: 20,
                       ),
-                      SizedBox(
-                        width: size.width * 0.3,
-                        height: 50,
-                        child: ElevatedButton(
-                          child: const Text("Add Event"),
-                          style: const ButtonStyle(),
-                          onPressed: () async {
-                            if (_formKey3.currentState!.validate()) {
-                              saveForm();
-                            }
-
-                            Navigator.of(context).pop();
-                          },
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Divider(
+                          thickness: 1,
+                          color: Color.fromRGBO(183, 183, 198, 1),
                         ),
                       ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 65.0),
+                            child: Text(
+                              "Select Publish Type",
+                              style: GoogleFonts.prompt(
+                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                SizedBox(
+                                  width: size.width * 0.4,
+                                  child: ListTile(
+                                    title: const Text('Public'),
+                                    leading: Radio<SingingCharacter>(
+                                      value: SingingCharacter.Public,
+                                      groupValue: _character,
+                                      onChanged: (SingingCharacter? value) {
+                                        setState(() {
+                                          _character = value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: size.width * 0.4,
+                                  child: ListTile(
+                                    title: const Text('Private'),
+                                    leading: Radio<SingingCharacter>(
+                                      value: SingingCharacter.Private,
+                                      groupValue: _character,
+                                      onChanged: (SingingCharacter? value) {
+                                        setState(() {
+                                          _character = value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Divider(
+                          thickness: 1,
+                          color: Color.fromRGBO(183, 183, 198, 1),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          height: size.height * 0.07,
+                          width: size.width * 0.85,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  primary: Color.fromARGB(201, 87, 95, 255),
+                                  // padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(80)),
+                                  textStyle: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold)),
+                              onPressed: () async {
+                                if (_formKey3.currentState!.validate()) {
+                                  saveForm();
+                                }
+
+                                Navigator.of(context).pop();
+                              },
+                              child: Text(
+                                "Add Event",
+                                style: GoogleFonts.prompt(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
+                              )),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      )
                     ],
                   ),
                 )

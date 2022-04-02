@@ -11,7 +11,7 @@ import 'package:ikigai/controllers/booking_controller.dart';
 // import 'package:ikigai/constants/routes.dart';
 import 'package:ikigai/screens/Home%20Screen/home_screen.dart';
 import 'package:ikigai/services/payment_services.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth_services.dart';
 
 class LoginPage extends StatefulWidget {
@@ -31,10 +31,12 @@ class _LoginPageState extends State<LoginPage> {
   String _fullName = "";
   String _mobileerror = "";
   final userbox = GetStorage("User");
-
+  
+  // final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   @override
-  void initState() {
+  void initState()  {
     print(" ${GetStorage().read("isLoggedin")}");
+    
     super.initState();
   }
 
@@ -65,7 +67,6 @@ class _LoginPageState extends State<LoginPage> {
             }
           });
         });
-
         // await Navigator.pushNamed(context, "/home");
       }
     }

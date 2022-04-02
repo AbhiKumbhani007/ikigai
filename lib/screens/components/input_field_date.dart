@@ -26,8 +26,6 @@ class InputFieldDate extends StatelessWidget {
     return Container(
       /* 
       color: Colors.black, */
-      padding: EdgeInsets.symmetric(
-          horizontal: size.width * .08, vertical: size.width * 0.02),
       width: size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,46 +33,55 @@ class InputFieldDate extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(topicName,
-                  style: GoogleFonts.lato(
-                      fontSize: 14, fontWeight: FontWeight.normal))
+              Padding(
+                padding: const EdgeInsets.only(left: 50.0, top: 8.0),
+                child: Text(topicName,
+                    style: GoogleFonts.prompt(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black)),
+              )
             ],
           ),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 10),
-            width: size.width * 0.92,
-            child: TextFormField(
-              // initialValue: initialValue,
-              controller: fieldController,
-              validator: validator,
-              decoration: InputDecoration(
-                  enabledBorder: const OutlineInputBorder(
-                    // width: 0.0 produces a thin "hairline" border
-                    borderSide: BorderSide(
-                        color: Color.fromRGBO(45, 201, 235, 1), width: 1.0),
-                  ),
-                  prefixIcon: IconButton(
-                    onPressed: onpressed,
-                    icon: Icon(
-                      inputIcon,
-                      color: Colors.black,
+            width: size.width,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: TextFormField(
+                // initialValue: initialValue,
+                controller: fieldController,
+                validator: validator,
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                          color: Color.fromARGB(125, 183, 183, 198)),
+                      borderRadius: BorderRadius.circular(80),
                     ),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    /*                     borderRadius: new BorderRadius.circular(25.0), */
-                    borderSide:
-                        BorderSide(color: Color.fromRGBO(45, 201, 235, 1)),
-                  ),
-                  hintText: hinttext,
-                  hintStyle: GoogleFonts.lato(
-                    color: const Color.fromRGBO(192, 200, 231, 1),
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                  ),
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15))),
+                    prefixIcon: IconButton(
+                      onPressed: onpressed,
+                      icon: Icon(
+                        inputIcon,
+                        color: Colors.black,
+                      ),
+                    ),
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 0, vertical: 18),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: Color.fromRGBO(183, 183, 198, 1),
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(80)),
+                    hintText: hinttext,
+                    hintStyle: GoogleFonts.prompt(
+                        fontSize: 15,
+                        color: const Color.fromARGB(255, 109, 109, 109)),
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15))),
+              ),
             ),
           )
         ],

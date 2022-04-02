@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/controllers/event_controller.dart';
 import 'package:ikigai/screens/components/eventnews_component.dart';
-
 import '../../controllers/booking_controller.dart';
 import '../Events/add_event_form.dart';
 import '../Events/all_eventslist_screen.dart';
@@ -16,7 +15,6 @@ import '../my_bookings/my_bookings_screen.dart';
 import '../partner_screen/partner_screen.dart';
 import '../settings_screen/settings_screen.dart';
 import 'components/feature_component.dart';
-
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 // For Flutter applications, you'll most likely want to use
 // the url_launcher package.
