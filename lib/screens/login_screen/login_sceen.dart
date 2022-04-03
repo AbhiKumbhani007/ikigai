@@ -79,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Material(
       child: SingleChildScrollView(
         child: Form(
@@ -103,12 +104,14 @@ class _LoginPageState extends State<LoginPage> {
                 InputTextField(
                   hintText: 'Email',
                   fieldName: 'Email',
+                  size: size,
                   fieldController: emailController,
                 ),
                 const SizedBox(
                   height: 12,
                 ),
                 InputTextField(
+                  size: size,
                   hintText: 'Password',
                   fieldName: 'Password',
                   fieldController: passwordController,

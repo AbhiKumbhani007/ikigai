@@ -19,7 +19,7 @@ class InputTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // width: size.width,
+      width: size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
