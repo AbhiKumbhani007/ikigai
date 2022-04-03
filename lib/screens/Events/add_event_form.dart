@@ -29,6 +29,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
   final TextEditingController _eventType = TextEditingController();
   final TextEditingController _ticketPrice = TextEditingController();
   final TextEditingController _discription = TextEditingController();
+  final TextEditingController _publishType = TextEditingController();
 
   DateTime date = DateTime.now();
   final TextEditingController _date = TextEditingController(
@@ -323,6 +324,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
                                       onChanged: (SingingCharacter? value) {
                                         setState(() {
                                           _character = value;
+                                          _publishType.text = "Public";
                                         });
                                       },
                                     ),
@@ -338,6 +340,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
                                       onChanged: (SingingCharacter? value) {
                                         setState(() {
                                           _character = value;
+                                          _publishType.text = "Private";
                                         });
                                       },
                                     ),
@@ -377,7 +380,6 @@ class _EventFormScreenState extends State<EventFormScreen> {
                                 if (_formKey3.currentState!.validate()) {
                                   saveForm();
                                 }
-
                                 Navigator.of(context).pop();
                               },
                               child: Text(
@@ -427,11 +429,14 @@ class _EventFormScreenState extends State<EventFormScreen> {
     var eventDetails = {};
     eventDetails["event_name"] = _eventName.text;
     eventDetails["event_type"] = _eventType.text;
-    eventDetails["start_time"] = _startTime.text;
+    eventDetails["start_time"] = dropdownValue;
     eventDetails["end_time"] = _endTime.text;
     eventDetails["no_of_seats"] = _totalSeats.text;
     eventDetails["ticket_price"] = _ticketPrice.text;
-    eventDetails["event_mode"] = dropdownValue;
+    if(_character == SingingCharacter.Public)
+      eventDetails["event_mode"] = "Public";
+    else
+      eventDetails["event_mode"] = "Private";
     eventDetails["event_desc"] = _discription.text;
     EventServices es = EventServices();
     es.addEventsToFirebase(eventDetails, _date.text);

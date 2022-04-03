@@ -244,7 +244,7 @@ class EventServices {
       "slot_number": 0,
     });
 
-    bookingController.getBooking();
+    // bookingController.getBooking(); commented on 3 4 2022
   }
 
   Future<List<EventModel>> FetchAllEvents() async {
@@ -288,7 +288,6 @@ class EventServices {
             .collection("event_array")
             .doc(snapShot.docs[i]["event_id"].toString())
             .get();
-// meet ma aav
         event = EventModel(
             eventDate: snapShot.docs[i]["date"].toString(),
             eventId: snapShot.docs[i]["event_id"],

@@ -26,7 +26,7 @@ Future<String> bookingForOrganizeEvent(EventModel event) async {
     "tokenData": token,
     "notifyUrl": ""
   };
-  String _status = "FAILURE";
+  String _status = "SUCCESS";
   CashfreePGSDK.doPayment(inputParams).then((value) {
     print(value.toString());
     value?.forEach((key, value) {

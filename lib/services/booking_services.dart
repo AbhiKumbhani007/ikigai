@@ -13,11 +13,7 @@ class BookingServices {
       .collection("Bookings");
 
   Future<List<BookingModel>> getBookings() async {
-
   List<BookingModel> listOfBookings= [];
-
-  
-
   return listOfBookings;
 
   }

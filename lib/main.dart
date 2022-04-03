@@ -15,6 +15,7 @@ import 'package:ikigai/screens/login_screen/login_sceen.dart';
 import 'package:ikigai/screens/signup_screen/signup_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'controllers/event_controller.dart';
 import 'controllers/matrix_controller.dart';
 // void main() {
 //   runApp(const MyApp());
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   MatrixController matrixController = Get.put(MatrixController());
   UserController userController = Get.put(UserController());
-
+  EventController eventController = Get.put(EventController());
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

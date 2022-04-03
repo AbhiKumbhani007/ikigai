@@ -218,8 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
 class HomeScreenPage extends StatelessWidget {
   HomeScreenPage({Key? key}) : super(key: key);
 
-  EventController eventController = Get.put(EventController());
-
+  EventController eventController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Padding(

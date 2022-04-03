@@ -35,91 +35,193 @@ class EventNewsTile extends StatelessWidget {
                       event: event,
                     ))));
       },
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: Card(
-              elevation: 2,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Text(
-                              "Event: ${eventName}",
-                              style: GoogleFonts.lato(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Text(
-                              "Date: ${eventDate}",
-                              style: GoogleFonts.lato(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.25,
-                            child: Text(
-                              "Price: ${event!.ticketPrice} Rs.",
-                              style: GoogleFonts.lato(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    flex: 2,
-                  ),
-                  Expanded(
-                    child: Column(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10.0),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.2,
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              color: const Color.fromRGBO(167, 171, 240, 1),
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * 0.05),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: ElevatedButton(
-                            child: Text(
-                              "Share",
-                              style: GoogleFonts.lato(
-                                  fontSize: 14, fontWeight: FontWeight.w600),
-                            ),
+                        Text(
+                          "${eventName}",
+                          style: GoogleFonts.prompt(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
+                        ),
+                        IconButton(
                             onPressed: () {
                               Share.share(
                                   "Check out this event ${event!.eventName}");
                             },
-                          ),
+                            icon: const Icon(
+                              Icons.more_vert_outlined,
+                              color: Colors.white,
+                            ))
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.calendar_today,
+                          size: 20,
+                          color: Colors.white,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 5.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              registerEvent(event!);
-                              eventController.bookEvent(event!);
-                            },
-                            child: Text("Book",
-                                style: GoogleFonts.lato(
-                                    fontSize: 14, fontWeight: FontWeight.w600)),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          " ${eventDate}",
+                          style: GoogleFonts.prompt(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white,
                           ),
                         ),
                       ],
                     ),
-                    flex: 1,
-                  ),
-                ],
-              )),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("₹ ${event!.ticketPrice}",
+                            style: GoogleFonts.prompt(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            )),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              right: MediaQuery.of(context).size.height * 0.02,
+                              bottom:
+                                  MediaQuery.of(context).size.height * 0.01),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * .25,
+                            height: MediaQuery.of(context).size.height * 0.05,
+                            child: ElevatedButton(
+                                style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.white)),
+                                onPressed: () {
+                                  registerEvent(event!);
+                                  eventController.bookEvent(event!);
+                                },
+                                child: Text("Book",
+                                    style: GoogleFonts.lato(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w900,
+                                        color: const Color.fromRGBO(
+                                            34, 34, 82, 1)))),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
         ),
+        // Card(
+        //     elevation: 2,
+        //     child: Row(
+        //       children: [
+        //         Expanded(
+        //           child: Padding(
+        //             padding: const EdgeInsets.only(left: 15.0),
+        //             child: Column(
+        //               // mainAxisAlignment: MainAxisAlignment.start,
+        //               crossAxisAlignment: CrossAxisAlignment.start,
+        //               children: [
+        //                 Padding(
+        //                   padding: const EdgeInsets.only(top: 10.0),
+        //                   child: Text(
+        //                     "Event: ${eventName}",
+        //                     style: GoogleFonts.lato(
+        //                       fontSize: 20,
+        //                       fontWeight: FontWeight.w600,
+        //                     ),
+        //                   ),
+        //                 ),
+        //                 Padding(
+        //                   padding: const EdgeInsets.only(top: 10.0),
+        //                   child: Text(
+        //                     "Date: ${eventDate}",
+        //                     style: GoogleFonts.lato(
+        //                       fontSize: 15,
+        //                       fontWeight: FontWeight.w400,
+        //                     ),
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   width: MediaQuery.of(context).size.width * 0.25,
+        //                   child: Text(
+        //                     "Price: ${event!.ticketPrice} Rs.",
+        //                     style: GoogleFonts.lato(
+        //                       fontSize: 15,
+        //                       fontWeight: FontWeight.w400,
+        //                     ),
+        //                   ),
+        //                 ),
+        //               ],
+        //             ),
+        //           ),
+        //           flex: 2,
+        //         ),
+        //         Expanded(
+        //           child: Column(
+        //             children: [
+        //               Padding(
+        //                 padding: const EdgeInsets.only(top: 5.0),
+        //                 child: ElevatedButton(
+        //                   child: Text(
+        //                     "Share",
+        //                     style: GoogleFonts.lato(
+        //                         fontSize: 14, fontWeight: FontWeight.w600),
+        //                   ),
+        //                   onPressed: () {
+        //                     Share.share(
+        //                         "Check out this event ${event!.eventName}");
+        //                   },
+        //                 ),
+        //               ),
+        //               Padding(
+        //                 padding: const EdgeInsets.only(bottom: 5.0),
+        //                 child: ElevatedButton(
+        //                   onPressed: () {
+        //                     registerEvent(event!);
+        //                     eventController.bookEvent(event!);
+        //                   },
+        //                   child: Text("Book",
+        //                       style: GoogleFonts.lato(
+        //                           fontSize: 14, fontWeight: FontWeight.w600)),
+        //                 ),
+        //               ),
+        //             ],
+        //           ),
+        //           flex: 1,
+        //         ),
+        //       ],
+        //     )),
       ),
     );
   }
