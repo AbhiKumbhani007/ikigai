@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ikigai/screens/components/date_picker.dart';
 import 'package:ikigai/screens/components/input_field_date.dart';
 import '../../controllers/matrix_controller.dart';
 import '../../services/matrix_services.dart';
@@ -45,61 +46,7 @@ class _GridBookingState extends State<GridBooking> {
       ),
       body: ListView(
         children: [
-          Row(
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InputFieldDate(
-                inputIcon: Icons.date_range,
-                initialValue: DateTime(DateTime.now().year,
-                        DateTime.now().month, DateTime.now().day + 1)
-                    .toString(),
-                topicName: "",
-                size: size * 0.6,
-                fieldController: _date,
-                hinttext: "01-01-2020",
-                validator: (v) {
-                  if (v!.length == 0) {
-                    return 'Enter title of activity';
-                  } else {
-                    return null;
-                  }
-                },
-                onpressed: () async {
-                  final date = await showDatePicker(
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime(2050),
-                      context: context);
-                  if (date != null) {
-                    _date.text =
-                        // ignore: unnecessary_string_interpolations
-                        "${((date.day) < 10 ? '0' + (date.day).toString() : (date.day).toString()) + '-' + (date.month < 10 ? '0' + date.month.toString() : date.month.toString()) + '-' + date.year.toString()}";
-                  }
-                },
-              ),
-              SizedBox(
-                height: 60,
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: (() {
-                      matrixController.selectedDate = _date.text;
-                      matrixController.getSeatStatsAccordingToDate();
-                      setState(() {
-                        isSlotsDetailsAvailable = true;
-                      });
-                      // matrixServices.getSeatStatsAccordingToDate(_date.text);
-                    }),
-                    child: Text(
-                      "Fetch Slots",
-                      style: GoogleFonts.lato(
-                          fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          TableBasicsExample(),
           SizedBox(
             height: 10,
           ),
