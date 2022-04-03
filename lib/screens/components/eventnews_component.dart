@@ -66,7 +66,7 @@ class EventNewsTile extends StatelessWidget {
                         IconButton(
                             onPressed: () {
                               Share.share(
-                                  "Check out this event ${event!.eventName}");
+                                  "Check out this event ${event!.eventName} on Ikigai App");
                             },
                             icon: const Icon(
                               Icons.more_vert_outlined,
