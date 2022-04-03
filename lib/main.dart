@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cashfree_pg/cashfree_pg.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,12 +13,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:ikigai/screens/components/gridbooking.dart';
 import 'package:ikigai/screens/login_screen/login_sceen.dart';
 import 'package:ikigai/screens/signup_screen/signup_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'controllers/matrix_controller.dart';
 // void main() {
 //   runApp(const MyApp());
 // }
 
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
@@ -34,19 +39,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
+      // onGenerateRoute: generateRoute,
+      navigatorKey: navigatorKey,
+      // showPerformanceOverlay: true,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
       // home: LoginPage(),
-
       initialRoute: "/login",
       routes: {
         // MyRoutes.homeRoute: (context) => LoginPage(),
         // "/home": (context) => HomeScreen()
-        "/": (context) => Obx(() =>
-            (userController.uid.value != "") ? HomeScreen() : LoginPage()),
+        "/": (context) => LoginPage(),
         "/home": (context) => HomeScreen(),
         "/grid_booking": (context) => GridBooking(),
         "/signup": (context) => SignupPage(),
@@ -55,4 +62,13 @@ class MyApp extends StatelessWidget {
       },
     );
   }
+}
+
+Future<bool> getEmail()async{
+  SharedPreferences sf = await SharedPreferences.getInstance();
+  String email = sf.getString('email').toString();
+  if(email == null || email == ""){
+    return false;
+  }
+  return true;
 }

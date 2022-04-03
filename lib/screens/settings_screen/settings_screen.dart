@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/controllers/booking_controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../controllers/user_controller.dart';
 
@@ -87,8 +88,11 @@ class SettingsScreen extends StatelessWidget {
               size: 27,
             ),
             title: const Text('Logout', style: TextStyle(fontSize: 18)),
-            onTap: () {
+            onTap: () async{
               bookingController.listOfMyBooking.value = [];
+              SharedPreferences _pref=await SharedPreferences.getInstance();
+              _pref.setString('email', "");
+              _pref.setString('password', "");
               // Get.delete<BookingController>();
               Navigator.of(context).pushNamedAndRemoveUntil(
                   "/login", (Route<dynamic> route) => false);

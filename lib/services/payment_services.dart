@@ -2,6 +2,7 @@ import 'package:cashfree_pg/cashfree_pg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:ikigai/controllers/user_controller.dart';
+import 'package:ikigai/services/event_services.dart';
 import '../models/event_model.dart';
 import 'dart:convert';
 
@@ -15,27 +16,30 @@ Future<String> bookingForOrganizeEvent(EventModel event) async {
   Map<String, String> inputParams = {
     "orderId": orderId,
     "orderAmount": event.ticketPrice.toString(),
-    "customerName": "MD",
+    "customerName": userController.name.value,
     "orderNote": "",
     "orderCurrency": "INR",
     "appId": "14331664b456f7bd89b68cf9e5613341",
     "customerPhone": "9409583829",
-    "customerEmail": "mantastic2001@gmail.com",
+    "customerEmail": userController.email.value,
     "stage": "TEST",
     "tokenData": token,
     "notifyUrl": ""
   };
-  CashfreePGSDK.doPayment(inputParams)
-      .then((value) => value?.forEach((key, value) {
-            // this.responseRecieved();
-            print("$key : $value");
-            // response+=
-            //Do something with the result
-          }))
-      .catchError((err) => print('error : ' + err.toString()));
+  String _status = "FAILURE";
+  CashfreePGSDK.doPayment(inputParams).then((value) {
+    print(value.toString());
+    value?.forEach((key, value) {
+      if (key == "txStatus" && value == "SUCCESS") {
+        _status = "SUCCESS";
+        // this.responseRecieved();
+        print("$key : $value");
+      }
+    });
+  }).catchError((err) => print('error : ' + err.toString()));
 
+  return _status;
 // make return message according to so we can
-  return "SUCCESS";
 }
 
 Future<String> registerMatrixSlot(
@@ -57,16 +61,23 @@ Future<String> registerMatrixSlot(
     "tokenData": token,
     "notifyUrl": ""
   };
-  CashfreePGSDK.doPayment(inputParams)
-      .then((value) => value?.forEach((key, value) {
-            // this.responseRecieved();
-            print("$key : $value");
-            // response+=
-            //Do something with the result
-          }))
+  String _status = "FAILURE";
+  CashfreePGSDK.doPayment(inputParams).then((value) {
+    print(value.toString());
+    value?.forEach((key, value) {
+      if (key == "txStatus" && value == "SUCCESS") {
+        _status = "SUCCESS";
+        // this.responseRecieved();
+        print("$key : $value");
+      }
+    });
+  })
+      // response+=
+      //Do something with the result
+
       .catchError((err) => print('error : ' + err.toString()));
 
-  return "SUCCESS";
+  return _status;
 }
 
 void registerEvent(EventModel event) async {
@@ -87,14 +98,17 @@ void registerEvent(EventModel event) async {
     "tokenData": token,
     "notifyUrl": ""
   };
-  CashfreePGSDK.doPayment(inputParams)
-      .then((value) => value?.forEach((key, value) {
-            // this.responseRecieved();
-            print("$key : $value");
-            // response+=
-            //Do something with the result
-          }))
-      .catchError((err) => print('error : ' + err.toString()));
+  String _status = "FAILURE";
+  CashfreePGSDK.doPayment(inputParams).then((value) {
+    print(value.toString());
+    value?.forEach((key, value) {
+      if (key == "txStatus" && value == "SUCCESS") {
+        _status = "SUCCESS";
+        // this.responseRecieved();
+        print("$key : $value");
+      }
+    });
+  }).catchError((err) => print('error : ' + err.toString()));
 }
 
 Future<String> getToken(String orderId, String? price) async {

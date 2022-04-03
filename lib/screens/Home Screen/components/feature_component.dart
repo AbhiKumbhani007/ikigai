@@ -1,59 +1,96 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../constants/flutter_flow_theme.dart';
 
 class FeatureComponent extends StatelessWidget {
   var icon;
   var text;
   var onPressed;
-  FeatureComponent({Key? key, this.icon, this.text, this.onPressed})
+  var startColor;
+  var endColor;
+  FeatureComponent({Key? key, this.icon, this.text, this.onPressed, this.startColor, this.endColor})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        margin: EdgeInsets.all(10),
-        width: 130,
-        // height: 100,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 5,
-              color: Color(0x39000000),
-              offset: Offset(0, 2),
-            )
-          ],
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                this.icon,
-                color: Color(0xFF1E2429),
-                size: 40,
+        onTap: onPressed,
+        child: Container(
+            // margin: EdgeInsets.all(MediaQuery.of(context).size.height * .05),
+            width: MediaQuery.of(context).size.width * 0.47,
+            height: MediaQuery.of(context).size.height * 0.22,
+            // padding: const EdgeInsets.all(5.0),
+            // color: Colors.blue,
+            // alignment: Alignment.bottomCenter,
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[
+                  startColor,
+                  endColor
+                  // Colors.black.withAlpha(0),
+                 
+                ],
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                child: Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.bodyText1.override(
-                    fontFamily: 'Lexend Deca',
-                    color: Color(0xFF090F13),
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
+            ),
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  left: -22,
+                  top: -22,
+                  child: Container(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      width: MediaQuery.of(context).size.height * 0.15,
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(193, 230, 234, .5),
+                        borderRadius: BorderRadius.circular(100),
+                        // border: Border.all(
+                        //   width: 3,
+                        //   color: Colors.orange,
+                        // )
+                        // color: Colors.orange,
+                        // shape: BoxShape.circle,
+                      )),
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+                Positioned(
+                  left: 123,
+                  top: 95,
+                  child: Container(
+                      height: MediaQuery.of(context).size.height * 0.60,
+                      width: MediaQuery.of(context).size.height * 0.60,
+                      decoration: BoxDecoration(
+                          // color: Color.fromRGBO(193, 230, 234, .5),
+                          borderRadius: BorderRadius.circular(100),
+                          border: Border.all(
+                            width: 3,
+                            color: Colors.red.shade200,
+                          )
+                          // color: Colors.orange,
+                          // shape: BoxShape.circle,
+                          )),
+                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                    // padding: EdgeInsets.all(20.0),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Icon(
+                          icon,
+                          size: 50,
+                        ),
+                      ),
+                      SizedBox(),
+                      Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text("$text",
+                              style: GoogleFonts.prompt(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black)))
+                    ]),
+              ],
+            )));
   }
 }

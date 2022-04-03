@@ -286,7 +286,7 @@ class EventServices {
         var eventSnapshot = await eventsCollection
             .doc(snapShot.docs[i]["date"].toString())
             .collection("event_array")
-            .doc(snapShot.docs[i]["event_id"].toString().substring(11))
+            .doc(snapShot.docs[i]["event_id"].toString())
             .get();
 // meet ma aav
         event = EventModel(

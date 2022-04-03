@@ -28,6 +28,4 @@ class EventController extends GetxController {
     EventServices es = new EventServices();
     listOfEvents.value = await es.FetchAllEvents();
   }
-
-
 }

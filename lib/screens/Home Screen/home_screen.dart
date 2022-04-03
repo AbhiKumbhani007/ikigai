@@ -265,7 +265,7 @@ class HomeScreenPage extends StatelessWidget {
           ),
           SizedBox(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.2,
+            height: MediaQuery.of(context).size.height * 0.23,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
@@ -276,6 +276,11 @@ class HomeScreenPage extends StatelessWidget {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => GridBooking()));
                   },
+                  startColor: Color.fromRGBO(156, 161, 227, 1),
+                  endColor: Color.fromRGBO(182, 241, 220, 1),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .02,
                 ),
                 FeatureComponent(
                   icon: Icons.event,
@@ -284,6 +289,11 @@ class HomeScreenPage extends StatelessWidget {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => EventFormScreen()));
                   },
+                  startColor: Color.fromRGBO(156, 161, 227, 1),
+                  endColor: Color.fromRGBO(182, 241, 220, 1),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .02,
                 ),
                 FeatureComponent(
                   icon: Icons.work,
@@ -292,6 +302,8 @@ class HomeScreenPage extends StatelessWidget {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) => requestEventScreen()));
                   },
+                  startColor: Color.fromRGBO(156, 161, 227, 1),
+                  endColor: Color.fromRGBO(182, 241, 220, 1),
                 ),
               ],
             ),
