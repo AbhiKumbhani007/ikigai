@@ -33,13 +33,12 @@ class SeatModel {
   }
 
   Color getColor() {
-    if (getCnt() == 4) return Colors.red;
-    if (getCnt() == 0) return Colors.green;
-    return Colors.yellow;
+    if (getCnt() == 4) return Color.fromARGB(255, 185, 188, 243);
+    if (getCnt() == 0) return Color.fromARGB(255, 237, 238, 252);
+    return Color.fromARGB(255, 237, 238, 252);
   }
 
-  String getSeatCategory(){
-      return seatCategory;
+  String getSeatCategory() {
+    return seatCategory;
   }
-
 }

@@ -105,37 +105,125 @@ class _GridBookingState extends State<GridBooking> {
           ),
           // (isSlotsDetailsAvailable)
           //     ?
-          GridView.builder(
-              shrinkWrap: true, //must for grid inside column
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 8,
-              ),
-              itemCount: 64,
-              itemBuilder: (BuildContext context, int index) {
-                return InkWell(onTap: () {
-                  setState(() {
-                    _seatNumber = index + 1;
-                    debugPrint("date: ${_date.text}");
-                    matrixController.selectedDate = _date.text;
-                    debugPrint(
-                        "matrixController.selectedDate: ${matrixController.selectedDate}");
-                    matrixController.seatNumber.value = _seatNumber;
-                    matrixController.fetchSeatDetailsFromFirebase();
-                  });
-                  debugPrint("${(index / 8).floor() + 1} , ${1 + index % 8}");
-                }, child: Obx(() {
-                  return Card(
-                    color: (index + 1 == matrixController.seatNumber.value)
-                        ? Colors.white
-                        : matrixController.MatrixStatsOfThisDate.value.length ==
-                                0
-                            ? Colors.white
-                            : matrixController.MatrixStatsOfThisDate[index]
-                                .getColor(),
-                    child: Center(child: Text('${index + 1}')),
-                  );
-                }));
-              }),
+          Container(
+            margin: EdgeInsets.all(8),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Color.fromARGB(255, 167, 171, 240),
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 15,
+                            height: 15,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 185, 188, 243),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text("Not Available"),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            width: 15,
+                            height: 15,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 237, 238, 252),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text("Available"),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Card(
+                            elevation: 5,
+                            child: Container(
+                              width: 15,
+                              height: 15,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text("Selected"),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                GridView.builder(
+                    shrinkWrap: true, //must for grid inside column
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 8,
+                    ),
+                    itemCount: 64,
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(onTap: () {
+                        setState(() {
+                          _seatNumber = index + 1;
+                          debugPrint("date: ${_date.text}");
+                          matrixController.selectedDate = _date.text;
+                          debugPrint(
+                              "matrixController.selectedDate: ${matrixController.selectedDate}");
+                          matrixController.seatNumber.value = _seatNumber;
+                          matrixController.fetchSeatDetailsFromFirebase();
+                        });
+                        debugPrint(
+                            "${(index / 8).floor() + 1} , ${1 + index % 8}");
+                      }, child: Obx(() {
+                        return Card(
+                          elevation:
+                              (index + 1 == matrixController.seatNumber.value)
+                                  ? 15
+                                  : 0,
+                          color:
+                              (index + 1 == matrixController.seatNumber.value)
+                                  ? Colors.white
+                                  : matrixController.MatrixStatsOfThisDate.value
+                                              .length ==
+                                          0
+                                      ? Colors.white
+                                      : matrixController
+                                          .MatrixStatsOfThisDate[index]
+                                          .getColor(),
+                          child: Center(
+                              child: Text(
+                            '${index + 1}',
+                            style: TextStyle(
+                                color: (index + 1 ==
+                                        matrixController.seatNumber.value)
+                                    ? Color.fromARGB(255, 175, 179, 241)
+                                    : Colors.black),
+                          )),
+                        );
+                      }));
+                    }),
+              ],
+            ),
+          ),
           SizedBox(
             height: 15,
           ),
