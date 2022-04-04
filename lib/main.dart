@@ -17,10 +17,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'controllers/event_controller.dart';
 import 'controllers/matrix_controller.dart';
+
+Map<int, Color> color = {
+  50: Color.fromRGBO(166, 171, 241, .1),
+  100: Color.fromRGBO(166, 171, 241, .2),
+  200: Color.fromRGBO(166, 171, 241, .3),
+  300: Color.fromRGBO(166, 171, 241, .4),
+  400: Color.fromRGBO(166, 171, 241, .5),
+  500: Color.fromRGBO(166, 171, 241, .6),
+  600: Color.fromRGBO(166, 171, 241, .7),
+  700: Color.fromRGBO(166, 171, 241, .8),
+  800: Color.fromRGBO(166, 171, 241, .9),
+  900: Color.fromRGBO(166, 171, 241, 1),
+};
 // void main() {
 //   runApp(const MyApp());
 // }
-
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
@@ -40,14 +52,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       // onGenerateRoute: generateRoute,
       navigatorKey: navigatorKey,
       // showPerformanceOverlay: true,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: MaterialColor(0xCF683AB7, color),
       ),
       // home: LoginPage(),
       initialRoute: "/login",
@@ -65,10 +76,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
-Future<bool> getEmail()async{
+Future<bool> getEmail() async {
   SharedPreferences sf = await SharedPreferences.getInstance();
   String email = sf.getString('email').toString();
-  if(email == null || email == ""){
+  if (email == null || email == "") {
     return false;
   }
   return true;

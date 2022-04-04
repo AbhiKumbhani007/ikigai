@@ -151,66 +151,85 @@ class _HomeScreenState extends State<HomeScreen> {
           // elevation: 0,
           // backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          title: const Text(
+          title: Text(
             "Ikigai",
-            style: TextStyle(color: Colors.white),
+            style: GoogleFonts.prompt(fontSize: 26, color: Colors.white),
           ),
         ),
         body: _widgetOptions.elementAt(_selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
-          // backgroundColor: Colors.black,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home_outlined,
-                color: Colors.white,
-                size: 28,
-                // onPressed: () {},
+        bottomNavigationBar: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(20),
+            topLeft: Radius.circular(20),
+          ),
+          child: BottomNavigationBar(
+            // backgroundColor: Colors.black,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: ImageIcon(
+                  AssetImage('assets/images/BottomNavbarLogos/home2.png'),
+                  // Icons.home_outlined,
+                  color: Colors.white,
+                  size: 28,
+                  // onPressed: () {},
+                ),
+                label: 'Home',
+                backgroundColor: Color.fromARGB(212, 104, 58, 183),
               ),
-              label: 'Home',
-              backgroundColor: Colors.deepPurple,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.book_outlined,
-                color: Colors.white,
+              BottomNavigationBarItem(
+                icon: ImageIcon(
+                  AssetImage('assets/images/BottomNavbarLogos/bookmark.png'),
+                  // Icons.home_outlined,
+                  color: Colors.white,
+                  size: 28,
+                  // onPressed: () {},
+                ),
+                label: 'Bookings',
+                backgroundColor: Color.fromARGB(212, 104, 58, 183),
+                // backgroundColor: Colors.white,
               ),
-              label: 'Bookings',
-              backgroundColor: Colors.deepPurple,
-              // backgroundColor: Colors.white,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.event,
-                color: Colors.white,
+              BottomNavigationBarItem(
+                icon: ImageIcon(
+                  AssetImage('assets/images/BottomNavbarLogos/events.png'),
+                  // Icons.home_outlined,
+                  color: Colors.white,
+                  size: 28,
+                  // onPressed: () {},
+                ),
+                label: 'All Events',
+                backgroundColor: Color.fromARGB(212, 104, 58, 183),
+                // backgroundColor: Colors.white,
               ),
-              label: 'All Events',
-              backgroundColor: Colors.deepPurple,
-              // backgroundColor: Colors.white,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.account_circle_outlined,
-                color: Colors.white,
+              BottomNavigationBarItem(
+                icon: ImageIcon(
+                  AssetImage('assets/images/BottomNavbarLogos/partners.png'),
+                  // Icons.home_outlined,
+                  color: Colors.white,
+                  size: 28,
+                  // onPressed: () {},
+                ),
+                label: 'Partners',
+                backgroundColor: Color.fromARGB(212, 104, 58, 183),
+                // backgroundColor: Colors.white,
               ),
-              label: 'Partners',
-              backgroundColor: Colors.deepPurple,
-              // backgroundColor: Colors.white,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.settings_outlined,
-                color: Colors.white,
+              BottomNavigationBarItem(
+                icon: ImageIcon(
+                  AssetImage('assets/images/BottomNavbarLogos/settings.png'),
+                  // Icons.home_outlined,
+                  color: Colors.white,
+                  size: 28,
+                  // onPressed: () {},
+                ),
+                label: 'Settings',
+                backgroundColor: Color.fromARGB(212, 104, 58, 183),
+                // backgroundColor: Colors.white,
               ),
-              label: 'Settings',
-              backgroundColor: Colors.deepPurple,
-              // backgroundColor: Colors.white,
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          // selectedItemColor: Colors.white,
-          selectedIconTheme: IconThemeData(size: 28),
-          onTap: _onItemTapped,
+            ],
+            currentIndex: _selectedIndex,
+            // selectedItemColor: Colors.white,
+            selectedIconTheme: IconThemeData(size: 28),
+            onTap: _onItemTapped,
+          ),
         ));
   }
 }
@@ -226,42 +245,46 @@ class HomeScreenPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              // const Padding(
-              //   padding: EdgeInsets.all(8.0),
-              //   child: CircleAvatar(
-              //     backgroundColor: Colors.white,
-              //     radius: 48,
-              //     backgroundImage: NetworkImage(
-              //         "https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=194"),
-              //   ),
-              // ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      "Location: ",
-                      style: GoogleFonts.lato(
-                        color: Colors.black,
-                        fontSize: 22,
-                      ),
-                    ),
-                    Text(
-                      "Surat",
-                      style: GoogleFonts.lato(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     // const Padding(
+          //     //   padding: EdgeInsets.all(8.0),
+          //     //   child: CircleAvatar(
+          //     //     backgroundColor: Colors.white,
+          //     //     radius: 48,
+          //     //     backgroundImage: NetworkImage(
+          //     //         "https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=194"),
+          //     //   ),
+          //     // ),
+          //     Padding(
+          //       padding: const EdgeInsets.all(8.0),
+          //       child: Row(
+          //         crossAxisAlignment: CrossAxisAlignment.end,
+          //         children: [
+          //           Text(
+          //             "Location: ",
+          //             style: GoogleFonts.prompt(
+          //               color: Colors.black,
+
+          //               fontSize: 22,
+          //             ),
+          //           ),
+          //           Text(
+          //             "Surat",
+          //             style: GoogleFonts.prompt(
+          //               color: Colors.black,
+          //               fontWeight: FontWeight.w400,
+          //               fontSize: 20,
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // SizedBox(
+          //   height: 5,
+          // ),
           SizedBox(
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.23,
@@ -269,41 +292,41 @@ class HomeScreenPage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: [
                 FeatureComponent(
-                  icon: Icons.work,
-                  text: "Co-Working",
-                  onPressed: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => GridBooking()));
-                  },
-                  startColor: Color.fromRGBO(156, 161, 227, 1),
-                  endColor: Color.fromRGBO(182, 241, 220, 1),
-                ),
+                    icon: Icons.work_outline_outlined,
+                    text: "Co-Working",
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => GridBooking()));
+                    },
+                    startColor: Color.fromRGBO(156, 161, 227, 1),
+                    endColor: Color.fromRGBO(182, 241, 220, 1),
+                    inCircleColor: const Color.fromARGB(255, 184, 202, 230)),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * .02,
                 ),
                 FeatureComponent(
-                  icon: Icons.event,
-                  text: "Organize Events",
-                  onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => EventFormScreen()));
-                  },
-                  startColor: Color.fromRGBO(156, 161, 227, 1),
-                  endColor: Color.fromRGBO(182, 241, 220, 1),
-                ),
+                    icon: Icons.event,
+                    text: "Organize Events",
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => EventFormScreen()));
+                    },
+                    startColor: Color.fromARGB(255, 254, 177, 189),
+                    endColor: Color.fromARGB(255, 254, 239, 191),
+                    inCircleColor: const Color.fromARGB(255, 255, 221, 201)),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * .02,
                 ),
                 FeatureComponent(
-                  icon: Icons.work,
-                  text: "Request Event",
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => requestEventScreen()));
-                  },
-                  startColor: Color.fromRGBO(156, 161, 227, 1),
-                  endColor: Color.fromRGBO(182, 241, 220, 1),
-                ),
+                    icon: Icons.event_available_outlined,
+                    text: "Request Event",
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => requestEventScreen()));
+                    },
+                    startColor: Color.fromARGB(255, 80, 161, 215),
+                    endColor: Color.fromARGB(255, 182, 241, 220),
+                    inCircleColor: Color.fromARGB(161, 182, 237, 241)),
               ],
             ),
           ),
@@ -311,7 +334,7 @@ class HomeScreenPage extends StatelessWidget {
             padding: EdgeInsets.only(top: 20, left: 10),
             child: Text(
               "Upcoming Events",
-              style: GoogleFonts.lato(
+              style: GoogleFonts.prompt(
                   color: Color.fromRGBO(5, 1, 82, 1),
                   fontSize: 24,
                   fontWeight: FontWeight.w500),

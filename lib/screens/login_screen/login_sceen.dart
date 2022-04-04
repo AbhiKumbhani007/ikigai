@@ -112,6 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 InputTextField(
                   size: size,
+                  obsecure: true,
                   hintText: 'Password',
                   fieldName: 'Password',
                   fieldController: passwordController,

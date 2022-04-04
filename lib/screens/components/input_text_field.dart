@@ -7,13 +7,15 @@ class InputTextField extends StatelessWidget {
   var fieldController;
   var size;
   var validator;
+  var obsecure;
   InputTextField(
       {Key? key,
       this.hintText,
       this.fieldName,
       this.fieldController,
       this.size,
-      this.validator})
+      this.validator,
+      this.obsecure = false})
       : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class InputTextField extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: TextFormField(
+              obscureText: obsecure,
               controller: fieldController,
               decoration: InputDecoration(
                 hintText: hintText,

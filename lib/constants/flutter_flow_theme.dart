@@ -94,7 +94,7 @@ BoxDecoration kTextContainer = const BoxDecoration(
 InputDecoration inputDecorationOutline = const InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 10.0),
   filled: true,
-  fillColor: Color.fromRGBO(33, 33, 33, 1),
+  fillColor: Colors.black,
   labelStyle: TextStyle(color: Colors.white),
   floatingLabelStyle: TextStyle(fontSize: 14, color: Colors.white),
   // labelText: 'label',
