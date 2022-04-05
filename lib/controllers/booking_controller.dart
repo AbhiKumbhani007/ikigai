@@ -10,7 +10,6 @@ class BookingController extends GetxController {
 
   @override
   void onInit() {
-    getBooking();
     super.onInit();
   }
 

@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       // onGenerateRoute: generateRoute,
       navigatorKey: navigatorKey,
       // showPerformanceOverlay: true,
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: MaterialColor(0xCF683AB7, color),
       ),
       // home: LoginPage(),
+      
       initialRoute: "/login",
       routes: {
         // MyRoutes.homeRoute: (context) => LoginPage(),
