@@ -26,7 +26,9 @@ class InputTextField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 50.0, top: 8.0),
+            padding: EdgeInsets.only(
+                left: MediaQuery.of(context).size.width * 0.1,
+                top: MediaQuery.of(context).size.height * 0.01),
             child: Text(fieldName,
                 style: GoogleFonts.prompt(
                     fontSize: 18, fontWeight: FontWeight.w600)),
@@ -35,7 +37,8 @@ class InputTextField extends StatelessWidget {
             height: 12,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.03),
             child: TextFormField(
               obscureText: obsecure,
               controller: fieldController,
@@ -43,8 +46,9 @@ class InputTextField extends StatelessWidget {
                 hintText: hintText,
                 fillColor: Colors.white,
                 filled: true,
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
+                contentPadding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.1,
+                    vertical: MediaQuery.of(context).size.width * 0.05),
                 hintStyle: GoogleFonts.prompt(
                     fontSize: 15,
                     color: const Color.fromARGB(255, 109, 109, 109)),

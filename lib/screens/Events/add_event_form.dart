@@ -50,23 +50,23 @@ class _EventFormScreenState extends State<EventFormScreen> {
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         iconTheme: const IconThemeData(
-          color: Colors.black, //change your color here
+          color: Colors.white, //change your color here
         ),
-        centerTitle: true,
+        // centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.white.withOpacity(0),
         title: Text("Add Event",
             style: GoogleFonts.prompt(
-                fontSize: 28,
+                fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: const Color.fromRGBO(34, 34, 82, 1))),
+                color: Colors.white)),
       ),
       body: SizedBox(
         width: size.width,
         height: size.height,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(top: 15),
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.02),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -77,8 +77,10 @@ class _EventFormScreenState extends State<EventFormScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.05),
                         child: Divider(
                           thickness: 1,
                           color: Color.fromRGBO(183, 183, 198, 1),
@@ -136,8 +138,9 @@ class _EventFormScreenState extends State<EventFormScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 50.0),
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.1),
                             child: Text("Select Time",
                                 style: GoogleFonts.prompt(
                                     fontSize: 18,
@@ -149,7 +152,9 @@ class _EventFormScreenState extends State<EventFormScreen> {
                             height: 10,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.03),
                             child: DecoratedBox(
                               decoration: const ShapeDecoration(
                                 shape: RoundedRectangleBorder(
@@ -162,12 +167,16 @@ class _EventFormScreenState extends State<EventFormScreen> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 25.0),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal:
+                                        MediaQuery.of(context).size.width *
+                                            0.04),
                                 child: Container(
                                   width: size.width,
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 5),
+                                  padding: EdgeInsets.symmetric(
+                                      vertical:
+                                          MediaQuery.of(context).size.height *
+                                              0.01),
                                   child: DropdownButtonHideUnderline(
                                     child: Container(
                                       margin: const EdgeInsets.only(
@@ -179,7 +188,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
                                           Icons.arrow_drop_down,
                                           size: 30,
                                         ),
-                                        style: GoogleFonts.lato(
+                                        style: GoogleFonts.prompt(
                                           color: const Color.fromARGB(
                                               255, 109, 109, 109),
                                         ),
@@ -202,7 +211,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
                                             child: Text(
                                               value,
                                               textAlign: TextAlign.center,
-                                              style: GoogleFonts.lato(
+                                              style: GoogleFonts.prompt(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w600),
                                             ),
@@ -285,8 +294,10 @@ class _EventFormScreenState extends State<EventFormScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.05),
                         child: Divider(
                           thickness: 1,
                           color: Color.fromRGBO(183, 183, 198, 1),
@@ -299,8 +310,9 @@ class _EventFormScreenState extends State<EventFormScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 65.0),
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.15),
                             child: Text(
                               "Select Publish Type",
                               style: GoogleFonts.prompt(
@@ -351,8 +363,10 @@ class _EventFormScreenState extends State<EventFormScreen> {
                           ),
                         ],
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.05),
                         child: Divider(
                           thickness: 1,
                           color: Color.fromRGBO(183, 183, 198, 1),
@@ -370,7 +384,6 @@ class _EventFormScreenState extends State<EventFormScreen> {
                               style: ElevatedButton.styleFrom(
                                   elevation: 0,
                                   primary: Color.fromARGB(201, 87, 95, 255),
-                                  // padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(80)),
                                   textStyle: const TextStyle(
@@ -433,7 +446,7 @@ class _EventFormScreenState extends State<EventFormScreen> {
     eventDetails["end_time"] = _endTime.text;
     eventDetails["no_of_seats"] = _totalSeats.text;
     eventDetails["ticket_price"] = _ticketPrice.text;
-    if(_character == SingingCharacter.Public)
+    if (_character == SingingCharacter.Public)
       eventDetails["event_mode"] = "Public";
     else
       eventDetails["event_mode"] = "Private";

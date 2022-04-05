@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ikigai/screens/components/formfield.dart';
 import 'package:ikigai/screens/components/input_field_date.dart';
 
@@ -23,9 +24,10 @@ class _CoWorkingScreenState extends State<CoWorkingScreen> {
         // centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.white,
-        title: const Text(
+        title: Text(
           "Co-Working Space",
-          style: TextStyle(color: Colors.black),
+          style: GoogleFonts.prompt(
+              fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
         ),
       ),
       body: Column(

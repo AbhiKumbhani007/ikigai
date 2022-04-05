@@ -93,7 +93,9 @@ class _LoginPageState extends State<LoginPage> {
                   width: MediaQuery.of(context).size.width,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 15.0),
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.05,
+                      top: MediaQuery.of(context).size.height * 0.01),
                   child: Text('Sign In',
                       style: GoogleFonts.prompt(
                           fontSize: 32, fontWeight: FontWeight.w600)),
@@ -120,106 +122,6 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 45,
                 ),
-                // Image.asset("assets/images/login_img.png"),
-                // SizedBox(
-                //   height: 20,
-                // ),
-                // Text(
-                //   "Welcome To Our App",
-                //   style: GoogleFonts.lato(
-                //     color: Colors.black,
-                //     fontWeight: FontWeight.bold,
-                //     fontSize: 24,
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 20,
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                //   child: Column(
-                //     children: [
-                //       TextFormField(
-                //         decoration: InputDecoration(
-                //             hintText: "Enter Email", labelText: "E-mail"),
-                //         onChanged: (val) {
-                //           _mailerror = "";
-                //           email = val;
-                //         },
-                //         validator: (value) {
-                //           if (value!.isEmpty) {
-                //             return "Username Cannot be empty";
-                //           }
-                //           return null;
-                //         },
-                //       ),
-                //       TextFormField(
-                //         onChanged: (val) {
-                //           _passerror = "";
-                //           password = val;
-                //         },
-                //         obscureText: true,
-                //         decoration: InputDecoration(
-                //             hintText: "Enter Password", labelText: "Password"),
-                //         validator: (value) {
-                //           if (value!.isEmpty) {
-                //             return "Password Cannot be empty";
-                //           }
-                //           return null;
-                //         },
-                //       ),
-                //       SizedBox(
-                //         height: 20,
-                //       ),
-                //       Container(
-                //         color: Colors.white,
-                //         child: Material(
-                //           color: Colors.deepPurple,
-                //           borderRadius: BorderRadius.circular(8),
-                //           child: InkWell(
-                //             onTap: () {
-                //               moveToHome(context);
-                //             },
-                //             child: AnimatedContainer(
-                //               duration: Duration.zero,
-                //               alignment: Alignment.center,
-                //               // width: _a ? 50 : 150,
-                //               width: 150,
-                //               height: 50,
-                //               child: Text(
-                //                 "LOGIN",
-                //                 style: GoogleFonts.lato(
-                //                   color: Colors.white,
-                //                   fontSize: 20,
-                //                   fontWeight: FontWeight.bold,
-                //                 ),
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //       SizedBox(
-                //         height: 20,
-                //       ),
-                //       Container(
-                //         alignment: Alignment.center,
-                //         child: RichText(
-                //           text: TextSpan(
-                //               text: "Sign Up",
-                //               style: GoogleFonts.lato(
-                //                 color: Colors.deepPurple,
-                //                 fontWeight: FontWeight.w400,
-                //                 fontSize: 14,
-                //               ),
-                //               recognizer: new TapGestureRecognizer()
-                //                 ..onTap = () {
-                //                   Navigator.pushNamed(context, "/signup");
-                //                 }),
-                //         ),
-                //       )
-                //     ],
-                //   ),
-                // )
               ]),
               ElevatedButton(
                 onPressed: () {

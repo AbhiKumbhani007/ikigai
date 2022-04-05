@@ -34,7 +34,9 @@ class InputFieldDate extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 50.0, top: 8.0),
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * 0.1,
+                    top: MediaQuery.of(context).size.height * 0.01),
                 child: Text(topicName,
                     style: GoogleFonts.prompt(
                         fontSize: 18,
@@ -47,7 +49,8 @@ class InputFieldDate extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 10),
             width: size.width,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.04),
               child: TextFormField(
                 // initialValue: initialValue,
                 controller: fieldController,
@@ -65,8 +68,9 @@ class InputFieldDate extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 0, vertical: 18),
+                    contentPadding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.04,
+                        vertical: MediaQuery.of(context).size.height * 0.028),
                     focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
                           color: Color.fromRGBO(183, 183, 198, 1),

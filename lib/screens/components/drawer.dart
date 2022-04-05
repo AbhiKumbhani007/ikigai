@@ -8,10 +8,8 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
       // backgroundColor: Colors.deepPurple,
       child: Container(
-        padding: EdgeInsets.only(top: 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          // padding: EdgeInsets.only(top: 0),
           children: [
             const DrawerHeader(
               padding: EdgeInsets.zero,

@@ -20,16 +20,6 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          // const Padding(
-          //   padding: EdgeInsets.all(8.0),
-          //   child: Center(
-          //     child: CircleAvatar(
-          //       backgroundImage: NetworkImage(
-          //           'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=211'),
-          //       radius: 70,
-          //     ),
-          //   ),
-          // ),
           const SizedBox(
             height: 20,
           ),
@@ -38,8 +28,8 @@ class SettingsScreen extends StatelessWidget {
             children: [
               Text(
                 'My Profile',
-                style:
-                    GoogleFonts.lato(fontSize: 26, fontWeight: FontWeight.bold),
+                style: GoogleFonts.prompt(
+                    fontSize: 26, fontWeight: FontWeight.bold),
               )
             ],
           ),
@@ -52,7 +42,7 @@ class SettingsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15)),
               leading: const Icon(Icons.person),
               title: Text(userController.name.value,
-                  style: GoogleFonts.roboto(fontSize: 16))),
+                  style: GoogleFonts.prompt(fontSize: 16))),
           const SizedBox(
             height: 5,
           ),
@@ -65,7 +55,7 @@ class SettingsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15)),
               leading: const Icon(Icons.email),
               title: Text(userController.email.value,
-                  style: GoogleFonts.roboto(fontSize: 16))),
+                  style: GoogleFonts.prompt(fontSize: 16))),
           const SizedBox(
             height: 5,
           ),
@@ -75,7 +65,7 @@ class SettingsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15)),
               leading: const Icon(Icons.phone),
               title: Text(userController.number.value,
-                  style: GoogleFonts.roboto(fontSize: 16))),
+                  style: GoogleFonts.prompt(fontSize: 16))),
           const SizedBox(
             height: 30,
           ),
@@ -88,9 +78,9 @@ class SettingsScreen extends StatelessWidget {
               size: 27,
             ),
             title: const Text('Logout', style: TextStyle(fontSize: 18)),
-            onTap: () async{
+            onTap: () async {
               bookingController.listOfMyBooking.value = [];
-              SharedPreferences _pref=await SharedPreferences.getInstance();
+              SharedPreferences _pref = await SharedPreferences.getInstance();
               _pref.setString('email', "");
               _pref.setString('password', "");
               // Get.delete<BookingController>();

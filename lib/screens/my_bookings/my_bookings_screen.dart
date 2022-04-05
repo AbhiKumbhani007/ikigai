@@ -28,8 +28,10 @@ class MyBooking extends StatelessWidget {
                 );
               },
               child: Container(
-                margin: const EdgeInsets.all(10.0),
-                padding: const EdgeInsets.all(8.0),
+                margin:
+                    EdgeInsets.all(MediaQuery.of(context).size.width * 0.03),
+                padding:
+                    EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: const [
@@ -57,7 +59,7 @@ class MyBooking extends StatelessWidget {
                                     null)
                                 ? "${bookingController.listOfMyBooking.value[index].event!.eventName}"
                                 : "Co-Working Space Booking",
-                            style: GoogleFonts.lato(
+                            style: GoogleFonts.prompt(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
                                 color: Color.fromRGBO(5, 1, 82, 1)),
@@ -69,7 +71,7 @@ class MyBooking extends StatelessWidget {
                                     null)
                                 ? "${bookingController.listOfMyBooking.value[index].event!.eventDate}"
                                 : "Co-Working Space",
-                            style: GoogleFonts.lato(
+                            style: GoogleFonts.prompt(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: Color.fromARGB(255, 166, 87, 240)),

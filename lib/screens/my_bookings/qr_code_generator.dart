@@ -39,11 +39,12 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
             height: 30,
           ),
           ListTile(
-            contentPadding: const EdgeInsets.only(left: 30),
+            contentPadding:
+                EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.08),
             leading: SizedBox(
               width: 130,
               child: Text("Seat number: ",
-                  style: GoogleFonts.lato(
+                  style: GoogleFonts.prompt(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                       color: Colors.deepPurple)),
@@ -52,18 +53,19 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
               ("${widget.bookingModel?.seatNumber}" != "0")
                   ? "${widget.bookingModel?.seatNumber}"
                   : "Not Avilable",
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.prompt(
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
               ),
             ),
           ),
           ListTile(
-            contentPadding: const EdgeInsets.only(left: 30),
+            contentPadding:
+                EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.08),
             leading: SizedBox(
               width: 130,
               child: Text("Slot number: ",
-                  style: GoogleFonts.lato(
+                  style: GoogleFonts.prompt(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                       color: Colors.deepPurple)),
@@ -72,25 +74,26 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
               ("${widget.bookingModel?.slotNumber}" != "0")
                   ? "${widget.bookingModel?.slotNumber}"
                   : "Not Avilable",
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.prompt(
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
               ),
             ),
           ),
           ListTile(
-            contentPadding: const EdgeInsets.only(left: 30),
+            contentPadding:
+                EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.08),
             leading: SizedBox(
               width: 130,
               child: Text("Booking Date: ",
-                  style: GoogleFonts.lato(
+                  style: GoogleFonts.prompt(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                       color: Colors.deepPurple)),
             ),
             title: Text(
               "${widget.bookingModel?.date}",
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.prompt(
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
               ),
@@ -98,18 +101,19 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
           ),
           (widget.bookingModel?.event != null)
               ? ListTile(
-                  contentPadding: const EdgeInsets.only(left: 30),
+                  contentPadding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.08),
                   leading: SizedBox(
                     width: 130,
                     child: Text("Event Name:",
-                        style: GoogleFonts.lato(
+                        style: GoogleFonts.prompt(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                             color: Colors.deepPurple)),
                   ),
                   title: Text(
                     "${widget.bookingModel?.event!.eventName}",
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.prompt(
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
                     ),
@@ -118,18 +122,19 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
               : SizedBox(),
           (widget.bookingModel?.event != null)
               ? ListTile(
-                  contentPadding: const EdgeInsets.only(left: 30),
+                  contentPadding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.08),
                   leading: SizedBox(
                     width: 130,
                     child: Text("Category:",
-                        style: GoogleFonts.lato(
+                        style: GoogleFonts.prompt(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                             color: Colors.deepPurple)),
                   ),
                   title: Text(
                     "${widget.bookingModel?.event!.eventType}",
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.prompt(
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
                     ),
@@ -138,18 +143,19 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
               : SizedBox(),
           (widget.bookingModel?.event != null)
               ? ListTile(
-                  contentPadding: const EdgeInsets.only(left: 30),
+                  contentPadding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.08),
                   leading: SizedBox(
                     width: 130,
                     child: Text("Price:",
-                        style: GoogleFonts.lato(
+                        style: GoogleFonts.prompt(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                             color: Colors.deepPurple)),
                   ),
                   title: Text(
                     "${widget.bookingModel?.event!.ticketPrice} Rs.",
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.prompt(
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
                     ),

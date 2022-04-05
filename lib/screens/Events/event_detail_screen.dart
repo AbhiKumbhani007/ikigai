@@ -16,148 +16,189 @@ class EventDetailsScreen extends StatelessWidget {
     EventController eventController = Get.find();
     return Scaffold(
         appBar: AppBar(
-          title: Text('Event Details'),
+          title: Text('${event!.eventName}'),
         ),
-        body: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0.6),
-              child: Image(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image(
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  width: MediaQuery.of(context).size.width,
                   image: NetworkImage(
                       "https://res.cloudinary.com/eventboost/image/upload/v1594282851/website/wp/eventboost-twitter-card-home.jpg")),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            ListTile(
-              tileColor: Color.fromARGB(255, 255, 255, 255),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0)),
-              leading: SizedBox(
-                width: 60,
-                child: Text("Name:",
-                    style:
-                        GoogleFonts.roboto(fontSize: 20, color: Colors.black)),
+              const SizedBox(
+                height: 30,
               ),
-              title: Text(
-                "${event!.eventName}",
-                style: GoogleFonts.roboto(
-                    fontSize: 18,
-                    color: Colors.deepPurple,
-                    fontWeight: FontWeight.w500),
+              ListTile(
+                tileColor: Color.fromARGB(255, 255, 255, 255),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0)),
+                leading: SizedBox(
+                  width: 80,
+                  child: Text("Name:",
+                      style: GoogleFonts.prompt(
+                          fontSize: 20, color: Colors.black)),
+                ),
+                title: Text(
+                  "${event!.eventName}",
+                  style: GoogleFonts.prompt(
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 143, 140, 223),
+                      fontWeight: FontWeight.w500),
+                ),
               ),
-            ),
-            ListTile(
-              tileColor: Color.fromARGB(255, 255, 255, 255),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0)),
-              leading: SizedBox(
-                width: 60,
-                child: Text("Type:",
-                    style: GoogleFonts.roboto(
-                      fontSize: 20,
-                      color: Colors.black,
-                    )),
+              ListTile(
+                tileColor: Color.fromARGB(255, 255, 255, 255),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0)),
+                leading: SizedBox(
+                  width: 80,
+                  child: Text("Type:",
+                      style: GoogleFonts.prompt(
+                        fontSize: 20,
+                        color: Colors.black,
+                      )),
+                ),
+                title: Text(
+                  "${event!.eventType}",
+                  style: GoogleFonts.prompt(
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 143, 140, 223),
+                      fontWeight: FontWeight.w500),
+                ),
               ),
-              title: Text(
-                "${event!.eventType}",
-                style: GoogleFonts.roboto(
-                    fontSize: 18,
-                    color: Colors.deepPurple,
-                    fontWeight: FontWeight.w500),
+              ListTile(
+                tileColor: Color.fromARGB(255, 255, 255, 255),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0)),
+                leading: SizedBox(
+                  width: 80,
+                  child: Text("Desc:",
+                      style: GoogleFonts.prompt(
+                        fontSize: 20,
+                        color: Colors.black,
+                      )),
+                ),
+                title: Text(
+                  "${event!.eventDescription}",
+                  style: GoogleFonts.prompt(
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 143, 140, 223),
+                      fontWeight: FontWeight.w500),
+                ),
               ),
-            ),
-            ListTile(
-              tileColor: Color.fromARGB(255, 255, 255, 255),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0)),
-              leading: SizedBox(
-                width: 60,
-                child: Text("Desc:",
-                    style: GoogleFonts.roboto(
-                      fontSize: 20,
-                      color: Colors.black,
-                    )),
+              ListTile(
+                tileColor: Color.fromARGB(255, 255, 255, 255),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0)),
+                leading: SizedBox(
+                  width: 80,
+                  child: Text("Date:",
+                      style: GoogleFonts.prompt(
+                        fontSize: 20,
+                        color: Colors.black,
+                      )),
+                ),
+                title: Text(
+                  "${event!.eventDate}",
+                  style: GoogleFonts.prompt(
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 143, 140, 223),
+                      fontWeight: FontWeight.w500),
+                ),
               ),
-              title: Text(
-                "${event!.eventDescription}",
-                style: GoogleFonts.roboto(
-                    fontSize: 18,
-                    color: Colors.deepPurple,
-                    fontWeight: FontWeight.w500),
+              ListTile(
+                tileColor: Color.fromARGB(255, 255, 255, 255),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0)),
+                leading: SizedBox(
+                  width: 80,
+                  child: Text("Timings:",
+                      style: GoogleFonts.prompt(
+                        fontSize: 20,
+                        color: Colors.black,
+                      )),
+                ),
+                title: Text(
+                  "${event!.startTime}",
+                  style: GoogleFonts.prompt(
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 143, 140, 223),
+                      fontWeight: FontWeight.w500),
+                ),
               ),
-            ),
-            ListTile(
-              tileColor: Color.fromARGB(255, 255, 255, 255),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0)),
-              leading: SizedBox(
-                width: 60,
-                child: Text("Date:",
-                    style: GoogleFonts.roboto(
-                      fontSize: 20,
-                      color: Colors.black,
-                    )),
+              ListTile(
+                tileColor: Color.fromARGB(255, 255, 255, 255),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0)),
+                leading: SizedBox(
+                  width: 80,
+                  child: Text("Seats:",
+                      style: GoogleFonts.prompt(
+                        fontSize: 20,
+                        color: Colors.black,
+                      )),
+                ),
+                title: Text(
+                  "${event!.availableSeats}",
+                  style: GoogleFonts.prompt(
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 143, 140, 223),
+                      fontWeight: FontWeight.w500),
+                ),
               ),
-              title: Text(
-                "${event!.eventDate}",
-                style: GoogleFonts.roboto(
-                    fontSize: 18,
-                    color: Colors.deepPurple,
-                    fontWeight: FontWeight.w500),
+              ListTile(
+                tileColor: Color.fromARGB(255, 255, 255, 255),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0)),
+                leading: SizedBox(
+                  width: 80,
+                  child: Text("Price:",
+                      style: GoogleFonts.prompt(
+                        fontSize: 20,
+                        color: Colors.black,
+                      )),
+                ),
+                title: Text(
+                  "${event!.ticketPrice}",
+                  style: GoogleFonts.prompt(
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 143, 140, 223),
+                      fontWeight: FontWeight.w500),
+                ),
               ),
-            ),
-            ListTile(
-              tileColor: Color.fromARGB(255, 255, 255, 255),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0)),
-              leading: SizedBox(
-                width: 60,
-                child: Text("Seats:",
-                    style: GoogleFonts.roboto(
-                      fontSize: 20,
-                      color: Colors.black,
-                    )),
+              const SizedBox(
+                height: 30,
               ),
-              title: Text(
-                "${event!.availableSeats}",
-                style: GoogleFonts.roboto(
-                    fontSize: 18,
-                    color: Colors.deepPurple,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
-            ListTile(
-              tileColor: Color.fromARGB(255, 255, 255, 255),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0)),
-              leading: SizedBox(
-                width: 60,
-                child: Text("Price:",
-                    style: GoogleFonts.roboto(
-                      fontSize: 20,
-                      color: Colors.black,
-                    )),
-              ),
-              title: Text(
-                "${event!.ticketPrice}",
-                style: GoogleFonts.roboto(
-                    fontSize: 18,
-                    color: Colors.deepPurple,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  registerEvent(event!);
-                  eventController.bookEvent(event!);
-                },
-                child: const Text("Book Event"),
-                style: const ButtonStyle())
-          ],
+              Padding(
+                padding: EdgeInsets.only(
+                    right: MediaQuery.of(context).size.height * 0.02,
+                    bottom: MediaQuery.of(context).size.height * 0.01),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * .25,
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          )),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Color.fromARGB(255, 143, 140, 223))),
+                      onPressed: () {
+                        registerEvent(event!);
+                        eventController.bookEvent(event!);
+                      },
+                      child: Text("Book",
+                          style: GoogleFonts.prompt(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w700,
+                              color: Color.fromARGB(255, 255, 255, 255)))),
+                ),
+              )
+            ],
+          ),
         ));
   }
 }

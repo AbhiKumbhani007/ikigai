@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PartnerScreen extends StatefulWidget {
@@ -16,7 +16,9 @@ class _PartnerScreenState extends State<PartnerScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(2.5),
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.02,
+              vertical: MediaQuery.of(context).size.height * 0.01),
           child: Container(
             height: 100,
             // width: 350,
@@ -29,8 +31,7 @@ class _PartnerScreenState extends State<PartnerScreen> {
               // elevation: 2,
               child: Center(
                 child: ListTile(
-                  onTap: () {
-                  },
+                  onTap: () {},
                   leading: CircleAvatar(
                     radius: 30,
                     backgroundImage: const Image(
@@ -39,17 +40,19 @@ class _PartnerScreenState extends State<PartnerScreen> {
                     backgroundColor: Colors.deepPurple,
                   ),
                   title: Text('Google',
-                      style: GoogleFonts.lato(
+                      style: GoogleFonts.prompt(
                           fontSize: 24, color: Colors.deepPurple)),
-                  subtitle:
-                      Text('Google LLC', style: GoogleFonts.lato(fontSize: 16)),
+                  subtitle: Text('Google LLC',
+                      style: GoogleFonts.prompt(fontSize: 16)),
                 ),
               ),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(2.5),
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.02,
+              vertical: MediaQuery.of(context).size.height * 0.01),
           child: SizedBox(
             height: 100,
             child: Card(
@@ -69,18 +72,20 @@ class _PartnerScreenState extends State<PartnerScreen> {
                     backgroundColor: Colors.deepPurple,
                   ),
                   title: Text('Instagram',
-                      style: GoogleFonts.lato(
+                      style: GoogleFonts.prompt(
                           fontSize: 24, color: Colors.deepPurple)),
                   subtitle: Text('Instagram LLC',
-                      style:
-                          GoogleFonts.lato(fontSize: 16, color: Colors.black)),
+                      style: GoogleFonts.prompt(
+                          fontSize: 16, color: Colors.black)),
                 ),
               ),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(2.5),
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.02,
+              vertical: MediaQuery.of(context).size.height * 0.01),
           child: SizedBox(
             height: 100,
             child: Card(
@@ -100,11 +105,11 @@ class _PartnerScreenState extends State<PartnerScreen> {
                     backgroundColor: Colors.deepPurple,
                   ),
                   title: Text('Brijesh Patadiya',
-                      style: GoogleFonts.lato(
+                      style: GoogleFonts.prompt(
                           fontSize: 24, color: Colors.deepPurple)),
                   subtitle: Text('Flutter Devloper',
-                      style:
-                          GoogleFonts.lato(fontSize: 16, color: Colors.black)),
+                      style: GoogleFonts.prompt(
+                          fontSize: 16, color: Colors.black)),
                 ),
               ),
             ),
@@ -112,24 +117,5 @@ class _PartnerScreenState extends State<PartnerScreen> {
         ),
       ],
     );
-    // Card(
-    //   shape: RoundedRectangleBorder(
-    //     borderRadius: BorderRadius.circular(10.0),
-    //     side: const BorderSide(color: Colors.black, width: 1),
-    //   ),
-    //   child: SizedBox(
-    //     height: MediaQuery.of(context).size.height * 0.15,
-    //     child: ListTile(
-    //       leading: CircleAvatar(
-    //         radius: 50,
-    //         backgroundImage:
-    //             const Image(image: AssetImage('assets/images/login_img.png'))
-    //                 .image,
-    //         backgroundColor: Colors.black,
-    //       ),
-    //       title: Text('Partner', style: GoogleFonts.lato(fontSize: 26)),
-    //     ),
-    //   ),
-    // );
   }
 }

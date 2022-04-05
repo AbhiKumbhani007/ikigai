@@ -36,19 +36,14 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  // static const TextStyle optionStyle =
+  //     TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreenPage(),
     MyBooking(),
     AllEvents(),
     PartnerScreen(),
     SettingsScreen(),
-
-    // Text(
-    //   'Index 3: Settings',
-    //   style: optionStyle,
-    // ),
   ];
 
   @override
@@ -147,9 +142,6 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: const Color.fromRGBO(246, 249, 254, 1),
         // endDrawer: MyDrawer(),
         appBar: AppBar(
-          // centerTitle: true,
-          // elevation: 0,
-          // backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
           title: Text(
             "Ikigai",
@@ -157,78 +149,79 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         body: _widgetOptions.elementAt(_selectedIndex),
-        bottomNavigationBar: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(20),
-            topLeft: Radius.circular(20),
-          ),
-          child: BottomNavigationBar(
-            // backgroundColor: Colors.black,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage('assets/images/BottomNavbarLogos/home2.png'),
-                  // Icons.home_outlined,
-                  color: Colors.white,
-                  size: 28,
-                  // onPressed: () {},
+        bottomNavigationBar: Container(
+          height: 80,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(20),
+              topLeft: Radius.circular(20),
+            ),
+            child: BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: ImageIcon(
+                    AssetImage('assets/images/BottomNavbarLogos/home2.png'),
+                    // Icons.home_outlined,
+                    color: Colors.white,
+                    size: 28,
+                    // onPressed: () {},
+                  ),
+                  label: 'Home',
+                  backgroundColor: Color.fromARGB(212, 104, 58, 183),
                 ),
-                label: 'Home',
-                backgroundColor: Color.fromARGB(212, 104, 58, 183),
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage('assets/images/BottomNavbarLogos/bookmark.png'),
-                  // Icons.home_outlined,
-                  color: Colors.white,
-                  size: 28,
-                  // onPressed: () {},
+                BottomNavigationBarItem(
+                  icon: ImageIcon(
+                    AssetImage('assets/images/BottomNavbarLogos/bookmark.png'),
+                    // Icons.home_outlined,
+                    color: Colors.white,
+                    size: 28,
+                    // onPressed: () {},
+                  ),
+                  label: 'Bookings',
+                  backgroundColor: Color.fromARGB(212, 104, 58, 183),
+                  // backgroundColor: Colors.white,
                 ),
-                label: 'Bookings',
-                backgroundColor: Color.fromARGB(212, 104, 58, 183),
-                // backgroundColor: Colors.white,
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage('assets/images/BottomNavbarLogos/events.png'),
-                  // Icons.home_outlined,
-                  color: Colors.white,
-                  size: 28,
-                  // onPressed: () {},
+                BottomNavigationBarItem(
+                  icon: ImageIcon(
+                    AssetImage('assets/images/BottomNavbarLogos/events.png'),
+                    // Icons.home_outlined,
+                    color: Colors.white,
+                    size: 28,
+                    // onPressed: () {},
+                  ),
+                  label: 'All Events',
+                  backgroundColor: Color.fromARGB(212, 104, 58, 183),
+                  // backgroundColor: Colors.white,
                 ),
-                label: 'All Events',
-                backgroundColor: Color.fromARGB(212, 104, 58, 183),
-                // backgroundColor: Colors.white,
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage('assets/images/BottomNavbarLogos/partners.png'),
-                  // Icons.home_outlined,
-                  color: Colors.white,
-                  size: 28,
-                  // onPressed: () {},
+                BottomNavigationBarItem(
+                  icon: ImageIcon(
+                    AssetImage('assets/images/BottomNavbarLogos/partners.png'),
+                    // Icons.home_outlined,
+                    color: Colors.white,
+                    size: 28,
+                    // onPressed: () {},
+                  ),
+                  label: 'Partners',
+                  backgroundColor: Color.fromARGB(212, 104, 58, 183),
+                  // backgroundColor: Colors.white,
                 ),
-                label: 'Partners',
-                backgroundColor: Color.fromARGB(212, 104, 58, 183),
-                // backgroundColor: Colors.white,
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage('assets/images/BottomNavbarLogos/settings.png'),
-                  // Icons.home_outlined,
-                  color: Colors.white,
-                  size: 28,
-                  // onPressed: () {},
+                BottomNavigationBarItem(
+                  icon: ImageIcon(
+                    AssetImage('assets/images/BottomNavbarLogos/settings.png'),
+                    // Icons.home_outlined,
+                    color: Colors.white,
+                    size: 28,
+                    // onPressed: () {},
+                  ),
+                  label: 'Settings',
+                  backgroundColor: Color.fromARGB(212, 104, 58, 183),
+                  // backgroundColor: Colors.white,
                 ),
-                label: 'Settings',
-                backgroundColor: Color.fromARGB(212, 104, 58, 183),
-                // backgroundColor: Colors.white,
-              ),
-            ],
-            currentIndex: _selectedIndex,
-            // selectedItemColor: Colors.white,
-            selectedIconTheme: IconThemeData(size: 28),
-            onTap: _onItemTapped,
+              ],
+              currentIndex: _selectedIndex,
+              selectedIconTheme: IconThemeData(size: 28),
+              onTap: _onItemTapped,
+            ),
           ),
         ));
   }
@@ -241,50 +234,15 @@ class HomeScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+      padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.height * 0.02,
+          horizontal: MediaQuery.of(context).size.width * 0.002),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Row(
-          //   children: [
-          //     // const Padding(
-          //     //   padding: EdgeInsets.all(8.0),
-          //     //   child: CircleAvatar(
-          //     //     backgroundColor: Colors.white,
-          //     //     radius: 48,
-          //     //     backgroundImage: NetworkImage(
-          //     //         "https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=194"),
-          //     //   ),
-          //     // ),
-          //     Padding(
-          //       padding: const EdgeInsets.all(8.0),
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.end,
-          //         children: [
-          //           Text(
-          //             "Location: ",
-          //             style: GoogleFonts.prompt(
-          //               color: Colors.black,
-
-          //               fontSize: 22,
-          //             ),
-          //           ),
-          //           Text(
-          //             "Surat",
-          //             style: GoogleFonts.prompt(
-          //               color: Colors.black,
-          //               fontWeight: FontWeight.w400,
-          //               fontSize: 20,
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          // SizedBox(
-          //   height: 5,
-          // ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
           SizedBox(
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.23,
@@ -331,13 +289,15 @@ class HomeScreenPage extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 20, left: 10),
+            padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.03,
+                left: MediaQuery.of(context).size.width * 0.05),
             child: Text(
               "Upcoming Events",
               style: GoogleFonts.prompt(
                   color: Color.fromRGBO(5, 1, 82, 1),
                   fontSize: 24,
-                  fontWeight: FontWeight.w500),
+                  fontWeight: FontWeight.w600),
             ), // 2 min ho
           ),
           Flexible(

@@ -23,15 +23,11 @@ class FeatureComponent extends StatelessWidget {
     return GestureDetector(
         onTap: onPressed,
         child: Padding(
-          padding: const EdgeInsets.only(left: 10),
+          padding:
+              EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02),
           child: Container(
-              // margin: EdgeInsets.all(MediaQuery.of(context).size.height * .05),
               width: MediaQuery.of(context).size.width * 0.47,
               height: MediaQuery.of(context).size.height * 0.22,
-              // padding: const EdgeInsets.symmetric(),
-              // color: Colors.blue,
-              // alignment: Alignment.bottomCenter,
-
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 gradient: LinearGradient(
@@ -69,16 +65,14 @@ class FeatureComponent extends StatelessWidget {
                             border: Border.all(
                               width: 3,
                               color: Colors.red.shade200,
-                            )
-                            // color: Colors.orange,
-                            // shape: BoxShape.circle,
-                            )),
+                            ))),
                   ),
-                  Column(crossAxisAlignment: CrossAxisAlignment.start,
-                      // padding: EdgeInsets.all(20.0),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.05),
                           child: Icon(
                             icon,
                             size: 50,

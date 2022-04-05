@@ -36,12 +36,15 @@ class EventNewsTile extends StatelessWidget {
                     ))));
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 10.0),
+        padding:
+            EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.01),
         child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.2,
           width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.01,
+                vertical: MediaQuery.of(context).size.height * 0.005),
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
@@ -126,9 +129,9 @@ class EventNewsTile extends StatelessWidget {
                                   eventController.bookEvent(event!);
                                 },
                                 child: Text("Book",
-                                    style: GoogleFonts.lato(
+                                    style: GoogleFonts.prompt(
                                         fontSize: 17,
-                                        fontWeight: FontWeight.w900,
+                                        fontWeight: FontWeight.w700,
                                         color: const Color.fromRGBO(
                                             34, 34, 82, 1)))),
                           ),
@@ -141,182 +144,7 @@ class EventNewsTile extends StatelessWidget {
             ),
           ),
         ),
-        // Card(
-        //     elevation: 2,
-        //     child: Row(
-        //       children: [
-        //         Expanded(
-        //           child: Padding(
-        //             padding: const EdgeInsets.only(left: 15.0),
-        //             child: Column(
-        //               // mainAxisAlignment: MainAxisAlignment.start,
-        //               crossAxisAlignment: CrossAxisAlignment.start,
-        //               children: [
-        //                 Padding(
-        //                   padding: const EdgeInsets.only(top: 10.0),
-        //                   child: Text(
-        //                     "Event: ${eventName}",
-        //                     style: GoogleFonts.lato(
-        //                       fontSize: 20,
-        //                       fontWeight: FontWeight.w600,
-        //                     ),
-        //                   ),
-        //                 ),
-        //                 Padding(
-        //                   padding: const EdgeInsets.only(top: 10.0),
-        //                   child: Text(
-        //                     "Date: ${eventDate}",
-        //                     style: GoogleFonts.lato(
-        //                       fontSize: 15,
-        //                       fontWeight: FontWeight.w400,
-        //                     ),
-        //                   ),
-        //                 ),
-        //                 SizedBox(
-        //                   width: MediaQuery.of(context).size.width * 0.25,
-        //                   child: Text(
-        //                     "Price: ${event!.ticketPrice} Rs.",
-        //                     style: GoogleFonts.lato(
-        //                       fontSize: 15,
-        //                       fontWeight: FontWeight.w400,
-        //                     ),
-        //                   ),
-        //                 ),
-        //               ],
-        //             ),
-        //           ),
-        //           flex: 2,
-        //         ),
-        //         Expanded(
-        //           child: Column(
-        //             children: [
-        //               Padding(
-        //                 padding: const EdgeInsets.only(top: 5.0),
-        //                 child: ElevatedButton(
-        //                   child: Text(
-        //                     "Share",
-        //                     style: GoogleFonts.lato(
-        //                         fontSize: 14, fontWeight: FontWeight.w600),
-        //                   ),
-        //                   onPressed: () {
-        //                     Share.share(
-        //                         "Check out this event ${event!.eventName}");
-        //                   },
-        //                 ),
-        //               ),
-        //               Padding(
-        //                 padding: const EdgeInsets.only(bottom: 5.0),
-        //                 child: ElevatedButton(
-        //                   onPressed: () {
-        //                     registerEvent(event!);
-        //                     eventController.bookEvent(event!);
-        //                   },
-        //                   child: Text("Book",
-        //                       style: GoogleFonts.lato(
-        //                           fontSize: 14, fontWeight: FontWeight.w600)),
-        //                 ),
-        //               ),
-        //             ],
-        //           ),
-        //           flex: 1,
-        //         ),
-        //       ],
-        //     )),
       ),
     );
   }
 }
-
-
-
-// Container(
-//         child: Padding(
-//           padding: const EdgeInsets.only(top: 10.0),
-//           child: Card(
-//             elevation: 2,
-//             child: Container(
-//               padding: EdgeInsets.all(10),
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   Padding(
-//                     padding: const EdgeInsets.only(left: 10.0),
-//                     child: Text(
-//                       eventName, // eventname
-//                       style: GoogleFonts.montserrat(
-//                         fontSize: 20,
-//                         fontWeight: FontWeight.w500,
-//                       ),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 10,
-//                   ),
-//                   Padding(
-//                     padding: const EdgeInsets.only(left: 10.0),
-//                     child: Text(
-//                       eventDate, //date
-//                       style: GoogleFonts.montserrat(
-//                         fontSize: 15,
-//                         fontWeight: FontWeight.w400,
-//                       ),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 10,
-//                   ),
-//                   Row(
-//                     children: [
-//                       Padding(
-//                         padding: const EdgeInsets.only(left: 10.0),
-//                         child: Container(
-//                           width: MediaQuery.of(context).size.width * 0.2,
-//                           child: Text(
-//                             "${event!.ticketPrice} Rs.",
-//                             style: GoogleFonts.montserrat(
-//                               fontSize: 15,
-//                               fontWeight: FontWeight.w400,
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                       const SizedBox(
-//                         width: 100,
-//                       ),
-//                       Container(
-//                         alignment: Alignment.bottomRight,
-//                         height: 40,
-//                         width: 150,
-//                         child: Row(
-//                           children: [
-//                             ElevatedButton(
-//                               child: Text("Share"),
-//                               onPressed: () {
-//                                 Share.share(
-//                                     "Check out this event ${event!.eventName}");
-//                               },
-//                             ),
-//                             const SizedBox(
-//                               width: 10,
-//                             ),
-//                             ElevatedButton(
-//                               onPressed: () {
-//                                 registerEvent(event!);
-//                                 eventController.bookEvent(event!);
-//                               },
-//                               child: const Text("Book"),
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                   const SizedBox(
-//                     height: 10,
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),

@@ -89,10 +89,90 @@ class _SignupPageState extends State<SignupPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.1,
+                        top: MediaQuery.of(context).size.height * 0.01),
+                    child: Text("Name",
+                        style: GoogleFonts.prompt(
+                            fontSize: 18, fontWeight: FontWeight.w600)),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  TextFormField(
+                    onChanged: (val) {
+                      _fullName = "";
+                      fullName = val;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Name",
+                      fillColor: Colors.white,
+                      filled: true,
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.1,
+                          vertical: MediaQuery.of(context).size.width * 0.05),
+                      hintStyle: GoogleFonts.prompt(
+                          fontSize: 15,
+                          color: const Color.fromARGB(255, 109, 109, 109)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color.fromRGBO(183, 183, 198, 1),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(80)),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(125, 183, 183, 198)),
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter Full Name";
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.1,
+                        top: MediaQuery.of(context).size.height * 0.01),
+                    child: Text("E-mail",
+                        style: GoogleFonts.prompt(
+                            fontSize: 18, fontWeight: FontWeight.w600)),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
                   TextFormField(
                     decoration: InputDecoration(
-                        hintText: "Enter Email", labelText: "Email"),
+                      hintText: "E-mail",
+                      fillColor: Colors.white,
+                      filled: true,
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.1,
+                          vertical: MediaQuery.of(context).size.width * 0.05),
+                      hintStyle: GoogleFonts.prompt(
+                          fontSize: 15,
+                          color: const Color.fromARGB(255, 109, 109, 109)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color.fromRGBO(183, 183, 198, 1),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(80)),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(125, 183, 183, 198)),
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                    ),
                     onChanged: (val) {
                       _mailerror = "";
                       email = val;
@@ -104,6 +184,20 @@ class _SignupPageState extends State<SignupPage> {
                       return null;
                     },
                   ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.1,
+                        top: MediaQuery.of(context).size.height * 0.01),
+                    child: Text("Password",
+                        style: GoogleFonts.prompt(
+                            fontSize: 18, fontWeight: FontWeight.w600)),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
                   TextFormField(
                     onChanged: (val) {
                       _passerror = "";
@@ -111,34 +205,71 @@ class _SignupPageState extends State<SignupPage> {
                     },
                     obscureText: true,
                     decoration: InputDecoration(
-                        hintText: "Enter Password", labelText: "Password"),
+                      hintText: "Password",
+                      fillColor: Colors.white,
+                      filled: true,
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.1,
+                          vertical: MediaQuery.of(context).size.width * 0.05),
+                      hintStyle: GoogleFonts.prompt(
+                          fontSize: 15,
+                          color: const Color.fromARGB(255, 109, 109, 109)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color.fromRGBO(183, 183, 198, 1),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(80)),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(125, 183, 183, 198)),
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                    ),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Password Cannot be empty";
                       }
-                      // if (_a == false) {
-                      //   return "Enter Valid Password";
-                      // }
                       return null;
                     },
                   ),
-                  TextFormField(
-                    onChanged: (val) {
-                      _fullName = "";
-                      fullName = val;
-                    },
-                    decoration: InputDecoration(
-                        hintText: "Enter Name", labelText: "Full Name"),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Enter Full Name";
-                      }
-                      return null;
-                    },
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.1,
+                        top: MediaQuery.of(context).size.height * 0.01),
+                    child: Text("Mobile No.",
+                        style: GoogleFonts.prompt(
+                            fontSize: 18, fontWeight: FontWeight.w600)),
+                  ),
+                  const SizedBox(
+                    height: 12,
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                        hintText: "Enter Mobile No.", labelText: "Mobile No."),
+                      hintText: "Mobile No.",
+                      fillColor: Colors.white,
+                      filled: true,
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.1,
+                          vertical: MediaQuery.of(context).size.width * 0.05),
+                      hintStyle: GoogleFonts.prompt(
+                          fontSize: 15,
+                          color: const Color.fromARGB(255, 109, 109, 109)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color.fromRGBO(183, 183, 198, 1),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(80)),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(125, 183, 183, 198)),
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                    ),
                     onChanged: (val) {
                       _mobileerror = "";
                       mobileNo = val;
@@ -154,69 +285,25 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(
                     height: 20,
                   ),
-                  // Container(
-                  //   color: Colors.white,
-                  //   child: Material(
-                  //     color: Colors.deepPurple,
-                  //     borderRadius: BorderRadius.circular(8),
-
-                  //     //  color: Colors.transparent,
-                  //     child: InkWell(
-                  //       // splashColor: Colors.black,
-                  //       // onTap: () => moveToHome(context),
-                  //       onTap: () {
-                  //         Authentication()
-                  //             .SignIn(email, password)
-                  //             .then((value) {
-                  //           if (value == "SUCCESS") {
-                  //            Navigator.pushNamed(context, "/home");
-                  //           }
-                  //           showError(value);
-                  //         });
-                  //       },
-                  //       child: AnimatedContainer(
-                  //         duration: Duration.zero,
-                  //         alignment: Alignment.center,
-                  //         // width: _a ? 50 : 150,
-                  //         width: 150,
-                  //         height: 50,
-                  //         child: Text(
-                  //           "LOGIN",
-                  //           style: TextStyle(
-                  //               color: Colors.white,
-                  //               fontSize: 15,
-                  //               fontWeight: FontWeight.bold),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  Container(
-                    color: Colors.white,
-                    child: Material(
-                      color: Colors.deepPurple,
-                      borderRadius: BorderRadius.circular(8),
-
-                      //  color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {
-                          moveToLogin(context);
-                        },
-                        child: AnimatedContainer(
-                          duration: Duration.zero,
-                          alignment: Alignment.center,
-                          // width: _a ? 50 : 150,
-                          width: 150,
-                          height: 50,
-                          child: Text("Sign Up",
-                              style: GoogleFonts.lato(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        ),
-                      ),
-                    ),
+                  ElevatedButton(
+                    onPressed: () {
+                      moveToLogin(context);
+                    },
+                    child: Text('Sign In',
+                        style: GoogleFonts.prompt(
+                          fontSize: 18,
+                        )),
+                    style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        primary: Color.fromRGBO(167, 171, 240, 1),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        fixedSize: const Size(350, 60),
+                        textStyle: const TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold)),
+                  ),
+                  const SizedBox(
+                    height: 50,
                   ),
                 ],
               ),

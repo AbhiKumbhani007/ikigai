@@ -34,7 +34,7 @@ class _GridBookingState extends State<GridBooking> {
       appBar: AppBar(
         title: Text(
           "Co-Working Space Booking",
-          style: GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.w600),
+          style: GoogleFonts.prompt(fontSize: 20, fontWeight: FontWeight.w600),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -53,8 +53,8 @@ class _GridBookingState extends State<GridBooking> {
           // (isSlotsDetailsAvailable)
           //     ?
           Container(
-            margin: EdgeInsets.all(8),
-            padding: EdgeInsets.all(10),
+            margin: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
+            padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Color.fromARGB(255, 167, 171, 240),
@@ -62,7 +62,8 @@ class _GridBookingState extends State<GridBooking> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:
+                      EdgeInsets.all(MediaQuery.of(context).size.height * 0.02),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -177,69 +178,107 @@ class _GridBookingState extends State<GridBooking> {
           Column(
             children: [
               (matrixController.seatNumber.value != 0)
-                  ? DecoratedBox(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.deepPurple, width: 1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Container(
-                          width: 250,
-                          padding: EdgeInsets.symmetric(vertical: 5),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              // isExpanded: true,
-                              value: dropdownValue,
-                              // icon: const Icon(Icons.arrow_downward),
-                              style: GoogleFonts.lato(
-                                color: Colors.deepPurple,
+                  ? Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.05),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.05,
+                                vertical: 5),
+                            child: Text("Avilable Time Slots",
+                                style: GoogleFonts.prompt(
+                                    fontSize: 20, fontWeight: FontWeight.w600)),
+                          ),
+                          DecoratedBox(
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                    width: 1.0,
+                                    style: BorderStyle.solid,
+                                    color: Color.fromRGBO(183, 183, 198, 1)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(80.0)),
                               ),
-                              //
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  dropdownValue = newValue!;
-                                });
-                              },
-                              items: <String>[
-                                'Full-Day (08:00AM - 08:00PM)',
-                                '8:00AM - 12:00PM',
-                                '12:00PM - 04:00PM',
-                                '04:00PM - 08:00PM',
-                                "08:00PM - 12:00AM"
-                              ].map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(
-                                    value,
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.lato(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600),
+                              // border: Border.all(color: Colors.deepPurple, width: 1),
+                              // borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal:
+                                      MediaQuery.of(context).size.width * 0.1),
+                              child: Container(
+                                width: size.width,
+                                padding: EdgeInsets.symmetric(
+                                    vertical:
+                                        MediaQuery.of(context).size.height *
+                                            0.015),
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton<String>(
+                                    // isExpanded: true,
+                                    value: dropdownValue,
+                                    // icon: const Icon(Icons.arrow_downward),
+                                    style: GoogleFonts.prompt(
+                                      color: Colors.deepPurple,
+                                    ),
+                                    //
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        dropdownValue = newValue!;
+                                      });
+                                    },
+                                    items: <String>[
+                                      'Full-Day (08:00AM - 08:00PM)',
+                                      '8:00AM - 12:00PM',
+                                      '12:00PM - 04:00PM',
+                                      '04:00PM - 08:00PM',
+                                      "08:00PM - 12:00AM"
+                                    ].map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(
+                                          value,
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.prompt(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      );
+                                    }).toList(),
                                   ),
-                                );
-                              }).toList(),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     )
                   : SizedBox(),
               SizedBox(
-                height: 5,
+                height: 15,
               ),
               Obx(() {
                 return (matrixController.seatNumber.value != 0)
                     ? (isSlotAvailable(dropdownValue)
                         ? Text(
                             "Not Available",
-                            style: GoogleFonts.lato(
+                            style: GoogleFonts.prompt(
                                 fontSize: 17, fontWeight: FontWeight.w500),
                           )
-                        : Row(
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 65.0),
+                                padding: EdgeInsets.only(
+                                    left: MediaQuery.of(context).size.width *
+                                        0.05,
+                                    top: MediaQuery.of(context).size.height *
+                                        0.01),
                                 child: Text("Catagory : Co-Working",
                                     style: TextStyle(
                                         color: Colors.deepPurple,
@@ -247,7 +286,7 @@ class _GridBookingState extends State<GridBooking> {
                                         fontWeight: FontWeight.w400)),
                               ),
                               SizedBox(
-                                width: 30,
+                                height: 20,
                               ),
                               ElevatedButton(
                                 onPressed: () async {
@@ -265,14 +304,29 @@ class _GridBookingState extends State<GridBooking> {
                                     // payment is failed so please do that again
                                   }
                                 },
-                                child: Text("Book",
-                                    style: GoogleFonts.lato(fontSize: 16)),
+                                child: Text('Book',
+                                    style: GoogleFonts.prompt(
+                                      fontSize: 18,
+                                    )),
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    primary: Color.fromRGBO(167, 171, 240, 1),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    fixedSize: const Size(350, 60),
+                                    textStyle: const TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold)),
                               ),
                             ],
                           ))
                     : SizedBox();
               })
             ],
+          ),
+          SizedBox(
+            height: 20,
           ),
         ],
       ),

@@ -38,7 +38,7 @@ class InputField extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(topicName,
-                  style: GoogleFonts.lato(
+                  style: GoogleFonts.prompt(
                       fontSize: 14, fontWeight: FontWeight.normal))
             ],
           ),
@@ -60,7 +60,7 @@ class InputField extends StatelessWidget {
                         BorderSide(color: Color.fromRGBO(45, 201, 235, 1)),
                   ),
                   hintText: hinttext,
-                  hintStyle: GoogleFonts.lato(
+                  hintStyle: GoogleFonts.prompt(
                     color: const Color.fromRGBO(192, 200, 231, 1),
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
