@@ -1,16 +1,20 @@
 import 'package:cashfree_pg/cashfree_pg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:ikigai/controllers/event_controller.dart';
+import 'package:ikigai/controllers/matrix_controller.dart';
 import 'package:ikigai/controllers/user_controller.dart';
 import 'package:ikigai/services/event_services.dart';
 import 'package:uuid/uuid.dart';
 import '../models/event_model.dart';
 import 'dart:convert';
+
 UserController userController = Get.find();
 
-Future<void> bookingForOrganizeEvent(EventModel event, var eventDetails, var date) async {
-  String userId = userController.uid.value;
+Future<void> bookingForOrganizeEvent(
+    EventModel event, var eventDetails, var date) async {
   // String orderId = "${event.eventId}${userId}";
+  String userId = userController.uid.value;
   var uuid = Uuid();
   String orderId = uuid.v1();
   String token = await getToken(orderId, event.ticketPrice!);
@@ -43,10 +47,12 @@ Future<void> bookingForOrganizeEvent(EventModel event, var eventDetails, var dat
 // make return message according to so we can
 }
 
-Future<String> registerMatrixSlot(
+Future<void> registerMatrixSlot(
     String price, String date, String seat, String slot) async {
   String userId = userController.uid.value;
-  String orderId = "${userId}_${date}_${seat}_${slot}";
+  var uuid = Uuid();
+  String orderId = uuid.v1();
+
   String token = await getToken(orderId, price);
 
   Map<String, String> inputParams = {
@@ -62,12 +68,13 @@ Future<String> registerMatrixSlot(
     "tokenData": token,
     "notifyUrl": ""
   };
-  String _status = "SUCCESS";
+
   CashfreePGSDK.doPayment(inputParams).then((value) {
     print(value.toString());
     value?.forEach((key, value) {
       if (key == "txStatus" && value == "SUCCESS") {
-        _status = "SUCCESS";
+        MatrixController matrixController = Get.find();
+        matrixController.bookSeat(int.parse(slot));
         // this.responseRecieved();
         print("$key : $value");
       }
@@ -77,13 +84,13 @@ Future<String> registerMatrixSlot(
       //Do something with the result
 
       .catchError((err) => print('error : ' + err.toString()));
-
-  return _status;
 }
 
 void registerEvent(EventModel event) async {
   String userId = userController.uid.value;
-  String orderId = "${event.eventId}${userId}";
+  var uuid = Uuid();
+  String orderId = uuid.v1();
+
   String token = await getToken(orderId, event.ticketPrice!);
 
   Map<String, String> inputParams = {
@@ -105,6 +112,8 @@ void registerEvent(EventModel event) async {
     value?.forEach((key, value) {
       if (key == "txStatus" && value == "SUCCESS") {
         _status = "SUCCESS";
+        EventController eventController = Get.find();
+        eventController.bookEvent(event);
         // this.responseRecieved();
         print("$key : $value");
       }

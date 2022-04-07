@@ -126,7 +126,6 @@ class EventNewsTile extends StatelessWidget {
                                             Colors.white)),
                                 onPressed: () {
                                   registerEvent(event!);
-                                  eventController.bookEvent(event!);
                                 },
                                 child: Text("Book",
                                     style: GoogleFonts.prompt(

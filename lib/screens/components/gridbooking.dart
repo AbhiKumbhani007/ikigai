@@ -291,18 +291,18 @@ class _GridBookingState extends State<GridBooking> {
                               ElevatedButton(
                                 onPressed: () async {
                                   // navigator to payment gateway screen
-                                  String paymentDone = await registerMatrixSlot(
+                                registerMatrixSlot(
                                       "100",
                                       matrixController.selectedDate,
                                       matrixController.seatNumber.value
                                           .toString(),
                                       getIndex(dropdownValue).toString());
-                                  if (paymentDone == "SUCCESS") {
-                                    matrixController
-                                        .bookSeat(getIndex(dropdownValue));
-                                  } else {
-                                    // payment is failed so please do that again
-                                  }
+                                  // if (paymentDone == "SUCCESS") {
+                                  //   matrixController
+                                  //       .bookSeat(getIndex(dropdownValue));
+                                  // } else {
+                                  //   // payment is failed so please do that again
+                                  // }
                                 },
                                 child: Text('Book',
                                     style: GoogleFonts.prompt(
