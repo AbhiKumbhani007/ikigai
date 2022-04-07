@@ -26,6 +26,7 @@ class EventServices {
   Future<void> addEventsToFirebase(eventDetails, date) async {
     CollectionReference eventArray =
         await eventsCollection.doc(date).collection("event_array");
+    eventsCollection.doc(date).set({"temp": "temp"});
     final snapshot = await eventArray.get();
     int lengthOfEventArray = snapshot.docs.length;
     EventModel event = EventModel(
@@ -38,10 +39,8 @@ class EventServices {
         ticketPrice: eventDetails["ticket_price"],
         eventMode: eventDetails["event_mode"],
         eventDescription: eventDetails["event_desc"]);
-    String paymentDone = await bookingForOrganizeEvent(event);
-    if (paymentDone == "FAILURE") {
-      return;
-    }
+    // String paymentDone = await bookingForOrganizeEvent(event);
+
     eventDetails["event_id"] = date + "_" + (lengthOfEventArray).toString();
     eventArray.doc((lengthOfEventArray).toString()).set({
       "event_id": eventDetails["event_id"],

@@ -1,5 +1,6 @@
 // import 'dart:html';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import 'package:ikigai/screens/components/gridbooking.dart';
 import 'package:ikigai/services/event_services.dart';
 
 import '../../controllers/matrix_controller.dart';
+import '../../models/event_model.dart';
 import '../../services/payment_services.dart';
 import '../components/formfield.dart';
 import '../components/input_field_date.dart';
@@ -452,6 +454,29 @@ class _EventFormScreenState extends State<EventFormScreen> {
       eventDetails["event_mode"] = "Private";
     eventDetails["event_desc"] = _discription.text;
     EventServices es = EventServices();
-    es.addEventsToFirebase(eventDetails, _date.text);
+    CollectionReference eventsCollection = FirebaseFirestore.instance
+        .collection("Location")
+        .doc("Nalagandla")
+        .collection("Events");
+
+    CollectionReference bookingCollection = FirebaseFirestore.instance
+        .collection("Location")
+        .doc("Nalagandla")
+        .collection("Bookings");
+    CollectionReference eventArray =
+        await eventsCollection.doc(_date.text).collection("event_array");
+    final snapshot = await eventArray.get();
+    int lengthOfEventArray = snapshot.docs.length;
+    EventModel event = EventModel(
+        eventId: _date.text + "_" + (lengthOfEventArray).toString(),
+        eventName: eventDetails["event_name"],
+        eventType: eventDetails["event_type"],
+        startTime: eventDetails["start_time"],
+        endTime: eventDetails["end_time"],
+        availableSeats: eventDetails["no_of_seats"],
+        ticketPrice: eventDetails["ticket_price"],
+        eventMode: eventDetails["event_mode"],
+        eventDescription: eventDetails["event_desc"]);
+    bookingForOrganizeEvent(event, eventDetails, _date.text);
   }
 }

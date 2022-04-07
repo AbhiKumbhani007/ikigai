@@ -15,6 +15,7 @@ class AllEventsState extends State<AllEvents> {
   @override
   Widget build(BuildContext context) {
     EventController eventController = Get.find();
+    eventController.fetchAllEvents();
     return Obx(() {
       return ListView.builder(
           itemCount: eventController.listOfEvents.value.length,
