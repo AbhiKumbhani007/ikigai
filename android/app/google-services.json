@@ -29,6 +29,85 @@
             {
               "client_id": "326834004696-4r84ugik2kobjm93nth3fvavc54pqe4t.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "326834004696-vnfa3pijj1nrl86rnmekd6pd09qt1uvs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ikigai"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326834004696:android:b4dba3a043830dd3c2edad",
+        "android_client_info": {
+          "package_name": "com.example.ikigai_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326834004696-4r84ugik2kobjm93nth3fvavc54pqe4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp8fS587aLWah6llSdq6jTxR5KL9VXok0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326834004696-4r84ugik2kobjm93nth3fvavc54pqe4t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326834004696-vnfa3pijj1nrl86rnmekd6pd09qt1uvs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ikigai"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326834004696:android:a17297255ef1d18fc2edad",
+        "android_client_info": {
+          "package_name": "com.ikigai.ikigai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326834004696-4r84ugik2kobjm93nth3fvavc54pqe4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp8fS587aLWah6llSdq6jTxR5KL9VXok0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326834004696-4r84ugik2kobjm93nth3fvavc54pqe4t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326834004696-vnfa3pijj1nrl86rnmekd6pd09qt1uvs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ikigai"
+              }
             }
           ]
         }

@@ -16,11 +16,12 @@ Future<void> bookingForOrganizeEvent(
   // String orderId = "${event.eventId}${userId}";
   String userId = userController.uid.value;
   var uuid = Uuid();
+  // this hardcode 100 is for akhilesh bhai 
   String orderId = uuid.v1();
-  String token = await getToken(orderId, event.ticketPrice!);
+  String token = await getToken(orderId, "100");
   Map<String, String> inputParams = {
     "orderId": orderId,
-    "orderAmount": event.ticketPrice.toString(),
+    "orderAmount": "100",
     "customerName": userController.name.value,
     "orderNote": "",
     "orderCurrency": "INR",
@@ -90,8 +91,8 @@ void registerEvent(EventModel event) async {
   String userId = userController.uid.value;
   var uuid = Uuid();
   String orderId = uuid.v1();
-
-  String token = await getToken(orderId, event.ticketPrice!);
+  
+  String token = await getToken(orderId, event.ticketPrice);
 
   Map<String, String> inputParams = {
     "orderId": orderId,
@@ -137,6 +138,7 @@ Future<String> getToken(String orderId, String? price) async {
   );
 
   var res = await json.decode(response.body);
+
   String ans = res["cftoken"];
   return ans;
 }

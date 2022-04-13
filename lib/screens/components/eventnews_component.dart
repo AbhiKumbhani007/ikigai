@@ -125,7 +125,13 @@ class EventNewsTile extends StatelessWidget {
                                         MaterialStateProperty.all<Color>(
                                             Colors.white)),
                                 onPressed: () {
-                                  registerEvent(event!);
+                                  if (event!.ticketPrice == "0") {
+                                    EventController eventController =
+                                        Get.find();
+                                    eventController.bookEvent(event!);
+                                  } else {
+                                    registerEvent(event!);
+                                  }
                                 },
                                 child: Text("Book",
                                     style: GoogleFonts.prompt(
