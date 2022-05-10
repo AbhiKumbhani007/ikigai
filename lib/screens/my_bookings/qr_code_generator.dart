@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ikigai/controllers/user_controller.dart';
+import 'package:ikigai/services/user_services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../models/booking.dart';
@@ -7,7 +10,8 @@ import '../../models/booking.dart';
 class QRCodeGenerator extends StatefulWidget {
   BookingModel? bookingModel;
   QRCodeGenerator({Key? key, this.bookingModel}) : super(key: key);
-
+  UserController userController = Get.find();
+// String userid=userController.uid.toString();
   @override
   State<QRCodeGenerator> createState() => _QRCodeGeneratorState();
 }
@@ -16,7 +20,7 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
   @override
   Widget build(BuildContext context) {
     String qrData =
-        "Date: ${widget.bookingModel?.date} \nSeat Number: ${widget.bookingModel?.seatNumber} \nSloat Number: ${widget.bookingModel?.slotNumber}";
+        "UserId: ${userController.uid.value}\nDate: ${widget.bookingModel?.date} \nSeat Number: ${widget.bookingModel?.seatNumber} \nSloat Number: ${widget.bookingModel?.slotNumber}";
     (widget.bookingModel?.event != null)
         ? qrData +
             " \nEvent Name: ${widget.bookingModel?.event!.eventName} \nEvent Type: ${widget.bookingModel?.event!.eventType} "
