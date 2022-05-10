@@ -23,6 +23,11 @@ class EventServices {
       .doc("Nalagandla")
       .collection("Bookings");
 
+  CollectionReference attendanceCollection = FirebaseFirestore.instance
+      .collection("Location")
+      .doc("Nalagandla")
+      .collection("attendance");
+
   Future<void> addEventsToFirebase(eventDetails, date) async {
     CollectionReference eventArray =
         await eventsCollection.doc(date).collection("event_array");
@@ -242,6 +247,16 @@ class EventServices {
       "seat_number": 0,
       "slot_number": 0,
     });
+
+    if (eventId == "09-05-2022_0") {
+      attendanceCollection
+          .doc(userController.uid.value)
+          .set({"remianing_days": 24, "remaining_days_week": 6});
+    } else if (eventId == "09-05-2022_1") {
+      attendanceCollection
+          .doc(userController.uid.value)
+          .set({"remianing_days": 12, "remaining_days_week": 3});
+    }
 
     // bookingController.getBooking(); commented on 3 4 2022
   }

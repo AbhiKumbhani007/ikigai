@@ -312,8 +312,7 @@ class HomeScreenPage extends StatelessWidget {
                           .listOfEventsOfTwoDays[index].eventName,
                       event: eventController.listOfEventsOfTwoDays[index],
                     );
-                  });
-            }),
+                  });            }),
           )
         ],
       ),

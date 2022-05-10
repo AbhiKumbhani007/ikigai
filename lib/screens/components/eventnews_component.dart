@@ -100,12 +100,14 @@ class EventNewsTile extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("₹ ${event!.ticketPrice}",
-                            style: GoogleFonts.prompt(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            )),
+                        Flexible(
+                          child: Text("₹${event!.ticketPrice}",
+                              style: GoogleFonts.prompt(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              )),
+                        ),
                         Padding(
                           padding: EdgeInsets.only(
                               right: MediaQuery.of(context).size.height * 0.02,
@@ -126,8 +128,31 @@ class EventNewsTile extends StatelessWidget {
                                             Colors.white)),
                                 onPressed: () {
                                   if (event!.ticketPrice == "0") {
+                                    final snackBar = SnackBar(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10))),
+                                      backgroundColor:
+                                          Color.fromRGBO(167, 171, 240, 1),
+                                      content: Text(
+                                        'Registration is confirmed, check at Bookings Sections',
+                                        style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w600,
+                                            color:
+                                                Color.fromARGB(255, 0, 0, 0)),
+                                      ),
+                                      action: SnackBarAction(
+                                        label: '',
+                                        onPressed: () {
+                                          // Some code to undo the change.
+                                        },
+                                      ),
+                                    );
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
                                     EventController eventController =
                                         Get.find();
+
                                     eventController.bookEvent(event!);
                                   } else {
                                     registerEvent(event!);

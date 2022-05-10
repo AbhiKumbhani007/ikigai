@@ -155,40 +155,40 @@ class _PartnerScreenState extends State<PartnerScreen> {
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.02,
-              vertical: MediaQuery.of(context).size.height * 0.01),
-          child: SizedBox(
-            height: 100,
-            child: Card(
-              color: Color.fromARGB(255, 255, 255, 255),
-              shape: RoundedRectangleBorder(
-                side: const BorderSide(color: Colors.white70, width: 1),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              elevation: 2,
-              child: Center(
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: const Image(
-                      image:
-                          AssetImage('assets/images/partner_base_logo_1.jpg'),
-                    ).image,
-                    backgroundColor: Colors.deepPurple,
-                  ),
-                  title: Text('C A Shekhar',
-                      style: GoogleFonts.prompt(
-                          fontSize: 24, color: Colors.deepPurple)),
-                  subtitle: Text('Financial advisory services',
-                      style: GoogleFonts.prompt(
-                          fontSize: 16, color: Colors.black)),
-                ),
-              ),
-            ),
-          ),
-        ),
+        // Padding(
+        //   padding: EdgeInsets.symmetric(
+        //       horizontal: MediaQuery.of(context).size.width * 0.02,
+        //       vertical: MediaQuery.of(context).size.height * 0.01),
+        //   child: SizedBox(
+        //     height: 100,
+        //     child: Card(
+        //       color: Color.fromARGB(255, 255, 255, 255),
+        //       shape: RoundedRectangleBorder(
+        //         side: const BorderSide(color: Colors.white70, width: 1),
+        //         borderRadius: BorderRadius.circular(10),
+        //       ),
+        //       elevation: 2,
+        //       child: Center(
+        //         child: ListTile(
+        //           leading: CircleAvatar(
+        //             radius: 30,
+        //             backgroundImage: const Image(
+        //               image:
+        //                   AssetImage('assets/images/partner_base_logo_1.jpg'),
+        //             ).image,
+        //             backgroundColor: Colors.deepPurple,
+        //           ),
+        //           title: Text('C A Shekhar',
+        //               style: GoogleFonts.prompt(
+        //                   fontSize: 24, color: Colors.deepPurple)),
+        //           subtitle: Text('Financial advisory services',
+        //               style: GoogleFonts.prompt(
+        //                   fontSize: 16, color: Colors.black)),
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
