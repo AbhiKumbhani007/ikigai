@@ -272,7 +272,7 @@ class EventServices {
       for (int event = 0; event < eventArraySnapshot.docs.length; event++) {
         eventList.add(EventModel(
             eventDate: snapshot.docs[dates].id,
-            eventId: eventArraySnapshot.docs[event].id,
+            eventId: eventArraySnapshot.docs[event]["event_id"],
             eventName: eventArraySnapshot.docs[event]["event_name"],
             eventType: eventArraySnapshot.docs[event]["event_type"],
             startTime: eventArraySnapshot.docs[event]["start_time"],
