@@ -63,7 +63,7 @@ class MatrixServices {
     var snapShots = await col.get();
     if (snapShots.docs.length > 0) {
       // fetch the data
-      for (int i = 1; i <= 64; i++) {
+      for (int i = 1; i <= 36; i++) {
         SeatModel sm = SeatModel();
         var snap = await matrixCollection.doc(date).collection("$i").get();
         sm.is1stSlotSelected = snap.docs[0]["is_booked"];
@@ -74,7 +74,7 @@ class MatrixServices {
       }
     } else {
       // make the collection
-      for (int i = 1; i <= 64; i++) {
+      for (int i = 1; i <= 36; i++) {
         SeatModel sm = SeatModel();
         matrixCollection
             .doc(date)

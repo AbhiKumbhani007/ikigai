@@ -125,9 +125,9 @@ class _GridBookingState extends State<GridBooking> {
                     shrinkWrap: true, //must for grid inside column
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 8,
+                      crossAxisCount: 6,
                     ),
-                    itemCount: 64,
+                    itemCount: 36,
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(onTap: () {
                         setState(() {
@@ -140,7 +140,7 @@ class _GridBookingState extends State<GridBooking> {
                           matrixController.fetchSeatDetailsFromFirebase();
                         });
                         debugPrint(
-                            "${(index / 8).floor() + 1} , ${1 + index % 8}");
+                            "${(index / 6).floor() + 1} , ${1 + index % 6}");
                       }, child: Obx(() {
                         return Card(
                           elevation:
@@ -291,7 +291,7 @@ class _GridBookingState extends State<GridBooking> {
                               ElevatedButton(
                                 onPressed: () async {
                                   // navigator to payment gateway screen
-                                registerMatrixSlot(
+                                  registerMatrixSlot(
                                       "100",
                                       matrixController.selectedDate,
                                       matrixController.seatNumber.value
