@@ -249,15 +249,24 @@ class EventServices {
     });
 
     if (eventId == "09-05-2022_0") {
-      attendanceCollection
-          .doc(userController.uid.value)
-          .set({"remianing_days": 24, "remaining_days_week": 6});
+      attendanceCollection.doc(userController.uid.value).set({
+        "remianing_days": 24,
+        "remaining_days_week": 6,
+        "subscribed_for": 6,
+        "last_updated": "null",
+        "last_monday_updated": "null"
+      });
     } else if (eventId == "09-05-2022_1") {
-      attendanceCollection
-          .doc(userController.uid.value)
-          .set({"remianing_days": 12, "remaining_days_week": 3});
+      attendanceCollection.doc(userController.uid.value).set({
+        "remianing_days": 12,
+        "remaining_days_week": 3,
+        "subscribed_for": 3,
+        "last_updated": "null",
+        "last_monday_updated": "null"
+      });
     }
 
+    // CollectionReference userId = await
     // bookingController.getBooking(); commented on 3 4 2022
   }
 
