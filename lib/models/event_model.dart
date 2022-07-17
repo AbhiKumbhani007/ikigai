@@ -10,7 +10,6 @@ class EventModel {
   String? ticketPrice;
   String? eventMode;
   String? eventDescription;
-
   EventModel(
       {this.eventDate,
       this.eventId,
@@ -23,7 +22,6 @@ class EventModel {
       this.availableSeats,
       this.eventMode,
       this.ticketPrice});
-
   EventModel.fromJson(Map<String, dynamic> json) {
     eventDate = json['eventDate'];
     eventId = json['eventId'];
@@ -37,7 +35,6 @@ class EventModel {
     ticketPrice = json['ticketPrice'];
     eventDescription = json["eventDescription"];
   }
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['eventDate'] = eventDate;
